@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "ebook_comic_download",
+  "description": "针对常用电子书平台的漫画图片下载器",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [""],
+      "js": [""]
+    }
+  ]
+}
