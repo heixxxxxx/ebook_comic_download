@@ -4,19 +4,19 @@
   
 ## 网站列表
 bili
-bomtoon
-corona
-mangaup
-pixiv
-zerosum
-mangacross
-r.binb.jp
-www.cmoa.jp
-booklive.jp
-takeshobo.co.jp
-www.comic-valkyrie.com
-futabanet.jp
-comic-polaris.jp
++ bomtoon
++ corona
++ mangaup
++ pixiv
++ zerosum
++ mangacross
++ r.binb.jp
++ www.cmoa.jp
++ booklive.jp
++ takeshobo.co.jp
++ www.comic-valkyrie.com
++ futabanet.jp
++ comic-polaris.jp
 www.shonengahosha.co.jp
 r-cbs.mangafactory.jp
 comic-meteor.jp
