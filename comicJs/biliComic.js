@@ -2,7 +2,7 @@
 class BiliComic {
   constructor() {
     this.epId = '';
-    this.comicMsg = {};
+    this.comicMsg = { "网站": "bilibili漫画" };
     this.imageList = [];
     this.getEpId()
   }
@@ -10,6 +10,10 @@ class BiliComic {
   sendMsg(id, msg = {}) {
     process = id
     chrome.runtime.sendMessage({ id, data: { comicMsg: this.comicMsg, ...msg } });
+  }
+  //下载
+  download() {
+    this.getImgToken()
   }
   // 通过地址栏的链接获取到这一话的id
   getEpId() {
@@ -57,10 +61,6 @@ class BiliComic {
         //发送消息
         this.sendMsg(1)
       })
-  }
-  //下载
-  download() {
-    this.getImgToken()
   }
   //通过图片列表的地址，获取真实图片链接和token
   getImgToken(imageList = this.imageList) {
