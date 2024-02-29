@@ -16,7 +16,7 @@ let urlList = [
     key: 'pixiv',
     url: 'https://comic.pixiv.net/viewer/stories/*',
     regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
-    originUrl: 'https://comic.pixiv.net/',
+    originUrl: 'https://comic.pixiv.net',
     name: "pixivコミック"
   }
 ]
@@ -37,7 +37,7 @@ class htmlObj {
   supportButNotRead() {
     document.getElementById("loading").style.display = "none"
     let msgBox = document.getElementById("msgBox")
-    let htmlText=""
+    let htmlText = ""
     htmlText += `<p class="msg-box-item" >支持该网站的下载，请点击到具体漫画页阅读页面下载</p>`
     htmlText += `<p class="msg-box-item" >开发时大部分网站仅用无料阅读内容，如购买内容无法下载，请联系开发者</p>`
     switch (originObj.key) {
@@ -50,7 +50,7 @@ class htmlObj {
         break;
       }
     }
-    msgBox.innerHTML+=htmlText
+    msgBox.innerHTML += htmlText
   }
   // 0
   loading() {
@@ -82,13 +82,14 @@ class htmlObj {
     switch (webObj.key) {
       case "bili": {
         htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
+        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片（b的页面图片并非原图，推荐下载）</p>`
         htmlText += `<p class="msg-box-item" >目前仅支持单独话下载，不支持整本下载</p>`
         break;
       }
       case "pixiv": {
         htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
         htmlText += `<p class="msg-box-item" >如下载中途失败，请删除已经下载的图片再重新下载</p>`
-       
+
         break;
       }
     }

@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "ebook_comic_downloader",
+ 
   "description": "针对常用电子书平台的漫画图片下载器",
   "version": "1.0",
   "permissions": [
@@ -18,10 +19,20 @@
   },
 
   "content_scripts": [{
-    "matches": ["https://manga.bilibili.com/mc*","https://comic.pixiv.net/viewer/stories/*"],
-    "js": [ "./comicJs/tool.js",
-            "./comicJs/biliComic.js", 
-            "./comicJs/pixivComic.js",
-            "./main.js"]
-  }]
+    "matches": [
+      "https://manga.bilibili.com/mc*",
+      "https://comic.pixiv.net/viewer/stories/*"
+    ],
+    "js": [
+      "./comicJs/tool.js",
+      "./comicJs/biliComic.js",
+      "./comicJs/pixivComic.js",
+      "./main.js"
+    ]
+  }],
+
+  "optional_host_permissions": [
+    "*://*/*"
+  ]
+ 
 }
