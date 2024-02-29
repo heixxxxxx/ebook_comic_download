@@ -8,12 +8,17 @@
     </title>
 </head>
 <style>
+    html {
+
+        border-radius: 3px;
+        box-shadow: 0 0 5px 3px rgba(113, 113, 113, 0.2);
+    }
+
     body {
         margin: 0;
         padding: 15px 15px 5px 15px;
         width: 300px;
         height: 300px;
-        box-shadow: 0 0 5px 3px rgba(113, 113, 113, 0.2);
         border-radius: 3px;
         display: flex;
         flex-direction: column;
@@ -33,13 +38,35 @@
         font-weight: 600;
         margin-bottom: 10px;
         color: #666;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header p {
+        margin: 0
+    }
+
+    header span {
+        font-size: 10px;
+        font-weight: 400;
+        color: #aaa;
+        cursor: pointer;
+        transition: 0.5s all;
+    }
+
+    header span:hover {
+
+        color: #555;
+
     }
 
     .msg-box {
         flex: 1;
-        margin:5px 0;
+        margin: 5px 0;
         overflow-x: hidden;
         overflow-y: auto;
+
     }
 
     .msg-box .msg-box-title {
@@ -79,7 +106,6 @@
         cursor: pointer;
         display: inline-block;
         margin-bottom: 10px;
-        margin-left: 30px;
         padding: 5px 20px;
         font-size: 12px;
         color: #666;
@@ -97,12 +123,12 @@
     }
 
     .comic-msg {
-        margin:5px 0;
+        margin: 5px 0;
         display: none;
         flex: 1;
         overflow-y: auto;
         overflow-x: hidden;
-        padding: 5px 50px 5px 5px;
+        padding: 5px 10px 5px 5px;
     }
 
     .comic-msg p {
@@ -180,7 +206,9 @@
 </style>
 
 <body>
-    <header>ebook-downloader</header>
+    <header>
+        <p>ebook-downloader</p><span id="qa">问题反馈</span>
+    </header>
     <p class="hr"></p>
     <div class="comic-msg" id="comicMsg">
 

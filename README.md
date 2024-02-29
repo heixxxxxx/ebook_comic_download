@@ -5,11 +5,11 @@
 
 ## 网站列表
 
-- bili
+- √ bili
 - bomtoon
 - corona
 - mangaup
-- pixiv
+- √ pixiv
 - zerosum
 - mangacross
 - r.binb.jp

@@ -11,7 +11,6 @@
     "scripting",
     "contextMenus",
     "notifications"
-   
   ],
 
   "action": {
@@ -19,9 +18,10 @@
   },
 
   "content_scripts": [{
-    "matches": ["https://manga.bilibili.com/mc*"],
+    "matches": ["https://manga.bilibili.com/mc*","https://comic.pixiv.net/viewer/stories/*"],
     "js": [ "./comicJs/tool.js",
-            "./comicJs/biliComic.js",
+            "./comicJs/biliComic.js", 
+            "./comicJs/pixivComic.js",
             "./main.js"]
   }]
 }

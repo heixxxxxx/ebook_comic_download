@@ -11,6 +11,13 @@ let urlList = [
     regex: /^https:\/\/manga\.bilibili\.com\/mc(\d+)\/(\d+).*/,
     originUrl: 'https://manga.bilibili.com',
     name: "bilibili漫画"
+  },
+  {
+    key: 'pixiv',
+    url: 'https://comic.pixiv.net/viewer/stories/*',
+    regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
+    originUrl: 'https://comic.pixiv.net/',
+    name: "pixivコミック"
   }
 ]
 //网站信息
@@ -23,22 +30,27 @@ class htmlObj {
     document.getElementById("loading").style.display = "none"
     let dom = document.createElement("p")
     dom.className = "msg-box-item"
-    dom.innerText = "很抱歉本扩展不支持该网站的下载，如果需要请联系开发人员"
+    dom.innerText = "很抱歉，本扩展不支持该网站的下载，如果需要请联系开发人员"
     document.getElementById("msgBox").appendChild(dom)
   }
   //支持但不在阅读页（提示内容根据具体网站变化）
   supportButNotRead() {
     document.getElementById("loading").style.display = "none"
     let msgBox = document.getElementById("msgBox")
-    msgBox.innerHTML += `<p class="msg-box-item" >支持该网站的下载，请点击到具体漫画页阅读页面下载</p>`
-    msgBox.innerHTML += `<p class="msg-box-item" >开发时大部分网站仅用无料阅读内容，如购买内容无法下载，请联系开发者</p>`
+    let htmlText=""
+    htmlText += `<p class="msg-box-item" >支持该网站的下载，请点击到具体漫画页阅读页面下载</p>`
+    htmlText += `<p class="msg-box-item" >开发时大部分网站仅用无料阅读内容，如购买内容无法下载，请联系开发者</p>`
     switch (originObj.key) {
       case "bili": {
-        msgBox.innerHTML += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
+        htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
+        break;
+      }
+      case "pixiv": {
+        htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
         break;
       }
     }
-
+    msgBox.innerHTML+=htmlText
   }
   // 0
   loading() {
@@ -50,6 +62,7 @@ class htmlObj {
       msgList[i].parentElement.remove(msgList[i])
     }
     document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >支持下载，请稍后</p>`
+    document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >如加载时间过长，请刷新页面重试，或者向开发者反馈问题</p>`
   }
   //可以下载(显示漫画信息) 1
   downloadMsg(msg = {}) {
@@ -64,12 +77,18 @@ class htmlObj {
     for (let key in msg) {
       htmlText += `<p><span>${key}:</span><span>${msg[key]}</span></p>`
     }
+    htmlText += `<p class="msg-box-item" >下载位置为浏览器设定的下载路径，如需修改，请打开浏览器设置-下载</p>`
     //提示内容
     switch (webObj.key) {
       case "bili": {
         htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
-        htmlText += `<p class="msg-box-item" >下载位置为浏览器设定的下载路径，如需修改，请打开浏览器设置-下载</p>`
         htmlText += `<p class="msg-box-item" >目前仅支持单独话下载，不支持整本下载</p>`
+        break;
+      }
+      case "pixiv": {
+        htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
+        htmlText += `<p class="msg-box-item" >如下载中途失败，请删除已经下载的图片再重新下载</p>`
+       
         break;
       }
     }
@@ -90,21 +109,20 @@ class htmlObj {
     } else {
       document.getElementById("downloadingText").innerText = `正在下载...`
     }
-    //定制提示
-    switch (webObj.key) { }
   }
   //下载中断 3
   downloadStop(msg = {}) {
     this.updatedComicMsg(msg.comicMsg)
     document.getElementById("downloading").className = "downloading"
     //定制提示
+    // 例如 document.getElementById("downloadingText").innerText = `请翻页`
     switch (webObj.key) { }
   }
   //下载完成 4
   downloadOver(msg = {}) {
     this.updatedComicMsg(msg.comicMsg)
     document.getElementById("downloading").className = "downloading"
-    document.getElementById("downloadingText").innerText = `下载完成√`
+    document.getElementById("downloadingText").innerText = `下载完成 √`
   }
 }
 // 发送消息到当前激活的标签页的content script
@@ -117,6 +135,10 @@ function sendMessage(data) {
 document.getElementById("downloadBtn").onclick = function () {
   sendMessage({ id: 1 })
   htmlPage.downloading();
+}
+//反馈
+document.getElementById("qa").onclick = function () {
+  chrome.tabs.create({ 'url': 'https://www.baidu.com' });
 }
 
 //popup页对象
@@ -131,7 +153,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
   if (webObj) {
     htmlPage.loading()
-    sendMessage({ id: 0, key: webObj.key })
+    sendMessage({ id: 0, webObj: webObj })
   }
   //匹配到了可以下载的网站，提示去阅读页就能下
   else if (originObj) {

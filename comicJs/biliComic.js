@@ -1,8 +1,8 @@
 
 class BiliComic {
-  constructor() {
+  constructor(webObj) {
     this.epId = '';
-    this.comicMsg = { "网站": "bilibili漫画" };
+    this.comicMsg = { "网站": webObj.name };
     this.imageList = [];
     this.getEpId()
   }
@@ -97,9 +97,8 @@ class BiliComic {
     this.sendMsg(2, { allPage: this.imageList.length, nowPage: page })
     fetch(url[0]).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
       a_dom.href = URL.createObjectURL(blob)
-      a_dom.download = page + ".jpg";
+      a_dom.download = page < 10 ? '0' + page + ".jpg": page + ".jpg";
       a_dom.click()
-
       url.splice(0, 1)
       this.downloadImg(url, page + 1)
     })

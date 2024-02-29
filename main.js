@@ -9,17 +9,15 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     //请求信息 
     if (request.id == 0 && (process < 2 || process == 4)) {
-      switch (request.key) {
+      switch (request.webObj.key) {
         case 'bili': {
-          if (downloader) {
-            downloader.sendMsg(1)
-          } else {
-            downloader = new BiliComic();
-          }
-
+          downloader = new BiliComic(request.webObj);
           break;
         }
-
+        case 'pixiv': {
+          downloader = new PixivComic(request.webObj);
+          break;
+        }
       }
     }
     //请求下载
