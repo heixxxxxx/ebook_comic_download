@@ -18,6 +18,10 @@ chrome.runtime.onMessage.addListener(
           downloader = new PixivComic(request.webObj);
           break;
         }
+        case 'qq': {
+          downloader = new QQComic(request.webObj);
+          break;
+        }
       }
     }
     //请求下载

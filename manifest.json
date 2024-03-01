@@ -21,12 +21,14 @@
   "content_scripts": [{
     "matches": [
       "https://manga.bilibili.com/mc*",
-      "https://comic.pixiv.net/viewer/stories/*"
+      "https://comic.pixiv.net/viewer/stories/*",
+      "https://ac.qq.com/ComicView/index/id/*"
     ],
     "js": [
       "./comicJs/tool.js",
       "./comicJs/biliComic.js",
       "./comicJs/pixivComic.js",
+      "./comicJs/acQQ.js",
       "./main.js"
     ]
   }],

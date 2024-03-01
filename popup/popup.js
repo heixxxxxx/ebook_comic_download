@@ -18,6 +18,13 @@ let urlList = [
     regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
     originUrl: 'https://comic.pixiv.net',
     name: "pixivコミック"
+  },
+  {
+    key: 'qq',
+    url: 'https://ac.qq.com/ComicView/index/id/655166/cid/26671',
+    regex: /^https:\/\/ac\.qq\.com\/ComicView\/index\/id\/(\d+)\/cid\/(\d+).*/,
+    originUrl: 'https://ac.qq.com',
+    name: "腾讯动漫"
   }
 ]
 //网站信息
@@ -43,6 +50,7 @@ class htmlObj {
     switch (originObj.key) {
       case "bili": {
         htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
+        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片（b的页面图片并非原图，推荐下载）</p>`
         break;
       }
       case "pixiv": {
@@ -92,6 +100,7 @@ class htmlObj {
 
         break;
       }
+      
     }
     document.getElementById("comicMsg").innerHTML = htmlText
   }

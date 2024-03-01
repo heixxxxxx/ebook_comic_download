@@ -42,7 +42,6 @@ function contextmenuOPen(dom = document) {
       for(let i=0;i<document.children.length;i++){
         contextmenuOPen(document.children[i])
       }
-     
     }
   }, true);
 }
