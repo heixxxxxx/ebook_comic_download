@@ -64,5 +64,5 @@
 - dokusho-ojikan.jp
 - www.idmzj.com/
 - www.kuaikanmanhua.com/
-- ac.qq.com/
+√ ac.qq.com/
 - www.dongmanmanhua.cn/
