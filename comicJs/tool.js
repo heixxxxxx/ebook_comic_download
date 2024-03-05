@@ -34,7 +34,7 @@ function downloadByFetch(urlList, page = 0, obj) {
     urlList.splice(0, 1)
     downloadByFetch(urlList, page + 1, obj)
   })
-
+ setTimeout(()=>{downloadByFetch(urlList, page + 1, obj)},200)
 }
 //监听dom内容改变
 function listenDomChange(dom, fn) {
