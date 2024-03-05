@@ -5,6 +5,7 @@
   "description": "针对常用电子书平台的漫画图片下载器",
   "version": "1.0",
   "permissions": [
+    "tabs",
     "activeTab",
     "storage",
     "cookies",
@@ -25,16 +26,13 @@
       "https://ac.qq.com/ComicView/index/id/*"
     ],
     "js": [
+      "./moudels/math.min.js",
       "./comicJs/tool.js",
       "./comicJs/biliComic.js",
       "./comicJs/pixivComic.js",
       "./comicJs/acQQ.js",
       "./main.js"
     ]
-  }],
-
-  "optional_host_permissions": [
-    "*://*/*"
-  ]
+  }]
  
 }

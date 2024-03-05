@@ -5,7 +5,7 @@ document.addEventListener('contextmenu', function (e) {
   e.stopPropagation();
 }, true);
 
-// 链接下载
+//链接下载
 function downloadByUrlList(urlList, page = 0, obj) {
   if (urlList.length == 0) {
     obj.sendMsg(4)
@@ -19,6 +19,22 @@ function downloadByUrlList(urlList, page = 0, obj) {
     urlList.splice(0, 1)
     downloadByUrlList(urlList, page + 1, obj)
   }, 200)
+}
+//请求下载
+function downloadByFetch(urlList, page = 0, obj) {
+  if (urlList.length == 0) {
+    obj.sendMsg(4)
+    return 0
+  }
+  obj.sendMsg(2, { allPage: obj.imageList.length, nowPage: page })
+  fetch(urlList[0]).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
+    a_dom.href = URL.createObjectURL(blob)
+    a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
+    a_dom.click()
+    urlList.splice(0, 1)
+    downloadByFetch(urlList, page + 1, obj)
+  })
+
 }
 //监听dom内容改变
 function listenDomChange(dom, fn) {
@@ -39,9 +55,10 @@ function contextmenuOPen(dom = document) {
   dom.addEventListener('contextmenu', function (e) {
     e.stopPropagation();
     if (document.children.length) {
-      for(let i=0;i<document.children.length;i++){
+      for (let i = 0; i < document.children.length; i++) {
         contextmenuOPen(document.children[i])
       }
     }
   }, true);
 }
+

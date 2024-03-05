@@ -57,6 +57,11 @@ class htmlObj {
         htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
         break;
       }
+      case "qq": {
+        htmlText += `<p class="msg-box-item" >腾讯漫画由于数据解析复杂，可能解析失败，请尝试反复刷新</p>`
+        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片</p>`
+        break;
+      }
     }
     msgBox.innerHTML += htmlText
   }
@@ -71,6 +76,12 @@ class htmlObj {
     }
     document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >支持下载，请稍后</p>`
     document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >如加载时间过长，请刷新页面重试，或者向开发者反馈问题</p>`
+    switch (originObj.key) {
+      case "qq": {
+        document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >腾讯漫画由于数据复杂，可能解析失败，请尝试反复刷新</p>`
+        break;
+      }
+    }
   }
   //可以下载(显示漫画信息) 1
   downloadMsg(msg = {}) {
@@ -100,7 +111,11 @@ class htmlObj {
 
         break;
       }
-      
+      case "qq": {
+        htmlText += `<p class="msg-box-item" >可以右键另存为单张图片</p>`
+        break;
+      }
+
     }
     document.getElementById("comicMsg").innerHTML = htmlText
   }
