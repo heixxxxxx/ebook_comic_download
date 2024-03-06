@@ -30,13 +30,13 @@ class QQComic {
       if (!jsList[i].src) {
         let text = jsList[i].innerText.replace(/\"/g, "").replace(/\+/g, "").replace(/ /g, "")
         if (text.indexOf(`window[nonce]`) != -1) {
+          console.log(jsList[i].innerText.split("=")[1])
           this.nonce = this.decodeSecretKey(jsList[i].innerText.split("=")[1])
         } else if (text.indexOf(`DATA=`) != -1) {
           this.DATA = jsList[i].innerText.split(",")[0].match(/'([^']*)'/)[1]
         } else if (text.indexOf(`pg_ChapterIndex.data`) != -1) {
           let dataText = jsList[i].innerText.slice(text.indexOf(`pg_ChapterIndex.data`))
           this.DATA = dataText.split(",")[0].match(/'([^']*)'/)[1]
-
         }
 
       }
@@ -50,7 +50,14 @@ class QQComic {
       if (match) {
         item = (match[1]); // 输出: !!1
         item = item.replace(/!!/g, "")
+
         item = item.replace(/document.getElementsByTagName\('html'\)/g, "1")
+        item = item.replace(/'123'.substring\(2\)/g, "3")
+        item = item.replace(/'123'.substring\(0\)/g, "1")
+        item = item.replace(/'123'.substring\(1\)/g, "2")
+        item = item.replace(/Math.round\(.5\)/g, "1")
+        item = item.replace(/~~1.+d/g, "1")
+        item = item.replace(/parseInt\(7\/3\)/g, "2")
         item = item.replace(/document.children/g, "1")
         item = item.replace(/window.Array/g, "1")
         item = item.replace(/Math./g, "")
@@ -89,7 +96,7 @@ class QQComic {
     return a = this._utf8_decode(a)
   }
   _utf8_decode(c) {
-    for (var a = "", b = 0, d = 0, c1 = 0, c2 = 0; b < c.length;) {
+    for (var a = "", b = 0, d = 0, c1 = 0, c2 = 0, c3 = 0; b < c.length;) {
       d = c.charCodeAt(b),
         128 > d ? (a += String.fromCharCode(d),
           b++) : 191 < d && 224 > d ? (c2 = c.charCodeAt(b + 1),

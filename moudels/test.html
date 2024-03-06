@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="math.min.js"></script>
+  <script>
+function decodeSecretKey(text) {
+    let textList = text.slice(0, -1).replace(/" \+ \(/g, "$").replace(/\) \+ "/g, "$").replace(/\) \+ \(/g, "$").split("$")
+    let list = []
+    textList.forEach((item, index) => {
+      let match = item.match(/eval\("([^"]+)"\)/);
+      if (match) {
+        item = (match[1]); // 输出: !!1
+        item = item.replace(/!!/g, "")
+
+        item = item.replace(/document.getElementsByTagName\('html'\)/g, "1")
+        item = item.replace(/'123'.substring\(2\)/g, "3")
+        item = item.replace(/'123'.substring\(0\)/g, "1")
+        item = item.replace(/'123'.substring\(1\)/g, "2")
+        item = item.replace(/Math.round\(.5\)/g, "1")
+        item = item.replace(/~~1.+d/g, "1")
+        item = item.replace(/parseInt\(7\/3\)/g, "2")
+        item = item.replace(/document.children/g, "1")
+        item = item.replace(/window.Array/g, "1")
+        item = item.replace(/Math./g, "")
+        item = item.replace(/!!/g, "")
+        item = item.replace(/!1/g, "0")
+        item = item.replace(/!0/g, "1")
+        console.log(item)
+        item = math.evaluate(item) - 0
+        list.push(item)
+      } else {
+        list.push(item.replace(/\"/g, ""))
+      }
+    })
+    console.log(list.join(""))
+    return list.join("")
+
+  }
+
+  decodeSecretKey(`(+eval("1/2 + 5/2")).toString() + "2bc12e" + (+eval("'1'.charCodeAt() - 45")).toString() + "985" + (+eval("!!1+!1+!!2+!!2+1")).toString() + "7a4315b3e3a" + (+eval("!!1")).toString() + "4fce8cc9";`) 
+  </script>
+</body>
+</html>

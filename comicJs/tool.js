@@ -32,9 +32,9 @@ function downloadByFetch(urlList, page = 0, obj) {
     a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
     a_dom.click()
     urlList.splice(0, 1)
-    downloadByFetch(urlList, page + 1, obj)
+    setTimeout(() => { downloadByFetch(urlList, page + 1, obj) }, 200)
   })
- setTimeout(()=>{downloadByFetch(urlList, page + 1, obj)},200)
+
 }
 //监听dom内容改变
 function listenDomChange(dom, fn) {

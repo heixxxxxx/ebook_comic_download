@@ -1,32 +1,4 @@
-//定义一个地址参数列表,这个也是每做一个网站的，就添加一个新的对象
-//key:识别的关键字
-//url:匹配的url
-//regex:匹配的正则（用这个来匹配地址栏的链接的）
-//originUrl:根路径，用来看这个网站是否被我们支持，但具体能下载还要去阅读页
-//name:网站的名字
-let urlList = [
-  {
-    key: 'bili',
-    url: 'https://manga.bilibili.com/detail/mc*/*',
-    regex: /^https:\/\/manga\.bilibili\.com\/mc(\d+)\/(\d+).*/,
-    originUrl: 'https://manga.bilibili.com',
-    name: "bilibili漫画"
-  },
-  {
-    key: 'pixiv',
-    url: 'https://comic.pixiv.net/viewer/stories/*',
-    regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
-    originUrl: 'https://comic.pixiv.net',
-    name: "pixivコミック"
-  },
-  {
-    key: 'qq',
-    url: 'https://ac.qq.com/ComicView/index/id/655166/cid/26671',
-    regex: /^https:\/\/ac\.qq\.com\/ComicView\/index\/id\/(\d+)\/cid\/(\d+).*/,
-    originUrl: 'https://ac.qq.com',
-    name: "腾讯动漫"
-  }
-]
+
 //网站信息
 let webObj = {}
 let originObj = {}
@@ -47,22 +19,9 @@ class htmlObj {
     let htmlText = ""
     htmlText += `<p class="msg-box-item" >支持该网站的下载，请点击到具体漫画页阅读页面下载</p>`
     htmlText += `<p class="msg-box-item" >开发时大部分网站仅用无料阅读内容，如购买内容无法下载，请联系开发者</p>`
-    switch (originObj.key) {
-      case "bili": {
-        htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
-        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片（b的页面图片并非原图，推荐下载）</p>`
-        break;
-      }
-      case "pixiv": {
-        htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
-        break;
-      }
-      case "qq": {
-        htmlText += `<p class="msg-box-item" >腾讯漫画由于数据解析复杂，可能解析失败，请尝试反复刷新</p>`
-        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片</p>`
-        break;
-      }
-    }
+    webObj.supportMsg.forEach(item => {
+      htmlText += `<p class="msg-box-item" >${item}</p>`
+    });
     msgBox.innerHTML += htmlText
   }
   // 0
@@ -76,12 +35,10 @@ class htmlObj {
     }
     document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >支持下载，请稍后</p>`
     document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >如加载时间过长，请刷新页面重试，或者向开发者反馈问题</p>`
-    switch (originObj.key) {
-      case "qq": {
-        document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >腾讯漫画由于数据复杂，可能解析失败，请尝试反复刷新</p>`
-        break;
-      }
-    }
+    webObj.loadingMsg.forEach(item => {
+      document.getElementById("msgBox").innerHTML += `<p class="msg-box-item" >${item}</p>`
+    });
+
   }
   //可以下载(显示漫画信息) 1
   downloadMsg(msg = {}) {
@@ -98,25 +55,9 @@ class htmlObj {
     }
     htmlText += `<p class="msg-box-item" >下载位置为浏览器设定的下载路径，如需修改，请打开浏览器设置-下载</p>`
     //提示内容
-    switch (webObj.key) {
-      case "bili": {
-        htmlText += `<p class="msg-box-item" >b漫下载需要保证用户购买了该话内容，如没有购买，只能下载第一页</p>`
-        htmlText += `<p class="msg-box-item" >可以右键另存为页面图片（b的页面图片并非原图，推荐下载）</p>`
-        htmlText += `<p class="msg-box-item" >目前仅支持单独话下载，不支持整本下载</p>`
-        break;
-      }
-      case "pixiv": {
-        htmlText += `<p class="msg-box-item" >pixiv需要翻墙访问，可能下载速度偏慢</p>`
-        htmlText += `<p class="msg-box-item" >如下载中途失败，请删除已经下载的图片再重新下载</p>`
-
-        break;
-      }
-      case "qq": {
-        htmlText += `<p class="msg-box-item" >可以右键另存为单张图片</p>`
-        break;
-      }
-
-    }
+    webObj.downloadMsg.forEach(item => {
+      htmlText += `<p class="msg-box-item" >${item}</p>`
+    })
     document.getElementById("comicMsg").innerHTML = htmlText
   }
   //下载中 2
@@ -132,7 +73,7 @@ class htmlObj {
     } else if (msg.nowPage) {
       document.getElementById("downloadingText").innerText = `正在下载...第${msg.nowPage}页`
     } else {
-      document.getElementById("downloadingText").innerText = `正在下载...`
+      document.getElementById("downloadingText").innerText = msg.msg || "正在下载..."
     }
   }
   //下载中断 3
@@ -140,8 +81,9 @@ class htmlObj {
     this.updatedComicMsg(msg.comicMsg)
     document.getElementById("downloading").className = "downloading"
     //定制提示
-    // 例如 document.getElementById("downloadingText").innerText = `请翻页`
-    switch (webObj.key) { }
+    if (webObj.loadStopMsg) {
+      document.getElementById("downloadingText").innerText = webObj.loadStopMsg
+    }
   }
   //下载完成 4
   downloadOver(msg = {}) {
@@ -168,12 +110,12 @@ document.getElementById("qa").onclick = function () {
 
 //popup页对象
 let htmlPage = new htmlObj()
-//获取激活标签页的url，匹配urlList中的url
+//获取激活标签页的url，匹配webList中的url
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   let url = tabs[0].url;
-  //匹配时匹配规则urlList中的url
-  webObj = urlList.find(item => item.regex.test(url));
-  originObj = urlList.find(item => url.indexOf(item.originUrl) != -1);
+  //匹配时匹配规则webList中的url
+  webObj = webList.find(item => item.regex.test(url));
+  originObj = webList.find(item => url.indexOf(item.originUrl) != -1);
   //匹配到了阅读页，可以直接下载的
 
   if (webObj) {
