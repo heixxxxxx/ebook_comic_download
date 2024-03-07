@@ -52,16 +52,12 @@ class CmoaComic {
           puzzleToCanvas(this.imageList[page].imgs, imgSize, this.imageList[page].position).then(r => {
             this.imageList[page].canvasData = r
             if (i == divDomList.length - 1) {
-
               this.downloadImg()
             }
           })
-
         }
       }
     }
-
-
   }
   //下载
   download() {
@@ -87,7 +83,7 @@ class CmoaComic {
       if (item && item.canvasData) {
         downloadByUrl(item.canvasData, i)
         item.canvasData = null
-       
+
         this.sendMsg(2, { allPage: this.imageList.length, nowPage: page + 1 })
         this.downloadImg()
         return true

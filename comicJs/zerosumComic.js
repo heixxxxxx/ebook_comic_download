@@ -13,7 +13,6 @@ class ZerosumComic {
   }
   //获取漫画信息
   getInfo() {
-
     let scriptDomList = document.getElementsByTagName("script")
     for (let i = 0; i < scriptDomList.length; i++) {
       if (scriptDomList[i].innerText.indexOf("decodedChapterId") != -1) {
@@ -70,7 +69,6 @@ class ZerosumComic {
         this.comicMsg[`页数`] = this.imageList.length + "/" + this.imageList.length
         this.sendMsg(4)
       })
-
   }
   //下载
   download() {

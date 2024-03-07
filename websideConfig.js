@@ -6,7 +6,7 @@
 //name:网站的名字
 //supportMsg:支持但不在阅读页的提示
 //loadingMsg:正在加载漫画信息的提示
-// downloadMsg:加载数据完毕的其他提示
+//downloadMsg:加载数据完毕的其他提示
 //loadStopMsg：下载中断的提示
 let webList = [
   {

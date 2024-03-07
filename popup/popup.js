@@ -105,7 +105,7 @@ document.getElementById("downloadBtn").onclick = function () {
 }
 //反馈
 document.getElementById("qa").onclick = function () {
-  chrome.tabs.create({ 'url': 'https://www.baidu.com' });
+  chrome.tabs.create({ 'url': 'https://weibo.com/u/6793515421' });
 }
 
 //popup页对象
@@ -115,7 +115,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   let url = tabs[0].url;
   //匹配时匹配规则webList中的url
   webObj = webList.find(item => item.regex.test(url));
-  
+
   originObj = webList.find(item => url.indexOf(item.originUrl) != -1);
   //匹配到了阅读页，可以直接下载的
 
@@ -125,7 +125,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   }
   //匹配到了可以下载的网站，提示去阅读页就能下
   else if (originObj) {
-    
+
     htmlPage.supportButNotRead()
   }
   //匹配不上
