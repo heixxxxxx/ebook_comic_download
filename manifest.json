@@ -23,7 +23,8 @@
     "matches": [
       "https://manga.bilibili.com/mc*",
       "https://comic.pixiv.net/viewer/stories/*",
-      "https://ac.qq.com/ComicView/index/id/*"
+      "https://ac.qq.com/ComicView/index/id/*",
+      "https://www.cmoa.jp/bib/*"
     ],
     "js": [
       "./moudels/math.min.js",
@@ -31,6 +32,7 @@
       "./comicJs/biliComic.js",
       "./comicJs/pixivComic.js",
       "./comicJs/acQQ.js",
+      "./comicJs/cmoaComic.js",
       "./main.js"
     ]
   }]

@@ -22,6 +22,10 @@ chrome.runtime.onMessage.addListener(
           downloader = new QQComic(request.webObj);
           break;
         }
+        case 'cmoa': {
+          downloader = new CmoaComic(request.webObj);
+          break;
+        }
       }
     }
     //请求下载

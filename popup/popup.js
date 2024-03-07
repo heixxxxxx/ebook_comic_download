@@ -19,7 +19,7 @@ class htmlObj {
     let htmlText = ""
     htmlText += `<p class="msg-box-item" >支持该网站的下载，请点击到具体漫画页阅读页面下载</p>`
     htmlText += `<p class="msg-box-item" >开发时大部分网站仅用无料阅读内容，如购买内容无法下载，请联系开发者</p>`
-    webObj.supportMsg.forEach(item => {
+    originObj.supportMsg.forEach(item => {
       htmlText += `<p class="msg-box-item" >${item}</p>`
     });
     msgBox.innerHTML += htmlText
@@ -115,6 +115,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   let url = tabs[0].url;
   //匹配时匹配规则webList中的url
   webObj = webList.find(item => item.regex.test(url));
+  
   originObj = webList.find(item => url.indexOf(item.originUrl) != -1);
   //匹配到了阅读页，可以直接下载的
 
@@ -124,6 +125,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   }
   //匹配到了可以下载的网站，提示去阅读页就能下
   else if (originObj) {
+    
     htmlPage.supportButNotRead()
   }
   //匹配不上

@@ -5,7 +5,13 @@ document.addEventListener('contextmenu', function (e) {
   e.stopPropagation();
 }, true);
 
-//链接下载
+// 单张下载
+function downloadByUrl(url, page) {
+  a_dom.href = url
+  a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
+  a_dom.click()
+}
+//链接列表下载(blob,base64链接列表)
 function downloadByUrlList(urlList, page = 0, obj) {
   if (urlList.length == 0) {
     obj.sendMsg(4)
@@ -20,7 +26,7 @@ function downloadByUrlList(urlList, page = 0, obj) {
     downloadByUrlList(urlList, page + 1, obj)
   }, 200)
 }
-//请求下载
+//请求下载(使用http请求下载)
 function downloadByFetch(urlList, page = 0, obj) {
   if (urlList.length == 0) {
     obj.sendMsg(4)
@@ -36,6 +42,69 @@ function downloadByFetch(urlList, page = 0, obj) {
   })
 
 }
+//拼图3张 imageList 图 imgSize尺寸 position 位置
+function puzzleToCanvas(imageSrcList, imgSize, position) {
+  let imageList = []
+  for (let i = 0; i < imageSrcList.length; i++) {
+    let image = new Image()
+    image.src = imageSrcList[i]
+    image.setAttribute("crossOrigin", "anonymous");
+    image.onload = () => {
+      imageList.push(image)
+      if (imageList.length == imageSrcList.length) {
+        let canvas = document.createElement("canvas")
+        let ctx = canvas.getContext('2d')
+        //绘制
+        canvas.width = imageList[0].naturalWidth
+        canvas.height = imageList[0].naturalWidth * imgSize[1] / imgSize[0]
+        let centerImgHeight = position[1] * canvas.height
+
+        //三张图绘制位置 上 正中 下 
+        ctx.drawImage(imageList[0], 0, 0)
+        ctx.drawImage(imageList[1], 0, centerImgHeight)
+        ctx.drawImage(imageList[2], 0, canvas.height - imageList[2].naturalHeight)
+        //导出 下载
+        return canvas.toDataURL("image/png")
+      }
+
+    }
+  }
+
+}
+
+function puzzleToCanvas(imageSrcList, imgSize, position) {
+  return new Promise(
+    function (resolve, reject) {
+      let imageList = []
+      for (let i = 0; i < imageSrcList.length; i++) {
+        let image = new Image()
+        image.src = imageSrcList[i]
+        image.setAttribute("crossOrigin", "anonymous");
+        image.onload = () => {
+          imageList.push(image)
+          if (imageList.length == imageSrcList.length) {
+            let canvas = document.createElement("canvas")
+            let ctx = canvas.getContext('2d')
+            //绘制
+            canvas.width = imageList[0].naturalWidth
+            canvas.height = imageList[0].naturalWidth * imgSize[1] / imgSize[0]
+            let centerImgHeight = position[1] * canvas.height
+
+            //三张图绘制位置 上 正中 下 
+            ctx.drawImage(imageList[0], 0, 0)
+            ctx.drawImage(imageList[1], 0, centerImgHeight)
+            ctx.drawImage(imageList[2], 0, canvas.height - imageList[2].naturalHeight)
+            //导出 
+            resolve(canvas.toDataURL("image/png"));
+          }
+
+        }
+      }
+
+    }
+  );
+};
+
 //监听dom内容改变
 function listenDomChange(dom, fn) {
   const config = { attributes: true, childList: true };

@@ -22,7 +22,6 @@ class QQComic {
   download() {
     downloadByFetch([...this.imageList], 0, this)
   }
-
   //数据 密钥
   getDATA() {
     let jsList = document.getElementsByTagName("script")
@@ -50,7 +49,7 @@ class QQComic {
       if (match) {
         item = (match[1]); // 输出: !!1
         item = item.replace(/!!/g, "")
-
+        item = item.replace(/!!/g, "")
         item = item.replace(/document.getElementsByTagName\('html'\)/g, "1")
         item = item.replace(/'123'.substring\(2\)/g, "3")
         item = item.replace(/'123'.substring\(0\)/g, "1")
@@ -64,7 +63,6 @@ class QQComic {
         item = item.replace(/!!/g, "")
         item = item.replace(/!1/g, "0")
         item = item.replace(/!0/g, "1")
-
         item = math.evaluate(item) - 0
         list.push(item)
       } else {
@@ -109,8 +107,6 @@ class QQComic {
 
     return a
   }
-
-
   getComicInfo() {
 
     let T = this.DATA
@@ -136,7 +132,6 @@ class QQComic {
 
     this.sendMsg(1)
   }
-
   cleanCopyDom() {
     let list = document.getElementsByClassName("for-roast")
     for (let i = list.length - 1; i >= 0; i--) {
