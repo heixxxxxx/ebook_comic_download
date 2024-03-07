@@ -26,9 +26,9 @@ let webList = [
     originUrl: 'https://comic.pixiv.net',
     url: 'https://comic.pixiv.net/viewer/stories/*',
     regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
-    supportMsg: ["pixiv需要翻墙访问，可能下载速度偏慢"],
+    supportMsg: ["pixiv被墙，可能下载速度偏慢"],
     loadingMsg: [],
-    downloadMsg: ["pixiv需要翻墙访问，可能下载速度偏慢", "如下载中途失败，请删除已经下载的图片再重新下载"],
+    downloadMsg: ["pixiv被墙，可能下载速度偏慢", "如下载中途失败，请删除已经下载的图片再重新下载"],
     loadStopMsg: "",
   },
   {
@@ -63,7 +63,18 @@ let webList = [
     loadingMsg: [],
     downloadMsg: ["可以右键下载单页，但图片非原图，不建议"],
     loadStopMsg: "",
-  }
+  },
+  {
+    key: 'zerosum',
+    name: "ゼロサムオンライン",
+    originUrl: 'https://zerosumonline.com',
+    url: '"https://zerosumonline.com/episode/*"',
+    regex: /^https:\/\/zerosumonline\.com\/episode\/\.*/,
+    supportMsg: ["zerosum被墙，可能下载速度偏慢", "可以右键保存单张图片"],
+    loadingMsg: [],
+    downloadMsg: ["zerosum被墙，可能下载速度偏慢", "如下载中途失败，请删除已经下载的图片再重新下载", "可以右键保存单张图片"],
+    loadStopMsg: "",
+  },
 
-  
+
 ]

@@ -30,6 +30,10 @@ chrome.runtime.onMessage.addListener(
           downloader = new CoronaComic(request.webObj);
           break;
         }
+        case 'zerosum': {
+          downloader = new ZerosumComic(request.webObj);
+          break;
+        }
       }
     }
     //请求下载

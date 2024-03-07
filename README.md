@@ -10,7 +10,7 @@
 - 测试 to-corona-ex.com
 - mangaup
 - √ pixiv
-- zerosum
+- zerosumonline.com
 - mangacross
 - r.binb.jp
 - 测试 www.cmoa.jp

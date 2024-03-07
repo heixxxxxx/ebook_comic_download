@@ -25,7 +25,8 @@
       "https://comic.pixiv.net/viewer/stories/*",
       "https://ac.qq.com/ComicView/index/id/*",
       "https://www.cmoa.jp/bib/*",
-      "https://to-corona-ex.com/episodes/*"
+      "https://to-corona-ex.com/episodes/*",
+      "https://zerosumonline.com/episode/*"
     ],
     "js": [
       "./moudels/math.min.js",
@@ -34,7 +35,9 @@
       "./comicJs/pixivComic.js",
       "./comicJs/acQQ.js",
       "./comicJs/cmoaComic.js",
-      "./comicJs/CoronaComic.js",
+      "./comicJs/coronaComic.js",
+      "./comicJs/zerosumComic.js",
+      
       "./main.js"
     ]
   }]
