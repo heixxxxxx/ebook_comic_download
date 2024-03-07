@@ -87,7 +87,7 @@ class CmoaComic {
       if (item && item.canvasData) {
         downloadByUrl(item.canvasData, i)
         item.canvasData = null
-        console.log(this.imageList)
+       
         this.sendMsg(2, { allPage: this.imageList.length, nowPage: page + 1 })
         this.downloadImg()
         return true

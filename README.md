@@ -7,13 +7,13 @@
 
 - √ bili
 - bomtoon
-- corona
+- 测试 to-corona-ex.com
 - mangaup
 - √ pixiv
 - zerosum
 - mangacross
 - r.binb.jp
-- www.cmoa.jp
+- 测试 www.cmoa.jp
 - booklive.jp
 - takeshobo.co.jp
 - www.comic-valkyrie.com

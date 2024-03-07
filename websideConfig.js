@@ -52,5 +52,18 @@ let webList = [
     loadingMsg: [],
     downloadMsg: ["点击下载后，请配合手动翻页", "翻页时请缓慢翻页，保证每页图片加载", "如翻阅完毕还有没下载的图片，请回翻"],
     loadStopMsg: "请翻页，程序会自动继续下载",
+  },
+  {
+    key: 'corona',
+    name: "コロナEX｜TOブックスの公式Web漫画サイト",
+    originUrl: 'https://to-corona-ex.com',
+    url: 'https://to-corona-ex.com/episodes/*',
+    regex: /^https:\/\/to-corona-ex\.com\/episodes\/\.*/,
+    supportMsg: [],
+    loadingMsg: [],
+    downloadMsg: ["可以右键下载单页，但图片非原图，不建议"],
+    loadStopMsg: "",
   }
+
+  
 ]

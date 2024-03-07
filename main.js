@@ -26,6 +26,10 @@ chrome.runtime.onMessage.addListener(
           downloader = new CmoaComic(request.webObj);
           break;
         }
+        case 'corona': {
+          downloader = new CoronaComic(request.webObj);
+          break;
+        }
       }
     }
     //请求下载
