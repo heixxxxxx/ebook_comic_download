@@ -105,7 +105,7 @@ document.getElementById("downloadBtn").onclick = function () {
 }
 //反馈
 document.getElementById("qa").onclick = function () {
-  chrome.tabs.create({ 'url': 'https://weibo.com/u/6793515421' });
+  chrome.tabs.create({ 'url': 'https://message.bilibili.com/?spm_id_from=333.999.0.0#/whisper/mid21002052' });
 }
 
 //popup页对象
