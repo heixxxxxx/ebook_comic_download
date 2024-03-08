@@ -1,5 +1,5 @@
 
-class QQComic {
+class QqComic {
   constructor(webObj) {
     //腾讯的数据全是存放加密
     this.DATA = ""

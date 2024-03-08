@@ -10,30 +10,32 @@ chrome.runtime.onMessage.addListener(
     //请求信息 
     if (request.id == 0 && (process < 2 || process == 4)) {
       switch (request.webObj.key) {
-        case 'bili': {
-          downloader = new BiliComic(request.webObj);
-          break;
-        }
-        case 'pixiv': {
-          downloader = new PixivComic(request.webObj);
-          break;
-        }
-        case 'qq': {
-          downloader = new QQComic(request.webObj);
-          break;
-        }
-        case 'cmoa': {
-          downloader = new CmoaComic(request.webObj);
-          break;
-        }
-        case 'corona': {
-          downloader = new CoronaComic(request.webObj);
-          break;
-        }
-        case 'zerosum': {
-          downloader = new ZerosumComic(request.webObj);
-          break;
-        }
+        //自动化编码范围标识符
+        //++//
+    case 'bili': {
+      downloader = new BiliComic(request.webObj);
+      break;
+    }
+    case 'pixiv': {
+      downloader = new PixivComic(request.webObj);
+      break;
+    }
+    case 'qq': {
+      downloader = new QqComic(request.webObj);
+      break;
+    }
+    case 'cmoa': {
+      downloader = new CmoaComic(request.webObj);
+      break;
+    }
+    case 'corona': {
+      downloader = new CoronaComic(request.webObj);
+      break;
+    }
+    case 'zerosum': {
+      downloader = new ZerosumComic(request.webObj);
+      break;
+    }//++//
       }
     }
     //请求下载
