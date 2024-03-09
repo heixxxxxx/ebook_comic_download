@@ -20,7 +20,10 @@ function downloadByUrlList(urlList, page = 0, obj) {
   a_dom.href = urlList[0]
   a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
   a_dom.click()
-  if (obj) obj.sendMsg(2, { allPage: obj.imageList.length, nowPage: page })
+  if (obj) obj.sendMsg(2, {
+    allPage: obj.imageList.length,
+    nowPage: page
+  })
   setTimeout(() => {
     urlList.splice(0, 1)
     downloadByUrlList(urlList, page + 1, obj)
@@ -32,15 +35,66 @@ function downloadByFetch(urlList, page = 0, obj) {
     obj.sendMsg(4)
     return 0
   }
-  obj.sendMsg(2, { allPage: obj.imageList.length, nowPage: page })
+  obj.sendMsg(2, {
+    allPage: obj.imageList.length,
+    nowPage: page
+  })
   fetch(urlList[0]).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
     a_dom.href = URL.createObjectURL(blob)
     a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
     a_dom.click()
     urlList.splice(0, 1)
-    setTimeout(() => { downloadByFetch(urlList, page + 1, obj) }, 200)
+    setTimeout(() => {
+      downloadByFetch(urlList, page + 1, obj)
+    }, 200)
   })
 
+}
+//转换的canvas下载
+function downloadByCanvas(urlList, page = 0, obj) {
+  if (urlList.length == 0) {
+    obj.sendMsg(4)
+    return 0
+  }
+  obj.sendMsg(2, {
+    allPage: obj.imageList.length,
+    nowPage: page
+  })
+  let image = new Image()
+  console.error(urlList[0])
+  image.src = urlList[0]
+  // image.setAttribute("crossOrigin", "use-credentials");
+  image.onload = (e) => {
+    let canvas = document.createElement("canvas")
+    let ctx = canvas.getContext('2d')
+    //绘制
+    canvas.width = image.width
+    canvas.height = image.height
+    ctx.drawImage(image, 0, 0)
+    downloadByUrl(canvas.toDataURL("image/png"), page)
+    urlList.splice(0, 1)
+    downloadByCanvas(urlList, page + 1, obj)
+  }
+}
+//调用背景脚本下载（最好不要）
+function downloadByBgJs(urlList, page = 0, obj) {
+  if (urlList.length == 0) {
+    obj.sendMsg(4)
+    return 0
+  }
+
+  chrome.runtime.sendMessage({
+    downloadUrl: urlList[0],
+    filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+  });
+  if (obj) obj.sendMsg(2, {
+    allPage: obj.imageList.length,
+    nowPage: page
+  })
+  setTimeout(() => {
+    urlList.splice(0, 1)
+    downloadByBgJs(urlList, page + 1, obj)
+  }, 200)
 }
 //拼图3张 imageList 图 imgSize尺寸 position 位置
 function puzzleToCanvas(imageSrcList, imgSize, position) {
@@ -107,7 +161,10 @@ function puzzleToCanvas(imageSrcList, imgSize, position) {
 
 //监听dom内容改变
 function listenDomChange(dom, fn) {
-  const config = { attributes: true, childList: true };
+  const config = {
+    attributes: true,
+    childList: true
+  };
   const observer = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'childList') { // DOM子节点发生改变时触发
@@ -130,4 +187,3 @@ function contextmenuOPen(dom = document) {
     }
   }, true);
 }
-

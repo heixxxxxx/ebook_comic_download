@@ -35,6 +35,10 @@ chrome.runtime.onMessage.addListener(
     case 'zerosum': {
       downloader = new ZerosumComic(request.webObj);
       break;
+    }
+    case 'ganma': {
+      downloader = new GanmaComic(request.webObj);
+      break;
     }//++//
       }
     }

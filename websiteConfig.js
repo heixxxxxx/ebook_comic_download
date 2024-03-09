@@ -13,12 +13,11 @@
 //loadingMsg:正在加载漫画信息的提示
 //downloadMsg:加载数据完毕的其他提示
 //loadStopMsg：下载中断的提示
-var webList = [
-  {
+var webList = [{
     key: 'bili',
     jsFileName: 'biliComic',
     url: 'https://manga.bilibili.com/mc*',
-    originUrl: 'https://manga.bilibili.com',
+    originUrl: 'manga.bilibili.com',
     regex: /^https:\/\/manga\.bilibili\.com\/mc(\d+)\/(\d+).*/,
     name: "bilibili漫画",
     supportMsg: ["b漫下载需要保证用户<b>购买了</b>该话内容，如没有购买，只能下载第一页", "可以右键另存为页面图片（b的页面图片并非原图，推荐下载）"],
@@ -30,7 +29,7 @@ var webList = [
     key: 'pixiv',
     jsFileName: 'pixivComic',
     url: 'https://comic.pixiv.net/viewer/stories/*',
-    originUrl: 'https://comic.pixiv.net',
+    originUrl: 'comic.pixiv.net',
     regex: /^https:\/\/comic\.pixiv\.net\/viewer\/stories\/.*/,
     name: "pixivコミック",
     supportMsg: ["pixiv被墙，可能下载速度偏慢"],
@@ -42,7 +41,7 @@ var webList = [
     key: 'qq',
     jsFileName: 'acQQ',
     url: 'https://ac.qq.com/ComicView/index/id/*',
-    originUrl: 'https://ac.qq.com',
+    originUrl: 'ac.qq.com',
     regex: /^https:\/\/ac\.qq\.com\/ComicView\/index\/id\/(\d+)\/cid\/(\d+).*/,
     name: "腾讯动漫",
     supportMsg: ["腾讯漫画可能解析失败，请尝试反复<b>刷新网页</b>"],
@@ -54,7 +53,7 @@ var webList = [
     key: 'cmoa',
     jsFileName: 'cmoaComic',
     url: 'https://www.cmoa.jp/bib/*',
-    originUrl: 'https://www.cmoa.jp',
+    originUrl: 'cmoa.jp',
     regex: /^https:\/\/www\.cmoa\.jp\/bib\.*/,
     name: "コミックシーモア",
     supportMsg: ["cmoa需要<b>手动翻阅</b>下载", "翻页时请缓慢翻页，保证每页图片加载"],
@@ -66,7 +65,7 @@ var webList = [
     key: 'corona',
     jsFileName: 'coronaComic',
     url: 'https://to-corona-ex.com/episodes/*',
-    originUrl: 'https://to-corona-ex.com',
+    originUrl: 'to-corona-ex.com',
     regex: /^https:\/\/to-corona-ex\.com\/episodes\/\.*/,
     name: "コロナEX｜TOブックスの公式Web漫画サイト",
     supportMsg: [],
@@ -78,12 +77,24 @@ var webList = [
     key: 'zerosum',
     jsFileName: 'zerosumComic',
     url: 'https://zerosumonline.com/episode/*',
-    originUrl: 'https://zerosumonline.com',
+    originUrl: 'zerosumonline.com',
     regex: /^https:\/\/zerosumonline\.com\/episode\/\.*/,
     name: "ゼロサムオンライン",
     supportMsg: ["zerosum被墙，可能下载速度偏慢", "可以右键保存单张图片"],
     loadingMsg: [],
     downloadMsg: ["zerosum被墙，可能下载速度偏慢", "如下载中途失败，请删除已经下载的图片再重新下载", "可以右键保存单张图片"],
+    loadStopMsg: "",
+  }, {
+    key: 'ganma',
+    jsFileName: 'ganmaComic',
+    url: 'https://ganma.jp/*',
+    originUrl: 'ganma.jp',
+    regex: /^https:\/\/ganma\.jp\/.*/,
+
+    name: "GANMA!(ガンマ)",
+    supportMsg: ["可能当前页不是阅读页面，无法下载", "请点击到阅读漫画页下载"],
+    loadingMsg: ["可能当前页不是阅读页面，无法下载", "请点击到阅读漫画页下载"],
+    downloadMsg: [],
     loadStopMsg: "",
   },
 
