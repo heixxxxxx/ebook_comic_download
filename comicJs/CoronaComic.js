@@ -1,13 +1,21 @@
 class CoronaComic {
   constructor(webObj) {
-    this.comicMsg = { "网站": webObj.name };
+    this.comicMsg = {
+      "网站": webObj.name
+    };
     this.imageList = [];
     this.getInfo()
   }
   //发送消息
   sendMsg(id, msg = {}) {
     process = id
-    chrome.runtime.sendMessage({ id, data: { comicMsg: this.comicMsg, ...msg } });
+    chrome.runtime.sendMessage({
+      id,
+      data: {
+        comicMsg: this.comicMsg,
+        ...msg
+      }
+    });
   }
   //获取漫画信息
   getInfo() {
@@ -62,23 +70,25 @@ class CoronaComic {
       for (let e = 0; e < t.length; e += 1) {
         n[e] = t.charCodeAt(e)
       }
-      let [r, i, ...o] = n
-        , { naturalWidth: a, naturalHeight: s } = image
-        , l = r * i
-        , c = Math.floor((a - a % 8) / r)
-        , u = Math.floor((s - s % 8) / i);
+      let [r, i, ...o] = n, {
+        naturalWidth: a,
+        naturalHeight: s
+      } = image, l = r * i, c = Math.floor((a - a % 8) / r), u = Math.floor((s - s % 8) / i);
       //绘制
       for (let n = 0; n < l; n++) {
 
-        let i = o[n]
-          , a = i % r
-          , s = Math.floor(i / r)
-          , l = n % r
-          , d = Math.floor(n / r);
+        let i = o[n],
+          a = i % r,
+          s = Math.floor(i / r),
+          l = n % r,
+          d = Math.floor(n / r);
         ctx.drawImage(image, a * c, s * u, c, u, l * c, d * u, c, u)
       }
       downloadByUrl(canvas.toDataURL("image/png"), page)
-      this.sendMsg(2, { allPage: this.imageList.length, nowPage: page + 1 })
+      this.sendMsg(2, {
+        allPage: this.imageList.length,
+        nowPage: page + 1
+      })
       this.drawImg(page + 1)
     }
   }

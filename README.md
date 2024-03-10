@@ -37,7 +37,7 @@
 - kuragebunch.com
 - ichijin-plus.com
 - magcomi.com
-- pocket.shonenmagazine.com
+- 测试 pocket.shonenmagazine.com
 - shonenjumpplus.com
 - sunday-webry.com
 - tonarinoyj.jp
@@ -46,7 +46,7 @@
 - viewer.comic-earthstar.jp
 - comic-walker.com
 - www.ganganonline.com
-- ganma.jp
+- 测试 ganma.jp
 - urasunday.com
 - yanmaga.jp
 - book.dmm.com

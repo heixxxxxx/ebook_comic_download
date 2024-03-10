@@ -39,6 +39,10 @@ chrome.runtime.onMessage.addListener(
     case 'ganma': {
       downloader = new GanmaComic(request.webObj);
       break;
+    }
+    case 'pocket': {
+      downloader = new PocketComic(request.webObj);
+      break;
     }//++//
       }
     }

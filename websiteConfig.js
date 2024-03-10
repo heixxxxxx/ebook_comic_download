@@ -84,17 +84,29 @@ var webList = [{
     loadingMsg: [],
     downloadMsg: ["zerosum被墙，可能下载速度偏慢", "如下载中途失败，请删除已经下载的图片再重新下载", "可以右键保存单张图片"],
     loadStopMsg: "",
-  }, {
+  },
+  {
     key: 'ganma',
     jsFileName: 'ganmaComic',
     url: 'https://ganma.jp/*',
     originUrl: 'ganma.jp',
     regex: /^https:\/\/ganma\.jp\/.*/,
-
     name: "GANMA!(ガンマ)",
     supportMsg: ["可能当前页不是阅读页面，无法下载", "请点击到阅读漫画页下载"],
     loadingMsg: ["可能当前页不是阅读页面，无法下载", "请点击到阅读漫画页下载"],
     downloadMsg: [],
+    loadStopMsg: "",
+  },
+  {
+    key: 'pocket',
+    jsFileName: 'pocketComic',
+    url: 'https://pocket.shonenmagazine.com/episode/*',
+    originUrl: 'shonenmagazine.com',
+    regex: /^https:\/\/pocket\.shonenmagazine\.com\/episode\/.*/,
+    name: "マガポケ",
+    supportMsg: [],
+    loadingMsg: ["支持右键保存单图"],
+    downloadMsg: ["支持右键保存单图"],
     loadStopMsg: "",
   },
 
