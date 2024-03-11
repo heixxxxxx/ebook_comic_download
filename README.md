@@ -71,3 +71,6 @@
 - www.kuaikanmanhua.com/
 - √ ac.qq.com/
 - www.dongmanmanhua.cn/
+- hakusensha-e.net
+- bookwalker.jp/
+- bookwalker.tw/
