@@ -14,15 +14,16 @@
 - √ [bilibili 漫画](https://manga.bilibili.com)
 - √ [pixiv コミック](https://comic.pixiv.net)
 - √ [腾讯动漫](https://ac.qq.com)
-- 待测试 [コミックシーモア](https://cmoa.jp)
-- 待测试 [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
-- 待测试 [ゼロサムオンライン](https://zerosumonline.com)
+- √ [コミックシーモア](https://cmoa.jp)
+- √ [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
+- √ [ゼロサムオンライン](https://zerosumonline.com)
 - 待测试 [<GANMA!(ガンマ)>](https://ganma.jp)
-- 待测试 [マガポケ](https://shonenmagazine.com)
+- √ [マガポケ](https://shonenmagazine.com)
 - 待测试 [白泉社 e-net!](https://hakusensha-e.net)
 
-- bomtoon.com
+
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
+- global.manga-up.com （square-enix的英文网站？）
 - mangacross.jp
 - r.binb.jp
 - booklive.jp
@@ -47,11 +48,10 @@
 - shonenjumpplus.com
 - sunday-webry.com
 - tonarinoyj.jp
-- to-corona-ex.com
 - viewer.heros-web.com
 - viewer.comic-earthstar.jp
 - comic-walker.com
-- www.ganganonline.com
+- ganganonline.com
 - urasunday.com
 - yanmaga.jp
 - book.dmm.com
@@ -77,3 +77,7 @@
 - www.dongmanmanhua.cn
 - bookwalker.jp
 - bookwalker.tw
+- renta.papy.co.jp
+- rakuten.co.jp
+- bomtoon.tw
+- bomtoon.com
