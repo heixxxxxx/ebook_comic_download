@@ -43,6 +43,10 @@ chrome.runtime.onMessage.addListener(
     case 'pocket': {
       downloader = new PocketComic(request.webObj);
       break;
+    }
+    case 'hakusensha': {
+      downloader = new HakusenshaComic(request.webObj);
+      break;
     }//++//
       }
     }

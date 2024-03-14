@@ -3,22 +3,28 @@
 项目为浏览器插件，第一版只编写谷歌浏览器插件，完成后扩展开发火狐插件。
 项目内容为打开浏览器浏览电子书时提供图片下载功能。
 
-## 编写规则（框架3.0）
-+ 在websiteConfig.js中按规则添加新网站
-+ 双击运行 自动编码.exe
-+ 在comicJs文件夹内会自动生成对应的js文件。打开，编写具体程序。
+## 编写规则（框架 3.0）
+
+- 在 websiteConfig.js 中按规则添加新网站
+- 双击运行 自动编码.exe
+- 在 comicJs 文件夹内会自动生成对应的 js 文件。打开，编写具体程序。
 
 ## 网站列表
 
-- √ bili
-- bomtoon
-- 测试 to-corona-ex.com
-- mangaup
-- √ pixiv
-- 测试 zerosumonline.com
-- mangacross
+- √ [manga.bilibili.com](bilibili漫画)
+- √ [comic.pixiv.net](pixivコミック)
+- √ [ac.qq.com](腾讯动漫)
+- 待测试 [cmoa.jp](コミックシーモア)
+- 待测试 [to-corona-ex.com](コロナEX｜TOブックスの公式Web漫画サイト)
+- 待测试 [zerosumonline.com](ゼロサムオンライン)
+- 待测试 [ganma.jp](<GANMA!(ガンマ)>)
+- 待测试 [shonenmagazine.com](マガポケ)
+- 待测试 [hakusensha-e.net](白泉社e-net!)
+
+- bomtoon.com
+- magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
+- mangacross.jp
 - r.binb.jp
-- 测试 www.cmoa.jp
 - booklive.jp
 - takeshobo.co.jp
 - www.comic-valkyrie.com
@@ -32,12 +38,12 @@
 - comic-gardo.com
 - comic-zenon.com
 - comic-trail.com
+- comic-fuz.com
 - comicborder.com
 - comicbushi-web.com
 - kuragebunch.com
 - ichijin-plus.com
 - magcomi.com
-- 测试 pocket.shonenmagazine.com
 - shonenjumpplus.com
 - sunday-webry.com
 - tonarinoyj.jp
@@ -46,14 +52,13 @@
 - viewer.comic-earthstar.jp
 - comic-walker.com
 - www.ganganonline.com
-- 测试 ganma.jp
 - urasunday.com
 - yanmaga.jp
 - book.dmm.com
 - sp.handycomic.jp
-- voltage-comics.com/home
+- voltage-comics.com
 - books.rakuten.co.jp
-- music-book.jp/comic
+- music-book.jp
 - www.yodobashi.com
 - www.kinokuniya.co.jp
 - mechacomi.jp
@@ -67,10 +72,8 @@
 - galapagosstore.com
 - bookpass.auone.jp
 - dokusho-ojikan.jp
-- www.idmzj.com/
-- www.kuaikanmanhua.com/
-- √ ac.qq.com/
-- www.dongmanmanhua.cn/
-- hakusensha-e.net
-- bookwalker.jp/
-- bookwalker.tw/
+- www.idmzj.com
+- www.kuaikanmanhua.com
+- www.dongmanmanhua.cn
+- bookwalker.jp
+- bookwalker.tw

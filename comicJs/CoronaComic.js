@@ -46,7 +46,6 @@ class CoronaComic {
       this.comicMsg['页数'] = r.pages.length
       this.sendMsg(1)
       this.imageList = [...r.pages]
-
     })
 
   }
