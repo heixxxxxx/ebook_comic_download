@@ -11,15 +11,15 @@
 
 ## 网站列表
 
-- √ [manga.bilibili.com](bilibili漫画)
-- √ [comic.pixiv.net](pixivコミック)
-- √ [ac.qq.com](腾讯动漫)
-- 待测试 [cmoa.jp](コミックシーモア)
-- 待测试 [to-corona-ex.com](コロナEX｜TOブックスの公式Web漫画サイト)
-- 待测试 [zerosumonline.com](ゼロサムオンライン)
-- 待测试 [ganma.jp](<GANMA!(ガンマ)>)
-- 待测试 [shonenmagazine.com](マガポケ)
-- 待测试 [hakusensha-e.net](白泉社e-net!)
+- √ [bilibili 漫画](manga.bilibili.com)
+- √ [pixiv コミック](comic.pixiv.net)
+- √ [腾讯动漫](ac.qq.com)
+- 待测试 [コミックシーモア](cmoa.jp)
+- 待测试 [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](to-corona-ex.com)
+- 待测试 [ゼロサムオンライン](zerosumonline.com)
+- 待测试 [<GANMA!(ガンマ)>](ganma.jp)
+- 待测试 [マガポケ](shonenmagazine.com)
+- 待测试 [白泉社 e-net!](hakusensha-e.net)
 
 - bomtoon.com
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
