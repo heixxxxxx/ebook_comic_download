@@ -17,9 +17,10 @@
 - √ [コミックシーモア](https://cmoa.jp)
 - √ [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
 - √ [ゼロサムオンライン](https://zerosumonline.com)
-- 待测试 [<GANMA!(ガンマ)>](https://ganma.jp)
-- √ [マガポケ](https://shonenmagazine.com)
+- 待测试 [GANMA!(ガンマ)](https://ganma.jp)
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
+- 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
+- √ [マガポケ](https://shonenmagazine.com)
 
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
@@ -45,7 +46,6 @@
 - kuragebunch.com
 - ichijin-plus.com
 - magcomi.com
-- shonenjumpplus.com
 - sunday-webry.com
 - tonarinoyj.jp
 - viewer.heros-web.com

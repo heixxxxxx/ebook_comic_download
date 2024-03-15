@@ -47,6 +47,10 @@ chrome.runtime.onMessage.addListener(
     case 'hakusensha': {
       downloader = new HakusenshaComic(request.webObj);
       break;
+    }
+    case 'jump': {
+      downloader = new JumpComic(request.webObj);
+      break;
     }//++//
       }
     }
