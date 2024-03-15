@@ -19,7 +19,7 @@
 - √ [ゼロサムオンライン](https://zerosumonline.com)
 - 待测试 [<GANMA!(ガンマ)>](https://ganma.jp)
 - √ [マガポケ](https://shonenmagazine.com)
-- 待测试 [白泉社 e-net!](https://hakusensha-e.net)
+- √ [白泉社 e-net!](https://www.hakusensha-e.net)
 
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
