@@ -13,6 +13,7 @@ class JumpComic {
 
     this.imageList = []
     this.getInfo()
+    this.cleanCopyDom()
   }
   //向pop页面发送消息，修改弹窗内容
   //id: 0:未开始 1:加载中 2:下载中 3.下载暂停中 4.下载完成
@@ -98,5 +99,10 @@ class JumpComic {
     this.solvedImage = document.createElement("canvas")
     this.solvedImage.width = this.width
     this.solvedImage.height = this.height
+  }
+  cleanCopyDom() {
+    let sty = document.createElement('style');
+    sty.innerText = '.image-container .page-image, .image-container canvas{user-select:auto;-webkit-user-select:auto;-webkit-touch-callout:auto;pointer-events:auto}';
+    document.body.appendChild(sty);
   }
 }

@@ -1,1 +1,17 @@
-{"manifest_version":3,"name":"ebook_comic_downloader","description":"针对常用电子书平台的漫画图片下载器","version":"1.0","permissions":["tabs","activeTab","storage","cookies","downloads","scripting","contextMenus","notifications"],"action":{"default_popup":"/popup/popup.html"},"background":{"service_worker":"background.js"},"content_scripts":[{"matches":["https://manga.bilibili.com/mc*","https://comic.pixiv.net/viewer/stories/*","https://ac.qq.com/ComicView/index/id/*","https://www.cmoa.jp/bib/*","https://to-corona-ex.com/episodes/*","https://zerosumonline.com/episode/*","https://ganma.jp/*","https://pocket.shonenmagazine.com/episode/*","https://bsreader.hakusensha-e.net/?param=*","https://shonenjumpplus.com/episode/*"],"js":["./modules/math.min.js","./comicJs/tool.js","./comicJs/biliComic.js","./comicJs/pixivComic.js","./comicJs/acQQ.js","./comicJs/cmoaComic.js","./comicJs/coronaComic.js","./comicJs/zerosumComic.js","./comicJs/ganmaComic.js","./comicJs/pocketComic.js","./comicJs/hakusenshaComic.js","./comicJs/jumpComic.js","./main.js"]}]}
+{
+    "manifest_version": 3,
+    "name": "ebook_comic_downloader",
+    "description": "针对常用电子书平台的漫画图片下载器",
+    "version": "1.0",
+    "permissions": ["tabs", "activeTab", "storage", "cookies", "downloads", "scripting", "contextMenus", "notifications"],
+    "action": {
+        "default_popup": "/popup/popup.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [{
+        "matches": ["https://manga.bilibili.com/mc*", "https://comic.pixiv.net/viewer/stories/*", "https://ac.qq.com/ComicView/index/id/*", "https://www.cmoa.jp/bib/*", "https://to-corona-ex.com/episodes/*", "https://zerosumonline.com/episode/*", "https://ganma.jp/*", "https://pocket.shonenmagazine.com/episode/*", "https://bsreader.hakusensha-e.net/?param=*", "https://shonenjumpplus.com/episode/*"],
+        "js": ["./modules/math.min.js", "./comicJs/tool.js", "./comicJs/biliComic.js", "./comicJs/pixivComic.js", "./comicJs/acQQ.js", "./comicJs/cmoaComic.js", "./comicJs/coronaComic.js", "./comicJs/zerosumComic.js", "./comicJs/ganmaComic.js", "./comicJs/pocketComic.js", "./comicJs/hakusenshaComic.js", "./comicJs/jumpComic.js", "./main.js"]
+    }]
+}
