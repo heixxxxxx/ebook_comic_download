@@ -30,8 +30,11 @@
 - √ [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
 - √ [ゼロサムオンライン](https://zerosumonline.com)
 - 待测试 [GANMA!(ガンマ)](https://ganma.jp)
+- 待测试 [マガポケ](https://shonenmagazine.com)
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
 - 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
+- 待测试 [BOOK WALKER](https://bookwalker.jp)
+
 - √ [マガポケ](https://shonenmagazine.com)
 
 

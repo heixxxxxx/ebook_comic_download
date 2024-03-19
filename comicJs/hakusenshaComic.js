@@ -128,7 +128,6 @@ class HakusenshaComic {
         this.sendMsg(4)
         return 0
       }
-
       let image = new Image()
       image.src = URL.createObjectURL(blob)
       image.setAttribute("crossOrigin", "use-credentials");

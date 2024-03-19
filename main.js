@@ -51,6 +51,10 @@ chrome.runtime.onMessage.addListener(
     case 'jump': {
       downloader = new JumpComic(request.webObj);
       break;
+    }
+    case 'bw': {
+      downloader = new BwComic(request.webObj);
+      break;
     }//++//
       }
     }
