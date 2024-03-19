@@ -11,8 +11,8 @@
     "service_worker": "./background.js"
   },
   "web_accessible_resources": [{
-    "matches": ["<all_urls>"],
-    "resources": ["./modules/bwInjectedScript.js"]
+    "matches": ["https://viewer.bookwalker.jp/*"],
+    "resources": ["/modules/bwInjectedScript.js"]
   }],
   "content_scripts": [{
     "matches": ["https://manga.bilibili.com/mc*", "https://comic.pixiv.net/viewer/stories/*", "https://ac.qq.com/ComicView/index/id/*", "https://www.cmoa.jp/bib/*", "https://to-corona-ex.com/episodes/*", "https://zerosumonline.com/episode/*", "https://ganma.jp/*", "https://pocket.shonenmagazine.com/episode/*", "https://bsreader.hakusensha-e.net/?param=*", "https://shonenjumpplus.com/episode/*", "https://viewer.bookwalker.jp/*/*/viewer.html*"],
