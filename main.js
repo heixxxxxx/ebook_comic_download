@@ -11,50 +11,54 @@ chrome.runtime.onMessage.addListener(
       switch (request.webObj.key) {
         //自动化编码范围标识符
         //++//
-        case 'bili': {
-          downloader = new BiliComic(request.webObj);
-          break;
-        }
-        case 'pixiv': {
-          downloader = new PixivComic(request.webObj);
-          break;
-        }
-        case 'qq': {
-          downloader = new QqComic(request.webObj);
-          break;
-        }
-        case 'cmoa': {
-          downloader = new CmoaComic(request.webObj);
-          break;
-        }
-        case 'corona': {
-          downloader = new CoronaComic(request.webObj);
-          break;
-        }
-        case 'zerosum': {
-          downloader = new ZerosumComic(request.webObj);
-          break;
-        }
-        case 'ganma': {
-          downloader = new GanmaComic(request.webObj);
-          break;
-        }
-        case 'pocket': {
-          downloader = new PocketComic(request.webObj);
-          break;
-        }
-        case 'hakusensha': {
-          downloader = new HakusenshaComic(request.webObj);
-          break;
-        }
-        case 'jump': {
-          downloader = new JumpComic(request.webObj);
-          break;
-        }
-        case 'bw': {
-          downloader = new BwComic(request.webObj);
-          break;
-        } //++//
+    case 'bili': {
+      downloader = new BiliComic(request.webObj);
+      break;
+    }
+    case 'pixiv': {
+      downloader = new PixivComic(request.webObj);
+      break;
+    }
+    case 'qq': {
+      downloader = new QqComic(request.webObj);
+      break;
+    }
+    case 'cmoa': {
+      downloader = new CmoaComic(request.webObj);
+      break;
+    }
+    case 'corona': {
+      downloader = new CoronaComic(request.webObj);
+      break;
+    }
+    case 'zerosum': {
+      downloader = new ZerosumComic(request.webObj);
+      break;
+    }
+    case 'ganma': {
+      downloader = new GanmaComic(request.webObj);
+      break;
+    }
+    case 'pocket': {
+      downloader = new PocketComic(request.webObj);
+      break;
+    }
+    case 'hakusensha': {
+      downloader = new HakusenshaComic(request.webObj);
+      break;
+    }
+    case 'jump': {
+      downloader = new JumpComic(request.webObj);
+      break;
+    }
+    case 'bw': {
+      downloader = new BwComic(request.webObj);
+      break;
+    }
+    case 'bwTrial': {
+      downloader = new BwTrialComic(request.webObj);
+      break;
+    }//++//
       }
     }
     //请求下载

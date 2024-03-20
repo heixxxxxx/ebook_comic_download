@@ -145,8 +145,21 @@ var webList = [{
   name: "BOOK WALKER",
 
   supportMsg: [],
-  loadingMsg: ["支持右键保存单张图片", "请右键偏中位置才能选中图片"],
-  downloadMsg: ["支持右键保存单张图片", "请右键偏中位置才能选中图片，左边的图片右键右半部分，右边的在左半部分"],
+  loadingMsg: ["点击下载后，请<b>手动翻阅</b>", "翻阅过程中会自动下载", "如有下载遗漏页，可以回翻会自动补充下载"],
+  downloadMsg: ["请<b>手动翻阅</b>", "翻阅过程中会自动下载", "如有下载遗漏页，可以回翻会自动补充下载"],
+  loadStopMsg: "",
+},
+{
+  key: 'bwTrial',
+  jsFileName: 'bwBookTrial',
+  url: 'https://viewer-trial.bookwalker.jp/*/*/viewer.html*',
+  originUrl: 'bookwalker.jp',
+  regex: /^https:\/\/viewer-trial\.bookwalker\.jp\.*/,
+  name: "BOOK WALKER (试阅)",
+
+  supportMsg: [],
+  loadingMsg: ["如需下载正本，请前往购买", "试阅内容约可下载10页左右"],
+  downloadMsg: ["如需下载正本，请前往购买", "试阅内容约可下载10页左右"],
   loadStopMsg: "",
 }
 

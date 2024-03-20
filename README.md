@@ -34,6 +34,14 @@
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
 - 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
 - 待测试 [BOOK WALKER](https://bookwalker.jp)
+- 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
+
+- 待测试 [マガポケ](https://shonenmagazine.com)
+- 待测试 [BOOK WALKER](https://bookwalker.jp)
+- 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
+
+- 待测试 [マガポケ](https://shonenmagazine.com)
+- 待测试 [BOOK WALKER](https://bookwalker.jp)
 
 - √ [マガポケ](https://shonenmagazine.com)
 

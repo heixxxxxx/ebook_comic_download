@@ -18,9 +18,39 @@ class BwComic {
     let injectedScript = document.createElement('script');
     injectedScript.src = chrome.runtime.getURL('/modules/bwInjectedScript.js');
     document.body.appendChild(injectedScript);
+
+    //监听
+    listenDomChange(document.getElementById("pageInfo"), () => {
+      this.imageList = JSON.parse(document.getElementById("pageInfo").innerText)
+      let num = null
+      let text = ""
+      this.imageList.forEach((item, i) => {
+        if (item === true) {
+          if (num === null) {
+            num = i
+            text = i + ""
+          }
+        } else {
+          if (num + 1 == i) {
+            text += (i - 1) + ","
+            num = null
+          }
+        }
+      })
+      this.sendMsg(2, {
+        msg: `已经下载：` + text
+      })
+    })
   }
   getInfo() {
-    this.comicMsg["书名"] = document.getElementsByTagName("title")[0].innerText
-    this.sendMsg(1)
+    if (document.getElementsByTagName("title")[0]) {
+      this.comicMsg["书名"] = document.getElementsByTagName("title")[0].innerText
+      this.sendMsg(1)
+    } else {
+      setTimeout(() => { this.getInfo() }, 500)
+    }
+
   }
+
+
 }
