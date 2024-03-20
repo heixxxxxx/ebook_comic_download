@@ -35,14 +35,8 @@
 - 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
 - 待测试 [BOOK WALKER](https://bookwalker.jp)
 - 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
-
-- 待测试 [マガポケ](https://shonenmagazine.com)
-- 待测试 [BOOK WALKER](https://bookwalker.jp)
-- 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
-
-- 待测试 [マガポケ](https://shonenmagazine.com)
-- 待测试 [BOOK WALKER](https://bookwalker.jp)
-
+- 待测试 [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)
+- 待测试 [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
 - √ [マガポケ](https://shonenmagazine.com)
 
 
