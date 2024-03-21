@@ -30,14 +30,13 @@
 - √ [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
 - √ [ゼロサムオンライン](https://zerosumonline.com)
 - 待测试 [GANMA!(ガンマ)](https://ganma.jp)
-- 待测试 [マガポケ](https://shonenmagazine.com)
+- √ [マガポケ](https://shonenmagazine.com)
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
 - 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
-- 待测试 [BOOK WALKER](https://bookwalker.jp)
+- 待测试 [BOOK WALKER](https://bookwalker.jp)（bw的无料本和购入本爬取逻辑相同，但试阅的不同，需要分开测试）
 - 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
-- 待测试 [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)
+- 待测试 [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（bw台好像没有无料本，如果没有，只测试阅就好）
 - 待测试 [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
-- √ [マガポケ](https://shonenmagazine.com)
 
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
