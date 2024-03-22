@@ -20,7 +20,7 @@ class QqComic {
   }
   //下载
   download() {
-    downloadByFetch([...this.imageList], 0, this)
+    downloadByFetch([...this.imageList], this)
   }
   //数据 密钥
   getDATA() {

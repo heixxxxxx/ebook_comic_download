@@ -12,7 +12,8 @@ function downloadByUrl(url, page) {
   a_dom.click()
 }
 //链接列表下载(blob,base64链接列表)
-function downloadByUrlList(urlList, page = 0, obj) {
+function downloadByUrlList(urlList, obj, page = 0) {
+  urlList=[...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -26,11 +27,12 @@ function downloadByUrlList(urlList, page = 0, obj) {
   })
   setTimeout(() => {
     urlList.splice(0, 1)
-    downloadByUrlList(urlList, page + 1, obj)
+    downloadByUrlList(urlList, obj, page + 1)
   }, 200)
 }
 //请求下载(使用http请求下载)
-function downloadByFetch(urlList, page = 0, obj) {
+function downloadByFetch(urlList, obj, page = 0) {
+  urlList=[...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -45,13 +47,14 @@ function downloadByFetch(urlList, page = 0, obj) {
     a_dom.click()
     urlList.splice(0, 1)
     setTimeout(() => {
-      downloadByFetch(urlList, page + 1, obj)
+      downloadByFetch(urlList, obj, page + 1)
     }, 200)
   })
 
 }
-//转换的canvas下载
-function downloadByCanvas(urlList, page = 0, obj) {
+//转换的canvas下载（转换成canvas，文件大小会变大不少，更推荐http请求方式）
+function downloadByCanvas(urlList, obj, page = 0) {
+  urlList=[...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -73,11 +76,12 @@ function downloadByCanvas(urlList, page = 0, obj) {
     ctx.drawImage(image, 0, 0)
     downloadByUrl(canvas.toDataURL("image/png"), page)
     urlList.splice(0, 1)
-    downloadByCanvas(urlList, page + 1, obj)
+    downloadByCanvas(urlList, obj, page + 1)
   }
 }
-//调用背景脚本下载（最好不要）
-function downloadByBgJs(urlList, page = 0, obj) {
+//调用背景脚本下载（如果图片资源涉及到跨域，就用这个）
+function downloadByBgJs(urlList, obj, page = 0) {
+  urlList=[...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -93,40 +97,12 @@ function downloadByBgJs(urlList, page = 0, obj) {
   })
   setTimeout(() => {
     urlList.splice(0, 1)
-    downloadByBgJs(urlList, page + 1, obj)
+    downloadByBgJs(urlList, obj, page + 1)
   }, 200)
 }
-//拼图3张 imageList 图 imgSize尺寸 position 位置
+//拼图3张 imageList 图 imgSize尺寸 position 位置。返回base64数据，用then接受
 function puzzleToCanvas(imageSrcList, imgSize, position) {
-  let imageList = []
-  for (let i = 0; i < imageSrcList.length; i++) {
-    let image = new Image()
-    image.src = imageSrcList[i]
-    image.setAttribute("crossOrigin", "anonymous");
-    image.onload = () => {
-      imageList.push(image)
-      if (imageList.length == imageSrcList.length) {
-        let canvas = document.createElement("canvas")
-        let ctx = canvas.getContext('2d')
-        //绘制
-        canvas.width = imageList[0].naturalWidth
-        canvas.height = imageList[0].naturalWidth * imgSize[1] / imgSize[0]
-        let centerImgHeight = position[1] * canvas.height
-
-        //三张图绘制位置 上 正中 下 
-        ctx.drawImage(imageList[0], 0, 0)
-        ctx.drawImage(imageList[1], 0, centerImgHeight)
-        ctx.drawImage(imageList[2], 0, canvas.height - imageList[2].naturalHeight)
-        //导出 下载
-        return canvas.toDataURL("image/png")
-      }
-
-    }
-  }
-
-}
-
-function puzzleToCanvas(imageSrcList, imgSize, position) {
+  imageSrcList=[...imageSrcList]
   return new Promise(
     function (resolve, reject) {
       let imageList = []
@@ -159,7 +135,7 @@ function puzzleToCanvas(imageSrcList, imgSize, position) {
   );
 };
 
-//监听dom内容改变
+//监听dom内容改变 （需要监听的元素，回调）
 function listenDomChange(dom, fn) {
   const config = {
     attributes: true,
@@ -176,7 +152,8 @@ function listenDomChange(dom, fn) {
 
   observer.observe(dom, config);
 }
-//全局解锁右键，比较消耗性能
+
+//递归全局解锁右键（如果打开插件，网站仍然没有解锁右键，可以试试这个）
 function contextmenuOPen(dom = document) {
   dom.addEventListener('contextmenu', function (e) {
     e.stopPropagation();

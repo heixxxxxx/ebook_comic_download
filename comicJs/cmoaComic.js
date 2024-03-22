@@ -98,7 +98,6 @@ class CmoaComic {
   }
   //监听页面变化
   watchPageChange() {
-
     listenDomChange(document.getElementsByClassName("pages")[0], () => {
       if (!this.downloadFlag) return 0
       this.getImageList()

@@ -35,7 +35,7 @@ class PixivComic {
   }
   //下载
   download() {
-    downloadByUrlList([...this.imageList], 0, this)
+    downloadByUrlList([...this.imageList], this)
   }
 
 }

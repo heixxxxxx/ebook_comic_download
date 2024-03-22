@@ -3,6 +3,8 @@
 项目为浏览器插件，第一版只编写谷歌浏览器插件，完成后扩展开发火狐插件。
 项目内容为打开浏览器浏览电子书时提供图片下载功能。
 
+目前计划上架商店、新增移动端插件使用。
+
 ## 关于使用
 
 可以在任何谷歌内核的浏览器中安装。
@@ -91,9 +93,8 @@
 - www.idmzj.com
 - www.kuaikanmanhua.com
 - www.dongmanmanhua.cn
-- bookwalker.jp
-- bookwalker.tw
 - renta.papy.co.jp
 - rakuten.co.jp
 - bomtoon.tw
 - bomtoon.com
+- gammaplus.takeshobo.co.jp

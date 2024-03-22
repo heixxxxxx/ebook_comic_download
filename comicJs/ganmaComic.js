@@ -59,6 +59,6 @@ class GanmaComic {
     this.pageMsg.files.forEach(pageName => {
       this.imageList.push(this.pageMsg.baseUrl + pageName + "?" + this.pageMsg.token)
     })
-    downloadByBgJs([...this.imageList], 0, this)
+    downloadByBgJs([...this.imageList], this)
   }
 }

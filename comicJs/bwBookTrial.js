@@ -20,7 +20,7 @@ class BwTrialComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
-    downloadByFetch([...this.imageList], 0, this)
+    downloadByFetch([...this.imageList], this)
   }
   getInfo() {
     //获取cId

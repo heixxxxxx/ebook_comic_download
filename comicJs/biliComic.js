@@ -87,7 +87,7 @@ class BiliComic {
           //下载 
           downloadUrlList.push(r.data[i].url + "?token=" + r.data[i].token)
         }
-        downloadByFetch(downloadUrlList,0,this)
+        downloadByFetch(downloadUrlList,this)
       })
   }
   downloadImg(url, page = 1) {
