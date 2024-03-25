@@ -13,7 +13,7 @@ function downloadByUrl(url, page) {
 }
 //链接列表下载(blob,base64链接列表)
 function downloadByUrlList(urlList, obj, page = 0) {
-  urlList=[...urlList]
+  urlList = [...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -32,7 +32,7 @@ function downloadByUrlList(urlList, obj, page = 0) {
 }
 //请求下载(使用http请求下载)
 function downloadByFetch(urlList, obj, page = 0) {
-  urlList=[...urlList]
+  urlList = [...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -54,7 +54,7 @@ function downloadByFetch(urlList, obj, page = 0) {
 }
 //转换的canvas下载（转换成canvas，文件大小会变大不少，更推荐http请求方式）
 function downloadByCanvas(urlList, obj, page = 0) {
-  urlList=[...urlList]
+  urlList = [...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -81,7 +81,7 @@ function downloadByCanvas(urlList, obj, page = 0) {
 }
 //调用背景脚本下载（如果图片资源涉及到跨域，就用这个）
 function downloadByBgJs(urlList, obj, page = 0) {
-  urlList=[...urlList]
+  urlList = [...urlList]
   if (urlList.length == 0) {
     obj.sendMsg(4)
     return 0
@@ -102,7 +102,7 @@ function downloadByBgJs(urlList, obj, page = 0) {
 }
 //拼图3张 imageList 图 imgSize尺寸 position 位置。返回base64数据，用then接受
 function puzzleToCanvas(imageSrcList, imgSize, position) {
-  imageSrcList=[...imageSrcList]
+  imageSrcList = [...imageSrcList]
   return new Promise(
     function (resolve, reject) {
       let imageList = []
@@ -163,4 +163,17 @@ function contextmenuOPen(dom = document) {
       }
     }
   }, true);
+}
+
+//动态注入脚本到页面环境 需要在清单中 web_accessible_resources配置对应网站和脚本路径
+function injectedScriptToPage(jsPath,) {
+  let injectedScript = document.createElement('script');
+  injectedScript.src = chrome.runtime.getURL(jsPath);
+  document.body.appendChild(injectedScript);
+}
+//动态注入脚本到内容脚本 需要在清单中 host_permissions配置对应网站
+function injectedScriptToContent(jsPath) {
+  chrome.runtime.sendMessage({
+    jsPath
+  });
 }

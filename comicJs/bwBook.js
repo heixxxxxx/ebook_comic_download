@@ -16,10 +16,9 @@ class BwComic {
   //下载 用户点击下载按钮时会触发的方法
   download() {
     //注入脚本
-    let injectedScript = document.createElement('script');
-    injectedScript.src = chrome.runtime.getURL('/modules/bwInjectedScript.js');
-    document.body.appendChild(injectedScript);
-
+    injectedScriptToPage('/modules/bwInjectedScript.js')
+   
+    this.sendMsg(2)
     //监听
     listenDomChange(document.getElementById("pageInfo"), () => {
       this.imageList = JSON.parse(document.getElementById("pageInfo").innerText)
@@ -52,6 +51,4 @@ class BwComic {
     }
 
   }
-
-
 }

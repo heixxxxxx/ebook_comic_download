@@ -7,15 +7,67 @@
   "action": {
     "default_popup": "./popup/popup.html"
   },
+  "host_permissions": ["*://*.dmm.com/*", "https://ac.qq.com/*"],
+  "icons": {
+    "16": "/popup/icons/icon16.png",
+    "32": "/popup/icons/icon32.png",
+    "48": "/popup/icons/icon48.png",
+    "128": "/popup/icons/icon128.png"
+  },
   "background": {
     "service_worker": "./background.js"
   },
   "web_accessible_resources": [{
     "matches": ["https://viewer.bookwalker.jp/*", "https://pcreader.bookwalker.com.tw/*"],
     "resources": ["/modules/bwInjectedScript.js"]
+  }, {
+    "matches": ["https://ac.qq.com/*"],
+    "resources": ["/modules/acQQ.js"]
   }],
   "content_scripts": [{
-    "matches": ["https://manga.bilibili.com/mc*", "https://comic.pixiv.net/viewer/stories/*", "https://ac.qq.com/ComicView/index/id/*", "https://www.cmoa.jp/bib/*", "https://to-corona-ex.com/episodes/*", "https://zerosumonline.com/episode/*", "https://ganma.jp/*", "https://pocket.shonenmagazine.com/episode/*", "https://bsreader.hakusensha-e.net/?param=*", "https://shonenjumpplus.com/episode/*", "https://viewer.bookwalker.jp/*/*/viewer.html*", "https://viewer-trial.bookwalker.jp/*/*/viewer.html*", "https://pcreader.bookwalker.com.tw/*/*/viewer.html*", "https://preview.bookwalker.com.tw/*/*/viewer.html*"],
-    "js": ["./modules/math.min.js", "./comicJs/tool.js", "./comicJs/biliComic.js", "./comicJs/pixivComic.js", "./comicJs/acQQ.js", "./comicJs/cmoaComic.js", "./comicJs/coronaComic.js", "./comicJs/zerosumComic.js", "./comicJs/ganmaComic.js", "./comicJs/pocketComic.js", "./comicJs/hakusenshaComic.js", "./comicJs/jumpComic.js", "./comicJs/bwBook.js", "./comicJs/bwBookTrial.js", "./comicJs/bwBook.js", "./comicJs/bwBookTrial.js", "./main.js"]
+    "matches": ["https://manga.bilibili.com/mc*"],
+    "js": ["./comicJs/tool.js", "./comicJs/biliComic.js", "./main.js"]
+  }, {
+    "matches": ["https://comic.pixiv.net/viewer/stories/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/pixivComic.js", "./main.js"]
+  }, {
+    "matches": ["https://ac.qq.com/ComicView/index/id/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/acQQ.js", "./main.js"]
+  }, {
+    "matches": ["https://www.cmoa.jp/bib/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/cmoaComic.js", "./main.js"]
+  }, {
+    "matches": ["https://to-corona-ex.com/episodes/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/coronaComic.js", "./main.js"]
+  }, {
+    "matches": ["https://zerosumonline.com/episode/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/zerosumComic.js", "./main.js"]
+  }, {
+    "matches": ["https://ganma.jp/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/ganmaComic.js", "./main.js"]
+  }, {
+    "matches": ["https://pocket.shonenmagazine.com/episode/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/pocketComic.js", "./main.js"]
+  }, {
+    "matches": ["https://bsreader.hakusensha-e.net/?param=*"],
+    "js": ["./comicJs/tool.js", "./comicJs/hakusenshaComic.js", "./main.js"]
+  }, {
+    "matches": ["https://shonenjumpplus.com/episode/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/jumpComic.js", "./main.js"]
+  }, {
+    "matches": ["https://viewer.bookwalker.jp/*/*/viewer.html*"],
+    "js": ["./comicJs/tool.js", "./comicJs/bwBook.js", "./main.js"]
+  }, {
+    "matches": ["https://viewer-trial.bookwalker.jp/*/*/viewer.html*"],
+    "js": ["./comicJs/tool.js", "./comicJs/bwBookTrial.js", "./main.js"]
+  }, {
+    "matches": ["https://pcreader.bookwalker.com.tw/*/*/viewer.html*"],
+    "js": ["./comicJs/tool.js", "./comicJs/bwBook.js", "./main.js"]
+  }, {
+    "matches": ["https://preview.bookwalker.com.tw/*/*/viewer.html*"],
+    "js": ["./comicJs/tool.js", "./comicJs/bwBookTrial.js", "./main.js"]
+  }, {
+    "matches": ["https://book.dmm.com/free_streaming/*/*"],
+    "js": ["./comicJs/tool.js", "./comicJs/dmmBook.js", "./main.js"]
   }]
 }

@@ -58,6 +58,10 @@ chrome.runtime.onMessage.addListener(
         case 'bwTrial': {
           downloader = new BwTrialComic(request.webObj);
           break;
+        }
+        case 'dmmFree': {
+          downloader = new DmmFreeComic(request.webObj);
+          break;
         }//++//
       }
     }

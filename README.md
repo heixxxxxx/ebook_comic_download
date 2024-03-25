@@ -22,6 +22,8 @@
 - 在 websiteConfig.js 中按规则添加新网站
 - 双击运行 自动编码.exe
 - 在 comicJs 文件夹内会自动生成对应的 js 文件。打开，编写具体程序。
+-
+- [chrome 插件 v3 开发文档：](https://developer.chrome.com/docs/extensions/mv3/)
 
 ## 网站列表
 
@@ -34,15 +36,15 @@
 - 待测试 [GANMA!(ガンマ)](https://ganma.jp)
 - √ [マガポケ](https://shonenmagazine.com)
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
-- 待测试 [少年ジャンプ＋](https://shonenjumpplus.com)
-- 待测试 [BOOK WALKER](https://bookwalker.jp)（bw的无料本和购入本爬取逻辑相同，但试阅的不同，需要分开测试）
-- 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
-- 待测试 [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（bw台好像没有无料本，如果没有，只测试阅就好）
-- 待测试 [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
-
+- √ [少年ジャンプ＋](https://shonenjumpplus.com)
+- √ [BOOK WALKER](https://bookwalker.jp)
+- √ [BOOK WALKER (试阅)](https://bookwalker.jp)
+- √ [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（
+- √ [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
+- 待测试 [DMM ブックス](https://book.dmm.com)
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
-- global.manga-up.com （square-enix的英文网站？）
+- global.manga-up.com （square-enix 的英文网站？）
 - mangacross.jp
 - r.binb.jp
 - booklive.jp
@@ -72,7 +74,6 @@
 - ganganonline.com
 - urasunday.com
 - yanmaga.jp
-- book.dmm.com
 - sp.handycomic.jp
 - voltage-comics.com
 - books.rakuten.co.jp

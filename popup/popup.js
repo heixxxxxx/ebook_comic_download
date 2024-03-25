@@ -113,19 +113,27 @@ let htmlPage = new htmlObj()
 //获取激活标签页的url，匹配webList中的url
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
   let url = tabs[0].url;
+
+
   //匹配时匹配规则webList中的url
   webObj = webList.find(item => item.regex.test(url));
-
   originObj = webList.find(item => url.indexOf(item.originUrl) != -1);
   //匹配到了阅读页，可以直接下载的
-
   if (webObj) {
-    htmlPage.loading()
-    sendMessage({ id: 0, webObj: webObj })
+    if (webObj.cookiesUrl) {
+      getCookie(webObj, () => {
+        htmlPage.loading()
+        sendMessage({ id: 0, webObj: webObj })
+      })
+    } else {
+      htmlPage.loading()
+      sendMessage({ id: 0, webObj: webObj })
+    }
+
+
   }
   //匹配到了可以下载的网站，提示去阅读页就能下
   else if (originObj) {
-
     htmlPage.supportButNotRead()
   }
   //匹配不上
@@ -166,3 +174,13 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   }
 
 });
+//获取网站cookie
+function getCookie(obj, fn) {
+  return chrome.cookies.getAll({}, function (cookies) {
+    if (cookies.length) {
+      obj.cookies = cookies
+      fn()
+    }
+
+  });
+}

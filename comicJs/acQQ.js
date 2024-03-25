@@ -1,6 +1,10 @@
 
+
+
 class QqComic {
   constructor(webObj) {
+    //动态注入解码数据
+    injectedScriptToPage("/modules/acQQ.js")
     //腾讯的数据全是存放加密
     this.DATA = ""
     this.imageList = []
@@ -10,8 +14,9 @@ class QqComic {
     //解密后数据
     this.data = {}
     this.getDATA()
-    this.getComicInfo()
+
     this.cleanCopyDom()
+
   }
   //发送消息
   sendMsg(id, msg = {}) {
@@ -23,23 +28,37 @@ class QqComic {
     downloadByFetch([...this.imageList], this)
   }
   //数据 密钥
-  getDATA() {
-    let jsList = document.getElementsByTagName("script")
-    for (let i = 0; i < jsList.length; i++) {
-      if (!jsList[i].src) {
-        let text = jsList[i].innerText.replace(/\"/g, "").replace(/\+/g, "").replace(/ /g, "")
-        if (text.indexOf(`window[nonce]`) != -1) {
-          console.log(jsList[i].innerText.split("=")[1])
-          this.nonce = this.decodeSecretKey(jsList[i].innerText.split("=")[1])
-        } else if (text.indexOf(`DATA=`) != -1) {
-          this.DATA = jsList[i].innerText.split(",")[0].match(/'([^']*)'/)[1]
-        } else if (text.indexOf(`pg_ChapterIndex.data`) != -1) {
-          let dataText = jsList[i].innerText.slice(text.indexOf(`pg_ChapterIndex.data`))
-          this.DATA = dataText.split(",")[0].match(/'([^']*)'/)[1]
-        }
+  getDATA(n = 0) {
+    if (document.getElementById("nonceToContent")) {
+      this.nonce = document.getElementById("nonceToContent").innerText
+      let jsList = document.getElementsByTagName("script")
+      for (let i = 0; i < jsList.length; i++) {
+        if (!jsList[i].src) {
+          let text = jsList[i].innerText.replace(/\"/g, "").replace(/\+/g, "").replace(/ /g, "")
+          // if (text.indexOf(`window[nonce]`) != -1) {
+          //   console.log(jsList[i].innerText.split("=")[1])
+          //   this.nonce = this.decodeSecretKey(jsList[i].innerText.split("=")[1])
+          // } else 
+          if (text.indexOf(`DATA=`) != -1) {
+            this.DATA = jsList[i].innerText.split(",")[0].match(/'([^']*)'/)[1]
+          } else if (text.indexOf(`pg_ChapterIndex.data`) != -1) {
+            let dataText = jsList[i].innerText.slice(text.indexOf(`pg_ChapterIndex.data`))
+            this.DATA = dataText.split(",")[0].match(/'([^']*)'/)[1]
+          }
 
+        }
       }
+      this.getComicInfo()
+    } else {
+      if (n == 100) return
+      setTimeout(() => {
+        this.getDATA(n + 1)
+      }, 200)
     }
+
+
+
+
   }
   decodeSecretKey(text) {
     let textList = text.slice(0, -1).replace(/" \+ \(/g, "$").replace(/\) \+ "/g, "$").replace(/\) \+ \(/g, "$").split("$")
@@ -108,7 +127,6 @@ class QqComic {
     return a
   }
   getComicInfo() {
-
     let T = this.DATA
     T = T.split('');
     let N = this.nonce
