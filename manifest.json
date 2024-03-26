@@ -7,7 +7,6 @@
   "action": {
     "default_popup": "./popup/popup.html"
   },
-  "host_permissions": ["*://*.dmm.com/*", "https://ac.qq.com/*"],
   "icons": {
     "16": "/popup/icons/icon16.png",
     "32": "/popup/icons/icon32.png",
@@ -17,13 +16,19 @@
   "background": {
     "service_worker": "./background.js"
   },
+  "host_permissions": ["*://*.dmm.com/*"],
   "web_accessible_resources": [{
-    "matches": ["https://viewer.bookwalker.jp/*", "https://pcreader.bookwalker.com.tw/*"],
-    "resources": ["/modules/bwInjectedScript.js"]
-  }, {
-    "matches": ["https://ac.qq.com/*"],
-    "resources": ["/modules/acQQ.js"]
-  }],
+      "matches": ["https://viewer.bookwalker.jp/*", "https://pcreader.bookwalker.com.tw/*"],
+      "resources": ["/modules/bwInjectedScript.js"]
+    }, {
+      "matches": ["https://ac.qq.com/*"],
+      "resources": ["/modules/acQQ.js"]
+    },
+    {
+      "matches": ["https://dre-viewer.papy.co.jp/*"],
+      "resources": ["/modules/renta.js"]
+    }
+  ],
   "content_scripts": [{
     "matches": ["https://manga.bilibili.com/mc*"],
     "js": ["./comicJs/tool.js", "./comicJs/biliComic.js", "./main.js"]
@@ -69,5 +74,8 @@
   }, {
     "matches": ["https://book.dmm.com/free_streaming/*/*"],
     "js": ["./comicJs/tool.js", "./comicJs/dmmBook.js", "./main.js"]
+  }, {
+    "matches": ["https://dre-viewer.papy.co.jp/sc/view_*"],
+    "js": ["./comicJs/tool.js", "./comicJs/rentaBook.js", "./main.js"]
   }]
 }

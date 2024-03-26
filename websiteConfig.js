@@ -202,5 +202,18 @@ var webList = [{
   loadingMsg: ["点击下载将会下载整本", "支持右键保存单张图片"],
   downloadMsg: ["支持右键保存单张图片"],
   loadStopMsg: "",
+},
+{
+  key: 'renta',
+  jsFileName: 'rentaBook',
+  url: 'https://dre-viewer.papy.co.jp/sc/view_*',
+  originUrl: 'papy.co.jp',
+  regex: /^https:\/\/dre-viewer\.papy\.co\.jp\/sc\/view_.*/,
+  name: "Renta!",
+
+  supportMsg: ["<b style='color:red'>*</b>如果阅读时浏览器打开新页面<b>无法使用插件</b>，请<b>复制链接</b>到新标签打开即可"],
+  loadingMsg: ["支持右键保存单张图片"],
+  downloadMsg: ["支持右键保存单张图片"],
+  loadStopMsg: "",
 }
 ]

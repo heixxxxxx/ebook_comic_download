@@ -42,6 +42,8 @@
 - √ [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（
 - √ [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
 - 待测试 [DMM ブックス](https://book.dmm.com)
+- 待测试 [Renta!](https://papy.co.jp)
+
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
 - global.manga-up.com （square-enix 的英文网站？）
@@ -94,7 +96,6 @@
 - www.idmzj.com
 - www.kuaikanmanhua.com
 - www.dongmanmanhua.cn
-- renta.papy.co.jp
 - rakuten.co.jp
 - bomtoon.tw
 - bomtoon.com

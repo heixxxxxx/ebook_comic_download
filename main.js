@@ -62,6 +62,10 @@ chrome.runtime.onMessage.addListener(
         case 'dmmFree': {
           downloader = new DmmFreeComic(request.webObj);
           break;
+        }
+        case 'renta': {
+          downloader = new RentaComic(request.webObj);
+          break;
         }//++//
       }
     }
