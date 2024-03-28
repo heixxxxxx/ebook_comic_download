@@ -43,6 +43,8 @@
 - √ [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
 - 待测试 [DMM ブックス](https://book.dmm.com)
 - 待测试 [Renta!](https://papy.co.jp)
+- 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
+
 
 
 - magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
@@ -62,7 +64,6 @@
 - comic-gardo.com
 - comic-zenon.com
 - comic-trail.com
-- comic-fuz.com
 - comicborder.com
 - comicbushi-web.com
 - kuragebunch.com

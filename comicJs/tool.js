@@ -4,7 +4,6 @@ document.body.appendChild(a_dom);
 document.addEventListener('contextmenu', function (e) {
   e.stopPropagation();
 }, true);
-
 // 单张下载
 function downloadByUrl(url, page) {
   a_dom.href = url
@@ -134,25 +133,23 @@ function puzzleToCanvas(imageSrcList, imgSize, position) {
     }
   );
 };
-
 //监听dom内容改变 （需要监听的元素，回调）
 function listenDomChange(dom, fn) {
   const config = {
-    attributes: true,
-    childList: true
+    childList: true, // 监听目标元素的子节点的增减
+    subtree: true, // 监听目标元素及其所有后代的变动
+    attributes: true, // 监听属性的变化
+    characterData: true // 监听文本内容的变化
   };
   const observer = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
-      if (mutation.type === 'childList') { // DOM子节点发生改变时触发
-        fn()
-        break;
-      }
+      fn()
+      break;
     }
   });
 
   observer.observe(dom, config);
 }
-
 //递归全局解锁右键（如果打开插件，网站仍然没有解锁右键，可以试试这个）
 function contextmenuOPen(dom = document) {
   dom.addEventListener('contextmenu', function (e) {
@@ -164,7 +161,6 @@ function contextmenuOPen(dom = document) {
     }
   }, true);
 }
-
 //动态注入脚本到页面环境 需要在清单中 web_accessible_resources配置对应网站和脚本路径
 function injectedScriptToPage(jsPath,) {
   let injectedScript = document.createElement('script');
@@ -176,4 +172,19 @@ function injectedScriptToContent(jsPath) {
   chrome.runtime.sendMessage({
     jsPath
   });
+}
+//清除页面伪元素遮罩
+function cleanCopyDom() {
+  let sty = document.createElement('style');
+  sty.innerText = '.cleanCopyDom:before{content:\' \';display:none;height:0;width:0;overflow:hidden;}';
+  let imgs = document.getElementsByTagName("img")
+  for (let i = 0; i < imgs.length; i++) {
+    imgs[i].parentElement.className += " cleanCopyDom"
+  }
+  let canvas = document.getElementsByTagName("canvas")
+  for (let i = 0; i < canvas.length; i++) {
+    canvas[i].parentElement.className += " cleanCopyDom"
+  }
+  document.body.appendChild(sty);
+
 }

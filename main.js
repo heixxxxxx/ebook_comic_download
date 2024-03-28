@@ -66,6 +66,10 @@ chrome.runtime.onMessage.addListener(
         case 'renta': {
           downloader = new RentaComic(request.webObj);
           break;
+        }
+        case 'fuz': {
+          downloader = new FuzComic(request.webObj);
+          break;
         }//++//
       }
     }

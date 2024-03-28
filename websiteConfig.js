@@ -215,5 +215,17 @@ var webList = [{
   loadingMsg: ["支持右键保存单张图片"],
   downloadMsg: ["支持右键保存单张图片"],
   loadStopMsg: "",
+},
+{
+  key: 'fuz',
+  jsFileName: 'fuzComic',
+  url: 'https://comic-fuz.com/*/*',
+  originUrl: 'comic-fuz.com',
+  regex: /^https:\/\/comic-fuz\.com\/(book\/viewer|manga)\/.*/,
+  name: "COMIC FUZ(芳文社公式)",
+  supportMsg: ["该网站下载需要<b>手动翻页</b>"],
+  loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "支持右键另存为下载（另存为时需要手动改一下后缀名png或者jpg）"],
+  downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "支持右键另存为下载（另存为时需要手动改一下后缀名png或者jpg）"],
+  loadStopMsg: "",
 }
 ]
