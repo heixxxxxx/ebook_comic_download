@@ -1,6 +1,13 @@
 //原脚本的数据获取
-let p_dom = document.createElement("p")
-p_dom.id = "msgToECD"
+let p_dom
+if (!document.getElementById("msgToECD")) {
+  p_dom = document.createElement("p")
+  p_dom.id = "msgToECD"
+  document.body.appendChild(p_dom)
+} else
+  p_dom = document.getElementById("msgToECD")
+
+
 let data = {
   prd_ser,
   url_base2,
@@ -11,4 +18,3 @@ let data = {
   server_name
 }
 p_dom.innerText = JSON.stringify(data)
-document.body.appendChild(p_dom)

@@ -76,6 +76,8 @@ chrome.runtime.onMessage.addListener(
     //请求下载
     else if (request.id == 1) {
       downloader.download()
+    } else if (process == 2) {
+      downloader.sendMsg(2)
     }
 
   }
