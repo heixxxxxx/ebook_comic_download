@@ -63,9 +63,9 @@ function downloadByCanvas(urlList, obj, page = 0) {
     nowPage: page
   })
   let image = new Image()
-  console.error(urlList[0])
+  
   image.src = urlList[0]
-  // image.setAttribute("crossOrigin", "use-credentials");
+  image.setAttribute("crossOrigin", "use-credentials");
   image.onload = (e) => {
     let canvas = document.createElement("canvas")
     let ctx = canvas.getContext('2d')
@@ -73,6 +73,7 @@ function downloadByCanvas(urlList, obj, page = 0) {
     canvas.width = image.width
     canvas.height = image.height
     ctx.drawImage(image, 0, 0)
+    
     downloadByUrl(canvas.toDataURL("image/png"), page)
     urlList.splice(0, 1)
     downloadByCanvas(urlList, obj, page + 1)

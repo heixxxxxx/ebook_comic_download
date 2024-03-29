@@ -211,7 +211,7 @@ var webList = [{
   regex: /^https:\/\/dre-viewer\.papy\.co\.jp\/sc\/view_.*/,
   name: "Renta!",
 
-  supportMsg: ["<b style='color:red'>*</b>如果阅读时浏览器打开新页面<b>无法使用插件</b>，请<b>复制链接</b>到新标签打开即可"],
+  supportMsg: ["<b style='color:red'>**</b>如果阅读时浏览器打开新页面<b>无法使用插件</b>，请<b>复制链接</b>到新标签打开即可"],
   loadingMsg: ["支持右键保存单张图片"],
   downloadMsg: ["支持右键保存单张图片"],
   loadStopMsg: "",
@@ -227,5 +227,31 @@ var webList = [{
   loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "支持右键另存为下载（另存为时需要手动改一下后缀名png或者jpg）"],
   downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "支持右键另存为下载（另存为时需要手动改一下后缀名png或者jpg）"],
   loadStopMsg: "",
+},
+{
+  key: 'valkyrie',
+  jsFileName: 'valkyrieComic',
+  url: 'https://www.comic-valkyrie.com/samplebook/*',
+  originUrl: 'comic-valkyrie.com',
+  regex: /^https:\/\/www\.comic-valkyrie\.com\/samplebook\/.*/,
+  name: "コミックヴァルキリー公式サイト",
+  supportMsg: [],
+  loadingMsg: ["该网站不翻墙访问下载速度较慢，请耐心等待"],
+  downloadMsg: ["该网站不翻墙访问下载速度较慢，请耐心等待"],
+  loadStopMsg: "",
+},
+
+{
+  key: 'nico',
+  jsFileName: 'nicoComic',
+  url: 'https://seiga.nicovideo.jp/watch/*',
+  originUrl: 'nicovideo.jp',
+  regex: /^https:\/\/seiga\.nicovideo\.jp\/watch\/.*/,
+  name: "ニコニコ漫画 ",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
 }
+
 ]

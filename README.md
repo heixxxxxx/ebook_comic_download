@@ -22,8 +22,8 @@
 - 在 websiteConfig.js 中按规则添加新网站
 - 双击运行 自动编码.exe
 - 在 comicJs 文件夹内会自动生成对应的 js 文件。打开，编写具体程序。
--
-- [chrome 插件 v3 开发文档：](https://developer.chrome.com/docs/extensions/mv3/)
+
+- [chrome 插件 v3 开发文档](https://developer.chrome.com/docs/extensions/mv3/)
 
 ## 网站列表
 
@@ -44,16 +44,18 @@
 - 待测试 [DMM ブックス](https://book.dmm.com)
 - 待测试 [Renta!](https://papy.co.jp)
 - 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
+- 待测试 [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
+- 待测试 [ニコニコ漫画 ](https://nicovideo.jp)
 
 
 
-- magazine.jp.square-enix.com/mangaup (square-enix 这家好像只有 app 能购买阅读，不支持 web？)
-- global.manga-up.com （square-enix 的英文网站？）
+
+- magazine.jp.square-enix.com/mangaup 
+- global.manga-up.com （square-enix 的英文网站）
 - mangacross.jp
 - r.binb.jp
 - booklive.jp
 - takeshobo.co.jp
-- www.comic-valkyrie.com
 - futabanet.jp
 - comic-polaris.jp
 - www.shonengahosha.co.jp

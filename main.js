@@ -70,6 +70,14 @@ chrome.runtime.onMessage.addListener(
         case 'fuz': {
           downloader = new FuzComic(request.webObj);
           break;
+        }
+        case 'valkyrie': {
+          downloader = new ValkyrieComic(request.webObj);
+          break;
+        }
+        case 'nico': {
+          downloader = new NicoComic(request.webObj);
+          break;
         }//++//
       }
     }
