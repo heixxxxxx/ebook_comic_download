@@ -1,8 +1,9 @@
-
 class NicoComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
-    this.comicMsg = { "网站": webObj.name };
+    this.comicMsg = {
+      "网站": webObj.name
+    };
     //this.imageList 是图片列表
     this.imageList = []
     this.getInfo()
@@ -11,7 +12,13 @@ class NicoComic {
   //id: 0:未开始 1:加载中 2:下载中 3.下载暂停中 4.下载完成
   sendMsg(id, msg = {}) {
     process = id
-    chrome.runtime.sendMessage({ id, data: { comicMsg: this.comicMsg, ...msg } });
+    chrome.runtime.sendMessage({
+      id,
+      data: {
+        comicMsg: this.comicMsg,
+        ...msg
+      }
+    });
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
@@ -49,27 +56,24 @@ class NicoComic {
     var i = this.getKeyFromUrl(n);
     e.open("GET", n, !0),
       e.responseType = "arraybuffer"
-    console.log(-1)
-
     e.onload = (r) => {
-      console.log(0)
-      var t = new Uint8Array(e.response);
-      console.log(1)
-      t = this.decrypt(t, i)
-      console.log(2)
+        var t = new Uint8Array(e.response);
+        t = this.decrypt(t, i)
 
-      t = "data:image/" + this.getDataType(t) + ";base64," + this.toBase64String(t);
-      console.log(3)
-      downloadByUrl(t, page)
-      this.sendMsg(2, {
-        nowPage: page,
-        allPage: this.imageList.length
-      })
-      setTimeout(() => {
-        this.loadImage(page + 1)
-      }, 100)
-    }
-      ,
+        t = "data:image/" + this.getDataType(t) + ";base64," + this.toBase64String(t);
+        chrome.runtime.sendMessage({
+          downloadUrl: t,
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+
+        this.sendMsg(2, {
+          nowPage: page,
+          allPage: this.imageList.length
+        })
+        setTimeout(() => {
+          this.loadImage(page + 1)
+        }, 100)
+      },
       e.send()
   }
   decrypt(e, t) {
@@ -85,8 +89,8 @@ class NicoComic {
   }
 
   getDataType(e) {
-    var t = null
-      , n = e.length;
+    var t = null,
+      n = e.length;
     return 255 === e[0] && 216 === e[1] && 255 === e[n - 2] && 217 === e[n - 1] ? t = "jpg" : 137 === e[0] && 80 === e[1] && 78 === e[2] && 71 === e[3] ? t = "png" : 71 === e[0] && 73 === e[1] && 70 === e[2] && 56 === e[3] && (t = "gif"),
       t
   }
@@ -97,8 +101,8 @@ class NicoComic {
   }
 
   getDataType(e) {
-    var t = null
-      , n = e.length;
+    var t = null,
+      n = e.length;
     return 255 === e[0] && 216 === e[1] && 255 === e[n - 2] && 217 === e[n - 1] ? t = "jpg" : 137 === e[0] && 80 === e[1] && 78 === e[2] && 71 === e[3] ? t = "png" : 71 === e[0] && 73 === e[1] && 70 === e[2] && 56 === e[3] && (t = "gif"),
       t
   }
