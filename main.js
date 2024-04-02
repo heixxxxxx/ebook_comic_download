@@ -78,6 +78,10 @@ chrome.runtime.onMessage.addListener(
         case 'nico': {
           downloader = new NicoComic(request.webObj);
           break;
+        }
+        case 'kuaikan': {
+          downloader = new KuaikanComic(request.webObj);
+          break;
         }//++//
       }
     }

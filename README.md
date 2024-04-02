@@ -46,6 +46,8 @@
 - 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
 - 待测试 [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
 - 待测试 [ニコニコ漫画 ](https://nicovideo.jp)
+- 待测试 [快看漫画 ](https://kuaikanmanhua.com)
+
 
 
 
@@ -97,7 +99,6 @@
 - bookpass.auone.jp
 - dokusho-ojikan.jp
 - www.idmzj.com
-- www.kuaikanmanhua.com
 - www.dongmanmanhua.cn
 - rakuten.co.jp
 - bomtoon.tw
