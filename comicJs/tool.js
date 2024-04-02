@@ -63,17 +63,19 @@ function downloadByCanvas(urlList, obj, page = 0) {
     nowPage: page
   })
   let image = new Image()
-  
   image.src = urlList[0]
   image.setAttribute("crossOrigin", "use-credentials");
+
   image.onload = (e) => {
+
+
     let canvas = document.createElement("canvas")
     let ctx = canvas.getContext('2d')
     //绘制
     canvas.width = image.width
     canvas.height = image.height
     ctx.drawImage(image, 0, 0)
-    
+
     downloadByUrl(canvas.toDataURL("image/png"), page)
     urlList.splice(0, 1)
     downloadByCanvas(urlList, obj, page + 1)
@@ -163,7 +165,7 @@ function contextmenuOPen(dom = document) {
   }, true);
 }
 //动态注入脚本到页面环境 需要在清单中 web_accessible_resources配置对应网站和脚本路径
-function injectedScriptToPage(jsPath,) {
+function injectedScriptToPage(jsPath, ) {
   let injectedScript = document.createElement('script');
   injectedScript.src = chrome.runtime.getURL(jsPath);
   document.body.appendChild(injectedScript);

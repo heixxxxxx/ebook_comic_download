@@ -13,7 +13,7 @@
 
 插件其他的图标配置，上架商店等，都会后续逐步完善。
 
-很抱歉为了让朋友们开发操作简单，并没创建其他分支提供给使用者。非常感谢您的试用，如有建议请插件右上角反馈，我会及时处理的。
+
 
 想要加入开发的朋友也欢迎从反馈中私信。
 
@@ -33,7 +33,7 @@
 - √ [コミックシーモア](https://cmoa.jp)
 - √ [コロナ EX ｜ TO ブックスの公式 Web 漫画サイト](https://to-corona-ex.com)
 - √ [ゼロサムオンライン](https://zerosumonline.com)
-- 待测试 [GANMA!(ガンマ)](https://ganma.jp)
+- √ [GANMA!(ガンマ)](https://ganma.jp)
 - √ [マガポケ](https://shonenmagazine.com)
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
 - √ [少年ジャンプ＋](https://shonenjumpplus.com)
@@ -45,8 +45,8 @@
 - 待测试 [Renta!](https://papy.co.jp)
 - 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
 - 待测试 [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
-- 待测试 [ニコニコ漫画 ](https://nicovideo.jp)
-- 待测试 [快看漫画 ](https://kuaikanmanhua.com)
+- √ [ニコニコ漫画 ](https://nicovideo.jp)
+- √ [快看漫画 ](https://kuaikanmanhua.com)
 
 
 
