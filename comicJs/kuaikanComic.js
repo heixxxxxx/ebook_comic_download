@@ -26,11 +26,8 @@ class KuaikanComic {
   }
   getInfo() {
     this.comicMsg["漫画名"] = document.getElementsByTagName("title")[0].innerText
-
     let imgDom = document.getElementsByTagName("img")
-
     for (let i = 0; i < imgDom.length; i++) {
-
       if (imgDom[i].getAttribute("data-src")) {
         this.imageList.push(imgDom[i].getAttribute("data-src"));
       }

@@ -82,6 +82,14 @@ chrome.runtime.onMessage.addListener(
         case 'kuaikan': {
           downloader = new KuaikanComic(request.webObj);
           break;
+        }
+        case 'honto': {
+          downloader = new HontoComic(request.webObj);
+          break;
+        }
+        case 'dlLsite': {
+          downloader = new DlLsiteComic(request.webObj);
+          break;
         }//++//
       }
     }
