@@ -41,12 +41,16 @@
 - √ [BOOK WALKER (试阅)](https://bookwalker.jp)
 - √ [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（
 - √ [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
-- 待测试 [DMM ブックス](https://book.dmm.com)
+- 待测试 仅无料[DMM ブックス](https://book.dmm.com)
 - 待测试 [Renta!](https://papy.co.jp)
 - 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
 - 待测试 [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
 - √ [ニコニコ漫画 ](https://nicovideo.jp)
 - √ [快看漫画 ](https://kuaikanmanhua.com)
+- 待测试 [総合書店honto](https://honto.jp)
+- 待测试 [DLsite コミック](https://dlsite.com)
+
+
 
 
 
@@ -90,7 +94,6 @@
 - mechacomi.jp
 - mechacomic.jp
 - ebookjapan.yahoo.co.jp
-- honto.jp
 - comic.k-manga.jp
 - ebookstore.sony.jp
 - dbook.docomo.ne.jp
