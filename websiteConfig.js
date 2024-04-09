@@ -288,5 +288,17 @@ var webList = [{
   downloadMsg: [],
   loadStopMsg: "",
 },
+{
+  key: 'gangan',
+  jsFileName: 'ganganComic',
+  url: 'https://www.ganganonline.com/title/*/chapter/*',
+  originUrl: 'ganganonline.com',
+  regex: /^https:\/\/www\.ganganonline\.com\/title\/.*/,
+  name: "ガンガンONLINE",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+},
 
 ]

@@ -176,7 +176,7 @@ function injectedScriptToContent(jsPath) {
     jsPath
   });
 }
-//清除页面伪元素遮罩
+//清除页面伪元素遮罩(如果用了 :before遮挡住图片，不一定能够成功覆盖样式)
 function cleanCopyDom() {
   let sty = document.createElement('style');
   sty.innerText = '.cleanCopyDom:before{content:\' \';display:none;height:0;width:0;overflow:hidden;}';

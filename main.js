@@ -90,6 +90,10 @@ chrome.runtime.onMessage.addListener(
         case 'dlLsite': {
           downloader = new DlLsiteComic(request.webObj);
           break;
+        }
+        case 'gangan': {
+          downloader = new GanganComic(request.webObj);
+          break;
         }//++//
       }
     }

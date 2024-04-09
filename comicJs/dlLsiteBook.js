@@ -51,9 +51,7 @@ class DlLsiteComic {
             this.comicMsg["总页数"] = Rxml.getElementsByTagName('TotalPage')[0].innerHTML
             this.comicMsg["图片尺寸约"] = Rxml.getElementsByTagName('ContentFrame')[0].children[0].innerHTML + " * " + Rxml.getElementsByTagName('ContentFrame')[0].children[1].innerHTML
             this.comicMsg["目录"] = ""
-
             if (Rxml.getElementsByTagName('Scramble')) {
-
               this.scramble.width = Rxml.getElementsByTagName('Scramble')[0].children[0].innerHTML
               this.scramble.height = Rxml.getElementsByTagName('Scramble')[0].children[1].innerHTML
               for (let i = 0; i < topItem.length; i++) {
@@ -67,12 +65,7 @@ class DlLsiteComic {
         }
         this.param = encodeURIComponent(Rxml.getElementsByTagName('Content')[0].innerHTML)
       }
-
-
-
     }
-
-
   }
   getPage(page = 0) {
     if (page == this.comicMsg["总页数"]) {
@@ -105,7 +98,6 @@ class DlLsiteComic {
 
   }
   makeImg(page, fileName, key) {
-
     var data_xhr = new XMLHttpRequest();
     data_xhr.open("GET", `${this.baseUrl}?mode=1&file=${fileName}_0000.bin&reqtype=0&vm=4&param=${this.param}&time=` + new Date().getTime() % 1e7, true);
     //发送请求
