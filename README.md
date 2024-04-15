@@ -50,6 +50,12 @@
 - 待测试 [総合書店honto](https://honto.jp)
 - 待测试 [DLsite コミック](https://dlsite.com)
 - 待测试 [ガンガンONLINE](https://ganganonline.com)
+- 待测试 [くらげバンチ](https://kuragebunch.com)
+- 待测试 [コミックボーダー](https://comicborder.com)
+- 待测试 [裏サンデー](https://urasunday.com)
+
+
+
 
 
 
@@ -74,9 +80,7 @@
 - comic-gardo.com
 - comic-zenon.com
 - comic-trail.com
-- comicborder.com
 - comicbushi-web.com
-- kuragebunch.com
 - ichijin-plus.com
 - magcomi.com
 - sunday-webry.com
@@ -84,7 +88,6 @@
 - viewer.heros-web.com
 - viewer.comic-earthstar.jp
 - comic-walker.com
-- urasunday.com
 - yanmaga.jp
 - sp.handycomic.jp
 - voltage-comics.com

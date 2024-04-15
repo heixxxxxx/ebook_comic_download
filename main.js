@@ -94,6 +94,18 @@ chrome.runtime.onMessage.addListener(
         case 'gangan': {
           downloader = new GanganComic(request.webObj);
           break;
+        }
+        case 'bunch': {
+          downloader = new BunchComic(request.webObj);
+          break;
+        }
+        case 'border': {
+          downloader = new BorderComic(request.webObj);
+          break;
+        }
+        case 'urasunday': {
+          downloader = new UrasundayComic(request.webObj);
+          break;
         }//++//
       }
     }
