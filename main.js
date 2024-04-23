@@ -106,6 +106,14 @@ chrome.runtime.onMessage.addListener(
         case 'urasunday': {
           downloader = new UrasundayComic(request.webObj);
           break;
+        }
+        case 'booklive': {
+          downloader = new BookliveComic(request.webObj);
+          break;
+        }
+        case 'championcross': {
+          downloader = new ChampioncrossComic(request.webObj);
+          break;
         }//++//
       }
     }

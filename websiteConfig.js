@@ -337,4 +337,34 @@ var webList = [{
   downloadMsg: [],
   loadStopMsg: "",
 },
+
+{
+  key: 'booklive',
+  jsFileName: 'bookliveBook',
+  url: 'https://booklive.jp/bviewer/*',
+  originUrl: 'booklive.jp/',
+  regex: /^https:\/\/booklive\.jp\/bviewer\/.*/,
+  name: "booklive",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+},
+{
+  key: 'championcross',
+  jsFileName: 'championcross',
+  url: 'https://championcross.jp/episodes/*',
+  originUrl: 'championcross.jp/',
+  regex: /^https:\/\/championcross\.jp\/episodes\/.*/,
+  name: "秋田書店",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+},
+
+
+
+
+
 ]

@@ -53,6 +53,10 @@
 - 待测试 [くらげバンチ](https://kuragebunch.com)
 - 待测试 [コミックボーダー](https://comicborder.com)
 - 待测试 [裏サンデー](https://urasunday.com)
+- 待测试 [booklive(未完成)](https://booklive.jp/)
+- 待测试 [秋田書店](https://championcross.jp/)
+
+
 
 
 
@@ -68,7 +72,6 @@
 - global.manga-up.com （square-enix 的英文网站）
 - mangacross.jp
 - r.binb.jp
-- booklive.jp
 - takeshobo.co.jp
 - futabanet.jp
 - comic-polaris.jp
