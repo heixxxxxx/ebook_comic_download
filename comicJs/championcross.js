@@ -23,6 +23,8 @@ class ChampioncrossComic {
     this.downloadImage(this.imageList)
   }
   getInfo() {
+    let userId = document.getElementById("login_user_id") ? document.getElementById("login_user_id").innerText : 0
+    userId = userId || '0'
     let url = `https://championcross.jp/book/episodeInfo?comici-viewer-id=${document.getElementById("comici-viewer").getAttribute("comici-viewer-id")}&isPreview=false`
     var r = new XMLHttpRequest;
     r.open("GET", url),
@@ -44,7 +46,7 @@ class ChampioncrossComic {
       });
 
       //page数据
-      url = `https://championcross.jp/book/contentsInfo?user-id=0&comici-viewer-id=${document.getElementById("comici-viewer").getAttribute("comici-viewer-id")}&page-from=0&page-to=${ep.page_count}`
+      url = `https://championcross.jp/book/contentsInfo?user-id=${userId}&comici-viewer-id=${document.getElementById("comici-viewer").getAttribute("comici-viewer-id")}&page-from=0&page-to=${ep.page_count}`
       var r2 = new XMLHttpRequest;
       r2.open("GET", url),
         r2.responseType = "text",

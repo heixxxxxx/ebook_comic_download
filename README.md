@@ -70,7 +70,6 @@
 
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
-- mangacross.jp
 - r.binb.jp
 - takeshobo.co.jp
 - futabanet.jp
