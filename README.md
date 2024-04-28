@@ -41,14 +41,26 @@
 - √ [BOOK WALKER (试阅)](https://bookwalker.jp)
 - √ [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（
 - √ [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
-- 待测试 仅无料[DMM ブックス](https://book.dmm.com)
-- 待测试 [Renta!](https://papy.co.jp)
-- 待测试 [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
-- 待测试 [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
+- √ 仅无料[DMM ブックス](https://book.dmm.com)
+- √ [Renta!](https://papy.co.jp)
+- √ [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
+- √ [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
 - √ [ニコニコ漫画 ](https://nicovideo.jp)
 - √ [快看漫画 ](https://kuaikanmanhua.com)
-- 待测试 [総合書店honto](https://honto.jp)
-- 待测试 [DLsite コミック](https://dlsite.com)
+- √ [総合書店honto](https://honto.jp)
+- √ [DLsite コミック](https://dlsite.com)
+- √ [ガンガンONLINE](https://ganganonline.com)
+- √ [くらげバンチ](https://kuragebunch.com)
+- √ [コミックボーダー](https://comicborder.com)
+- √ [裏サンデー](https://urasunday.com)
+- √ [booklive](https://booklive.jp/)
+- √ [秋田書店](https://championcross.jp/)
+
+
+
+
+
+
 
 
 
@@ -58,9 +70,7 @@
 
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
-- mangacross.jp
 - r.binb.jp
-- booklive.jp
 - takeshobo.co.jp
 - futabanet.jp
 - comic-polaris.jp
@@ -72,9 +82,7 @@
 - comic-gardo.com
 - comic-zenon.com
 - comic-trail.com
-- comicborder.com
 - comicbushi-web.com
-- kuragebunch.com
 - ichijin-plus.com
 - magcomi.com
 - sunday-webry.com
@@ -82,8 +90,6 @@
 - viewer.heros-web.com
 - viewer.comic-earthstar.jp
 - comic-walker.com
-- ganganonline.com
-- urasunday.com
 - yanmaga.jp
 - sp.handycomic.jp
 - voltage-comics.com
