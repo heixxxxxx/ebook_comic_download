@@ -67,8 +67,6 @@ function downloadByCanvas(urlList, obj, page = 0) {
   image.setAttribute("crossOrigin", "use-credentials");
 
   image.onload = (e) => {
-
-
     let canvas = document.createElement("canvas")
     let ctx = canvas.getContext('2d')
     //绘制

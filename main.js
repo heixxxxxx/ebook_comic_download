@@ -114,6 +114,46 @@ chrome.runtime.onMessage.addListener(
         case 'championcross': {
           downloader = new ChampioncrossComic(request.webObj);
           break;
+        }
+        case 'ichijin': {
+          downloader = new IchijinComic(request.webObj);
+          break;
+        }
+        case 'earthstar': {
+          downloader = new EarthstarComic(request.webObj);
+          break;
+        }
+        case 'heros': {
+          downloader = new HerosComic(request.webObj);
+          break;
+        }
+        case 'voltage': {
+          downloader = new VoltageComic(request.webObj);
+          break;
+        }
+        case 'growl': {
+          downloader = new GrowlComic(request.webObj);
+          break;
+        }
+        case 'trail': {
+          downloader = new TrailComic(request.webObj);
+          break;
+        }
+        case 'polaris': {
+          downloader = new PolarisComic(request.webObj);
+          break;
+        }
+        case 'meteor': {
+          downloader = new MeteorComic(request.webObj);
+          break;
+        }
+        case 'zenon': {
+          downloader = new ZenonComic(request.webObj);
+          break;
+        }
+        case 'action': {
+          downloader = new ActionComic(request.webObj);
+          break;
         }//++//
       }
     }

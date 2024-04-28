@@ -55,44 +55,31 @@
 - √ [裏サンデー](https://urasunday.com)
 - √ [booklive](https://booklive.jp/)
 - √ [秋田書店](https://championcross.jp/)
-
-
-
-
-
-
-
-
-
-
-
-
+- 待测试 [一迅プラス](https://ichijin-plus.com)
+- 待测试 [コミック アース・スター](https://comic-earthstar.com)
+- 待测试 [コミプレ｜ヒーローズ](https://heros-web.com)
+- 待测试 [ぼるコミ](https://voltage-comics.com)
+- 待测试 [コミックグロウル](https://comic-growl.com)
+- 待测试 [コミックトレイル](https://comic-trail.com)
+- 待测试 [COMICポラリス](https://comic-polaris.jp)
+- 待测试 [COMICメテオ](https://comic-meteor.jp)
+- 待测试 [ゼノン編集部](https://comic-zenon.com)
+- 待测试 [webアクション](https://comic-action.com)
 
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
 - r.binb.jp
 - takeshobo.co.jp
 - futabanet.jp
-- comic-polaris.jp
 - www.shonengahosha.co.jp
 - r-cbs.mangafactory.jp
-- comic-meteor.jp
-- comic-action.com
 - comic-days.com
 - comic-gardo.com
-- comic-zenon.com
-- comic-trail.com
-- comicbushi-web.com
-- ichijin-plus.com
 - magcomi.com
-- sunday-webry.com
 - tonarinoyj.jp
-- viewer.heros-web.com
-- viewer.comic-earthstar.jp
 - comic-walker.com
 - yanmaga.jp
 - sp.handycomic.jp
-- voltage-comics.com
 - books.rakuten.co.jp
 - music-book.jp
 - www.yodobashi.com

@@ -1,5 +1,7 @@
+
+
 let canvas = document.createElement("canvas")
-class CmoaComic {
+class VoltageComic {
   constructor(webObj) {
     this.comicMsg = { "网站": webObj.name };
     this.imageList = [];
@@ -19,11 +21,11 @@ class CmoaComic {
   }
 
   getInfo() {
-    this.uMsg = document.getElementById("content").getAttribute("data-ptbinb").split("?")[1]
+
     this.cid = document.getElementById("content").getAttribute("data-ptbinb-cid")
     let keyK = this.codeN(this.cid)
     if (!document.getElementById("content")) return 0
-    fetch(`${document.getElementById("content").getAttribute("data-ptbinb")}&cid=${this.cid}&dmytime=${(new Date).getTime().toString()}&k=${keyK}`, {
+    fetch(`${document.getElementById("content").getAttribute("data-ptbinb")}?cid=${this.cid}&dmytime=${(new Date).getTime().toString()}&k=${keyK}`, {
       "headers": {
         "accept": "*/*",
         "accept-language": "zh-CN,zh;q=0.9",
@@ -39,7 +41,7 @@ class CmoaComic {
         "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-origin"
       },
-    
+
       "referrerPolicy": "strict-origin-when-cross-origin",
       "body": null,
       "method": "GET",
@@ -48,16 +50,15 @@ class CmoaComic {
     }).then(r => r.json()).then(r => {
       this.X = this.getCode(r, this.cid, keyK)
       this.p = r.items[0].p
-      this.comicMsg['漫画名'] = r.items[0].SubTitle
+      // this.comicMsg['漫画名'] = r.items[0].SubTitle
       this.ContentsServer = r.items[0].ContentsServer
-      fetch(`${this.ContentsServer}/sbcGetCntnt.php?cid=${this.cid}&p=${this.p}&vm=2&dmytime=${(new Date).getTime().toString()}&` + this.uMsg).then(r => r.json()).then(r => {
+      fetch(`${this.ContentsServer}content`).then(r => r.json()).then(r => {
         const regex = /<t-img\s+src="([^"]+)" a="0"/g;
         let matches;
         while ((matches = regex.exec(r.ttx)) !== null) {
           this.imageList.push(matches[1]);
         }
-
-        this.imageList.splice(this.imageList.length - 1, 1)
+        this.comicMsg["书名"]=r.ttx.slice(r.ttx.indexOf('<title>')+7,r.ttx.indexOf('</title>'))
         this.comicMsg['页数'] = this.imageList.length
         this.sendMsg(1)
       })
@@ -69,8 +70,8 @@ class CmoaComic {
       return 0
     }
     let image = new Image()
-    image.src = `${this.ContentsServer}/sbcGetImg.php?cid=${this.cid}&src=${this.imageList[page]}&p=${this.p}&q=1&vm=2&dmytime=${(new Date).getTime().toString()}&` + this.uMsg
-    image.setAttribute("crossOrigin", "anonymous");
+    image.src = `${this.ContentsServer}img/${this.imageList[page]}?p=${this.p}` +
+      image.setAttribute("crossOrigin", "anonymous");
     image.onload = () => {
       canvas.width = image.width
       canvas.height = image.height
