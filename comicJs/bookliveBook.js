@@ -145,12 +145,9 @@ class BookliveComic {
       canvas.width = img.width
       canvas.height = img.height
       let coor = this.mt(t, img)
-      // console.log(coor)
-      // coor.forEach((t) => {
-      //   var i = A(t.xdest, t.ydest, t.width, t.height)
-      // })
-      //切割三分的模式待优化
-  
+      console.log(coor)
+
+
       coor.forEach((t) => {
         this.Qh(ctx, img, t.xsrc, t.ysrc, t.width, t.height, t.xdest, t.ydest, t.width, t.height)
       })
@@ -201,11 +198,12 @@ class BookliveComic {
       if (n[5].length === e && r[5].length === e) {
         var s = this.Ct(n[5], T, j)
           , h = this.Ct(r[5], T, j)
-        var Rt = n,
-          Ft = t,
+        var Rt = s.n,
+          Ft = s.t,
           Lt = h.n,
           Nt = h.t;
         kt = [];
+
         for (var u = 0; u < T * j; u++)
           kt.push(s.p[h.p[u]])
       }
@@ -222,6 +220,7 @@ class BookliveComic {
         , g = d * s + (Ft[v] < d ? h - s : 0)
         , p = Lt[f] === a ? e : r
         , m = Nt[a] === f ? h : s;
+
       0 < i && 0 < n && u.push({
         xsrc: c,
         ysrc: l,
@@ -231,6 +230,7 @@ class BookliveComic {
         ydest: g
       })
     }
+
     return u
   }
   Ct(t, T, j) {
@@ -275,7 +275,7 @@ function A(t, i, n, r) {
       this.height = s.height
   }
 }
-function intersect (t, i) {
+function intersect(t, i) {
   var n = t.left
     , r = t.left + t.width
     , e = t.top
@@ -285,32 +285,32 @@ function intersect (t, i) {
     , o = i.top
     , a = i.top + i.height;
   if (n < u && h < r && e < a && o < s) {
-      var f = Math.max(n, h)
-        , c = Math.max(e, o);
-      return B(f,c,Math.min(r, u) - f,Math.min(s, a) - c)
+    var f = Math.max(n, h)
+      , c = Math.max(e, o);
+    return B(f, c, Math.min(r, u) - f, Math.min(s, a) - c)
   }
   return null
 }
 
 function B(t, i, n, r) {
   if (void 0 === t && (t = 0),
-  void 0 === i && (i = 0),
-  void 0 === n && (n = 0),
-  void 0 === r && (r = 0),
-  "number" == typeof t)
-      this.left = t,
+    void 0 === i && (i = 0),
+    void 0 === n && (n = 0),
+    void 0 === r && (r = 0),
+    "number" == typeof t)
+    this.left = t,
       this.top = i,
       this.width = n,
       this.height = r;
   else if (t instanceof A) {
-      var e = t;
-      this.left = e.left,
+    var e = t;
+    this.left = e.left,
       this.top = e.top,
       this.width = e.width,
       this.height = e.height
   } else {
-      var s = t;
-      this.left = s.left,
+    var s = t;
+    this.left = s.left,
       this.top = s.top,
       this.width = s.width,
       this.height = s.height

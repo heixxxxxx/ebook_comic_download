@@ -47,14 +47,14 @@
 - √ [コミックヴァルキリー公式サイト](https://comic-valkyrie.com)
 - √ [ニコニコ漫画 ](https://nicovideo.jp)
 - √ [快看漫画 ](https://kuaikanmanhua.com)
-- 待测试 [総合書店honto](https://honto.jp)
-- 待测试 [DLsite コミック](https://dlsite.com)
-- 待测试 [ガンガンONLINE](https://ganganonline.com)
-- 待测试 [くらげバンチ](https://kuragebunch.com)
-- 待测试 [コミックボーダー](https://comicborder.com)
-- 待测试 [裏サンデー](https://urasunday.com)
-- 待测试 [booklive(未完成)](https://booklive.jp/)
-- 待测试 [秋田書店](https://championcross.jp/)
+- √ [総合書店honto](https://honto.jp)
+- √ [DLsite コミック](https://dlsite.com)
+- √ [ガンガンONLINE](https://ganganonline.com)
+- √ [くらげバンチ](https://kuragebunch.com)
+- √ [コミックボーダー](https://comicborder.com)
+- √ [裏サンデー](https://urasunday.com)
+- √ [booklive](https://booklive.jp/)
+- √ [秋田書店](https://championcross.jp/)
 
 
 

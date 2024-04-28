@@ -35,16 +35,12 @@ class ChampioncrossComic {
       let ep
       eplist.some(epItem => {
         if (epItem.id == document.getElementById("comici-viewer").getAttribute("comici-viewer-id")) {
-
           this.comicMsg['本集名'] = epItem.name
           this.comicMsg['页数'] = epItem.page_count
-
-
           ep = epItem
           return 0
         }
       });
-
       //page数据
       url = `https://championcross.jp/book/contentsInfo?user-id=${userId}&comici-viewer-id=${document.getElementById("comici-viewer").getAttribute("comici-viewer-id")}&page-from=0&page-to=${ep.page_count}`
       var r2 = new XMLHttpRequest;
@@ -55,7 +51,6 @@ class ChampioncrossComic {
         this.imageList = (JSON.parse(r2.responseText)).result
         this.sendMsg(1)
       }
-
     }
   }
   downloadImage(list, page = 0) {
@@ -93,9 +88,6 @@ class ChampioncrossComic {
       setTimeout(() => {
         this.downloadImage(list, page + 1)
       }, 100)
-
-
-
     }
   }
 }
