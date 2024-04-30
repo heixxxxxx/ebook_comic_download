@@ -65,6 +65,16 @@
 - 待测试 [COMICメテオ](https://comic-meteor.jp)
 - 待测试 [ゼノン編集部](https://comic-zenon.com)
 - 待测试 [webアクション](https://comic-action.com)
+- 待测试 [コミックDAYS](https://comic-days.com)
+- 待测试 [コミックガルド](https://comic-gardo.com)
+- 待测试 [カドコミ(KADOKAWA無料)](https://comic-walker.com)
+- 待测试 [Amebaマンガ](https://dokusho-ojikan.jp)
+
+
+
+
+
+
 
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
@@ -73,11 +83,8 @@
 - futabanet.jp
 - www.shonengahosha.co.jp
 - r-cbs.mangafactory.jp
-- comic-days.com
-- comic-gardo.com
 - magcomi.com
 - tonarinoyj.jp
-- comic-walker.com
 - yanmaga.jp
 - sp.handycomic.jp
 - books.rakuten.co.jp
@@ -93,7 +100,6 @@
 - sokuyomi.jp
 - galapagosstore.com
 - bookpass.auone.jp
-- dokusho-ojikan.jp
 - www.idmzj.com
 - www.dongmanmanhua.cn
 - rakuten.co.jp

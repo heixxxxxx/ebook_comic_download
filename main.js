@@ -154,6 +154,22 @@ chrome.runtime.onMessage.addListener(
         case 'action': {
           downloader = new ActionComic(request.webObj);
           break;
+        }
+        case 'days': {
+          downloader = new DaysComic(request.webObj);
+          break;
+        }
+        case 'gardo': {
+          downloader = new GardoComic(request.webObj);
+          break;
+        }
+        case 'walker': {
+          downloader = new WalkerComic(request.webObj);
+          break;
+        }
+        case 'dokusho': {
+          downloader = new DokushoComic(request.webObj);
+          break;
         }//++//
       }
     }

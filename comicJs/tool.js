@@ -1,3 +1,7 @@
+// 说明：如果图片的请求地址有跨域限制：仿照网站配置相关请求获取图片
+      //跨域基础上需要canvas解码：获取图片时添加跨域配置 
+      //可以加载image对象，但是无法导出下载canvas（跨域污染绘制）:1.使用请求图片blob，转换成大blob地址绘制 2.图片资源禁止任何请求，可以使用页面内嵌iframe，在图片地址内进行绘制canvas再导出
+
 let a_dom = document.createElement("a")
 document.body.appendChild(a_dom);
 //解除网页右键禁止的 但是很受限制
