@@ -116,7 +116,16 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
 
   //匹配时匹配规则webList中的url
-  webObj = webList.find(item => item.regex.test(url));
+  webObj = webList.find(item => {
+    if (Array.isArray(item.regex)) {
+      return item.regex.some(i => {
+        return i.test(url)
+      })
+    } else {
+      return item.regex.test(url)
+    }
+
+  });
   originObj = webList.find(item => url.indexOf(item.originUrl) != -1);
   //匹配到了阅读页，可以直接下载的
   if (webObj) {

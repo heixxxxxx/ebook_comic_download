@@ -1,8 +1,6 @@
-
-
 let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
-class ValkyrieComic {
+class PolarisComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
     this.comicMsg = { "网站": webObj.name };
@@ -36,16 +34,8 @@ class ValkyrieComic {
     }
   }
   getInfo() {
-    let metaList = document.getElementsByTagName("meta")
-    for (let i = 0; i < metaList.length; i++) {
-      if (metaList[i].getAttribute("property") == ("og:title")) {
-        this.comicMsg['漫画名'] = metaList[i].getAttribute("content")
-
-      } else if (metaList[i].getAttribute("property") == ("og:url")) {
-        this.baseUrl = metaList[i].getAttribute("content")
-
-      }
-    }
+    this.comicMsg['漫画名'] = document.getElementsByTagName("title")[0].innerText
+    this.baseUrl = window.location.origin + window.location.pathname
     this.sendMsg(1)
   }
   draw(t, i, n, r, e, s, h, u, o, a) {
@@ -63,7 +53,6 @@ class ValkyrieComic {
       "mode": "cors",
       "credentials": "include"
     }).then(r => r.json()).then(r => {
-      console.log(r)
       let coords = r.views[0].coords
       let image = new Image()
       image.src = this.baseUrl + "/data/" + r.resources.i.src
@@ -80,7 +69,7 @@ class ValkyrieComic {
         this.sendMsg(2, {
           nowPage: page
         })
-       
+
         setTimeout(() => {
           this.getJson(page + 1)
         }, 100)

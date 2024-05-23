@@ -1,6 +1,5 @@
 
 
-
 class QqComic {
   constructor(webObj) {
     //动态注入解码数据

@@ -10,6 +10,7 @@
 可以在任何谷歌内核的浏览器中安装。
 浏览器设置->扩展->管理扩展->勾选开发者模式->安装已解压文件->选择文件夹
 在支持的网站点击工具栏拼图图标使用。
+*注意：试用过程中，由于每个网站加密方式不同，可能下载操作不同，请阅读弹窗内的提示内容进行下载
 
 插件其他的图标配置，上架商店等，都会后续逐步完善。
 
@@ -55,6 +56,21 @@
 - √ [裏サンデー](https://urasunday.com)
 - √ [booklive](https://booklive.jp/)
 - √ [秋田書店](https://championcross.jp/)
+- √ [一迅プラス](https://ichijin-plus.com)
+- √ [コミック アース・スター](https://comic-earthstar.com)
+- √ [コミプレ｜ヒーローズ](https://heros-web.com)
+- √ [ぼるコミ](https://voltage-comics.com)
+- √ [コミックグロウル](https://comic-growl.com)
+- √ [コミックトレイル](https://comic-trail.com)
+- √ [COMICポラリス](https://comic-polaris.jp)
+- √ [COMICメテオ](https://comic-meteor.jp)
+- √ [ゼノン編集部](https://comic-zenon.com)
+- √ [webアクション](https://comic-action.com)
+- √ [コミックDAYS](https://comic-days.com)
+- √ [コミックガルド](https://comic-gardo.com)
+- √ [カドコミ(KADOKAWA無料)](https://comic-walker.com)
+- √ [Amebaマンガ](https://dokusho-ojikan.jp)
+- √ [MAGCOMI](https://magcomi.com)
 
 
 
@@ -65,48 +81,29 @@
 
 
 
-
-
-
+- https://sokuyomi.jp
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
 - r.binb.jp
 - takeshobo.co.jp
 - futabanet.jp
-- comic-polaris.jp
 - www.shonengahosha.co.jp
 - r-cbs.mangafactory.jp
-- comic-meteor.jp
-- comic-action.com
-- comic-days.com
-- comic-gardo.com
-- comic-zenon.com
-- comic-trail.com
-- comicbushi-web.com
-- ichijin-plus.com
-- magcomi.com
-- sunday-webry.com
 - tonarinoyj.jp
-- viewer.heros-web.com
-- viewer.comic-earthstar.jp
-- comic-walker.com
 - yanmaga.jp
 - sp.handycomic.jp
-- voltage-comics.com
 - books.rakuten.co.jp
 - music-book.jp
 - www.yodobashi.com
-- www.kinokuniya.co.jp
+- www.kinokuniya.co.jp[无web端]
 - mechacomi.jp
 - mechacomic.jp
 - ebookjapan.yahoo.co.jp
 - comic.k-manga.jp
 - ebookstore.sony.jp
 - dbook.docomo.ne.jp
-- sokuyomi.jp
 - galapagosstore.com
 - bookpass.auone.jp
-- dokusho-ojikan.jp
 - www.idmzj.com
 - www.dongmanmanhua.cn
 - rakuten.co.jp
