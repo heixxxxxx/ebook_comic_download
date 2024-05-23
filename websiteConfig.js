@@ -140,9 +140,9 @@ var webList = [{
 {
   key: 'bw',
   jsFileName: 'bwBook',
-  url: 'https://viewer.bookwalker.jp/*/*/viewer.html*',
+  url: ['https://viewer.bookwalker.jp/*/*/viewer.html*','https://viewer-subscription.bookwalker.jp/*/*/viewer.html*'],
   originUrl: 'bookwalker.jp',
-  regex: /^https:\/\/viewer\.bookwalker\.jp\.*/,
+regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.bookwalker\.jp\.*/],
   name: "BOOK WALKER",
 
   supportMsg: [],
@@ -337,7 +337,6 @@ var webList = [{
   downloadMsg: [],
   loadStopMsg: "",
 },
-
 {
   key: 'booklive',
   jsFileName: 'bookliveBook',
@@ -510,18 +509,42 @@ var webList = [{
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
-},{
+}, {
   key: 'dokusho',
   jsFileName: 'dokusho',
-  url: ['https://dokusho-ojikan.jp/reader/*','https://ebook.dokusho-ojikan.jp/*'],
+  url: ['https://dokusho-ojikan.jp/reader/*', 'https://ebook.dokusho-ojikan.jp/*'],
   originUrl: 'dokusho-ojikan.jp',
-  regex: /^https:\/\/dokusho-ojikan\.jp\/reader\/.*/,
+  regex: [/^https:\/\/dokusho-ojikan\.jp\/reader\/.*/, /^https:\/\/ebook\.dokusho-ojikan\.jp\/.*/],
   name: "Amebaマンガ",
   supportMsg: [],
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
 },
+{
+  key: 'magcomi',
+  jsFileName: 'magcomi',
+  url: 'https://magcomi.com/episode/*',
+  originUrl: 'magcomi.com',
+  regex: /^https:\/\/magcomi\.com\/episode\/.*/,
+  name: "MAGCOMI",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+}, 
+// {
+//   key: 'sokuyomi',
+//   jsFileName: 'sokuyomi',
+//   url: ['https://sokuyomi.jp/hvl/main.php?*', 'https://*.sokuyomi.jp/stream/data/*'],
+//   originUrl: 'sokuyomi.jp',
+//   regex: [/^https:\/\/dokusho-ojikan\.jp\/reader\/.*/, /^https:\/\/ebook\.dokusho-ojikan\.jp\/.*/],
+//   name: "Amebaマンガ",
+//   supportMsg: [],
+//   loadingMsg: [],
+//   downloadMsg: [],
+//   loadStopMsg: "",
+// },
 
 
 ]

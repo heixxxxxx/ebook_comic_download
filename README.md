@@ -10,6 +10,7 @@
 可以在任何谷歌内核的浏览器中安装。
 浏览器设置->扩展->管理扩展->勾选开发者模式->安装已解压文件->选择文件夹
 在支持的网站点击工具栏拼图图标使用。
+*注意：试用过程中，由于每个网站加密方式不同，可能下载操作不同，请阅读弹窗内的提示内容进行下载
 
 插件其他的图标配置，上架商店等，都会后续逐步完善。
 
@@ -55,20 +56,21 @@
 - √ [裏サンデー](https://urasunday.com)
 - √ [booklive](https://booklive.jp/)
 - √ [秋田書店](https://championcross.jp/)
-- 待测试 [一迅プラス](https://ichijin-plus.com)
-- 待测试 [コミック アース・スター](https://comic-earthstar.com)
-- 待测试 [コミプレ｜ヒーローズ](https://heros-web.com)
-- 待测试 [ぼるコミ](https://voltage-comics.com)
-- 待测试 [コミックグロウル](https://comic-growl.com)
-- 待测试 [コミックトレイル](https://comic-trail.com)
-- 待测试 [COMICポラリス](https://comic-polaris.jp)
-- 待测试 [COMICメテオ](https://comic-meteor.jp)
-- 待测试 [ゼノン編集部](https://comic-zenon.com)
-- 待测试 [webアクション](https://comic-action.com)
-- 待测试 [コミックDAYS](https://comic-days.com)
-- 待测试 [コミックガルド](https://comic-gardo.com)
-- 待测试 [カドコミ(KADOKAWA無料)](https://comic-walker.com)
-- 待测试 [Amebaマンガ](https://dokusho-ojikan.jp)
+- √ [一迅プラス](https://ichijin-plus.com)
+- √ [コミック アース・スター](https://comic-earthstar.com)
+- √ [コミプレ｜ヒーローズ](https://heros-web.com)
+- √ [ぼるコミ](https://voltage-comics.com)
+- √ [コミックグロウル](https://comic-growl.com)
+- √ [コミックトレイル](https://comic-trail.com)
+- √ [COMICポラリス](https://comic-polaris.jp)
+- √ [COMICメテオ](https://comic-meteor.jp)
+- √ [ゼノン編集部](https://comic-zenon.com)
+- √ [webアクション](https://comic-action.com)
+- √ [コミックDAYS](https://comic-days.com)
+- √ [コミックガルド](https://comic-gardo.com)
+- √ [カドコミ(KADOKAWA無料)](https://comic-walker.com)
+- √ [Amebaマンガ](https://dokusho-ojikan.jp)
+- √ [MAGCOMI](https://magcomi.com)
 
 
 
@@ -76,6 +78,10 @@
 
 
 
+
+
+
+- https://sokuyomi.jp
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
 - r.binb.jp
@@ -83,21 +89,19 @@
 - futabanet.jp
 - www.shonengahosha.co.jp
 - r-cbs.mangafactory.jp
-- magcomi.com
 - tonarinoyj.jp
 - yanmaga.jp
 - sp.handycomic.jp
 - books.rakuten.co.jp
 - music-book.jp
 - www.yodobashi.com
-- www.kinokuniya.co.jp
+- www.kinokuniya.co.jp[无web端]
 - mechacomi.jp
 - mechacomic.jp
 - ebookjapan.yahoo.co.jp
 - comic.k-manga.jp
 - ebookstore.sony.jp
 - dbook.docomo.ne.jp
-- sokuyomi.jp
 - galapagosstore.com
 - bookpass.auone.jp
 - www.idmzj.com

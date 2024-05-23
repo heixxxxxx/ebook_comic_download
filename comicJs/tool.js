@@ -8,7 +8,7 @@ document.body.appendChild(a_dom);
 document.addEventListener('contextmenu', function (e) {
   e.stopPropagation();
 }, true);
-// 单张下载
+//单张下载
 function downloadByUrl(url, page) {
   a_dom.href = url
   a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";

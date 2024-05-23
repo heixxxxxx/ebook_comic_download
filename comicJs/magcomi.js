@@ -1,8 +1,7 @@
-
-  let canvas = document.createElement("canvas")
+let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
 
-class ActionComic {
+class MagcomiComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
     this.comicMsg = { "网站": webObj.name };
@@ -71,6 +70,7 @@ class ActionComic {
         , o = Math.floor(n / 4) * cell_height;
       this.drawImagef(image, i, t, cell_width, cell_height, s, o)
     }
+
   }
   drawImagef(image, e, t, i, r, s, o) {
     ctx.drawImage(image, e, t, i, r, s, o, i, r)

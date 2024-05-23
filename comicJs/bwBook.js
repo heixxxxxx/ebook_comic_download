@@ -17,9 +17,10 @@ class BwComic {
   download() {
     //注入脚本
     injectedScriptToPage('/modules/bwInjectedScript.js')
-   
+    console.log("注入")
     this.sendMsg(2)
     //监听
+  
     listenDomChange(document.getElementById("pageInfo"), () => {
       this.imageList = JSON.parse(document.getElementById("pageInfo").innerText)
       let num = null

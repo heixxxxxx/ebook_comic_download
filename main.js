@@ -170,6 +170,10 @@ chrome.runtime.onMessage.addListener(
         case 'dokusho': {
           downloader = new DokushoComic(request.webObj);
           break;
+        }
+        case 'magcomi': {
+          downloader = new MagcomiComic(request.webObj);
+          break;
         }//++//
       }
     }
