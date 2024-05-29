@@ -545,6 +545,18 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
 //   downloadMsg: [],
 //   loadStopMsg: "",
 // },
+{
+  key: 'yahoo',
+  jsFileName: 'yahooEbook',
+  url: ['https://ebookjapan.yahoo.co.jp/viewer/*',"https://ebookjapan.yahoo.co.jp/bviewer?*","https://prod-contents-br-page.akamaized.net/*"],
+  originUrl: 'ebookjapan.yahoo.co.jp',
+  regex: [/^https:\/\/ebookjapan\.yahoo\.co\.jp\/viewer\.*/,],
+  name: "yahoo",
+  supportMsg: ["该网站下载需要<b>手动翻页</b>",'请在阅读页选择高清浏览再进行下载','点击插件前最好刷新页面'],
+  loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
+  downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
+  loadStopMsg: "",
+},
 
 
 ]

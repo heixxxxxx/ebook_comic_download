@@ -71,6 +71,13 @@
 - √ [カドコミ(KADOKAWA無料)](https://comic-walker.com)
 - √ [Amebaマンガ](https://dokusho-ojikan.jp)
 - √ [MAGCOMI](https://magcomi.com)
+- 待测试 [yahoo](https://ebookjapan.yahoo.co.jp)
+
+
+
+
+
+- 待测试 [yahoo](https://sokuyomi.jp)
 
 
 
@@ -81,7 +88,7 @@
 
 
 
-- https://sokuyomi.jp
+
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
 - r.binb.jp
@@ -98,7 +105,6 @@
 - www.kinokuniya.co.jp[无web端]
 - mechacomi.jp
 - mechacomic.jp
-- ebookjapan.yahoo.co.jp
 - comic.k-manga.jp
 - ebookstore.sony.jp
 - dbook.docomo.ne.jp
@@ -110,3 +116,4 @@
 - bomtoon.tw
 - bomtoon.com
 - gammaplus.takeshobo.co.jp
+- comic-boost.com

@@ -174,6 +174,10 @@ chrome.runtime.onMessage.addListener(
         case 'magcomi': {
           downloader = new MagcomiComic(request.webObj);
           break;
+        }
+        case 'yahoo': {
+          downloader = new YahooComic(request.webObj);
+          break;
         }//++//
       }
     }
