@@ -1,5 +1,5 @@
 
-class BwComic {
+class ComicboostComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
     this.comicMsg = { "网站": webObj.name };
@@ -16,34 +16,34 @@ class BwComic {
   //下载 用户点击下载按钮时会触发的方法
   download() {
     //注入脚本
-    injectedScriptToPage('/modules/bwInjectedScript.js')
+    injectedScriptToPage('/modules/cbInjectedScript.js')
     console.log("注入")
     this.sendMsg(2)
     //监听
     setTimeout(() => {
-      listenDomChange(document.getElementById("pageInfo"), () => {
-        this.imageList = JSON.parse(document.getElementById("pageInfo").innerText)
-        let num = null
-        let text = ""
-        this.imageList.forEach((item, i) => {
-          if (item === true) {
-            if (num === null) {
-              num = i
-              text = i + ""
-            }
-          } else {
-            if (num + 1 == i) {
-              text += (i - 1) + ","
-              num = null
-            }
+     listenDomChange(document.getElementById("pageInfo"), () => {
+      this.imageList = JSON.parse(document.getElementById("pageInfo").innerText)
+      let num = null
+      let text = ""
+      this.imageList.forEach((item, i) => {
+        if (item === true) {
+          if (num === null) {
+            num = i
+            text = i + ""
           }
-        })
-        this.sendMsg(2, {
-          msg: `已经下载：` + text
-        })
+        } else {
+          if (num + 1 == i) {
+            text += (i - 1) + ","
+            num = null
+          }
+        }
       })
+      this.sendMsg(2, {
+        msg: `已经下载：` + text
+      })
+    }) 
     }, 1000);
-
+    
   }
   getInfo() {
     if (document.getElementsByTagName("title")[0]) {

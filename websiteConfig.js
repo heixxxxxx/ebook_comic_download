@@ -557,6 +557,18 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
   downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
   loadStopMsg: "",
 },
+{
+  key: 'comicboost',
+  jsFileName: 'comicboost',
+  url: 'https://comic-boost.com/viewer/viewer.html?*',
+  originUrl: 'comic-boost.com/',
+  regex: /^https:\/\/comic-boost\.com\/viewer\/viewer\.html\?.*/,
+  name: "comic-boost",
+  supportMsg: ["该网站下载需要<b>手动翻页</b>"],
+  loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
+  downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
+  loadStopMsg: "",
+},
 
 
 ]

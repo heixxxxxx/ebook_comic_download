@@ -178,6 +178,10 @@ chrome.runtime.onMessage.addListener(
         case 'yahoo': {
           downloader = new YahooComic(request.webObj);
           break;
+        }
+        case 'comicboost': {
+          downloader = new ComicboostComic(request.webObj);
+          break;
         }//++//
       }
     }
