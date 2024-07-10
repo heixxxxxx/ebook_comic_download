@@ -140,9 +140,9 @@ var webList = [{
 {
   key: 'bw',
   jsFileName: 'bwBook',
-  url: ['https://viewer.bookwalker.jp/*/*/viewer.html*','https://viewer-subscription.bookwalker.jp/*/*/viewer.html*'],
+  url: ['https://viewer.bookwalker.jp/*/*/viewer.html*', 'https://viewer-subscription.bookwalker.jp/*/*/viewer.html*'],
   originUrl: 'bookwalker.jp',
-regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.bookwalker\.jp\.*/],
+  regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/, /^https:\/\/viewer-subscription\.bookwalker\.jp\.*/],
   name: "BOOK WALKER",
 
   supportMsg: [],
@@ -532,7 +532,7 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
-}, 
+},
 // {
 //   key: 'sokuyomi',
 //   jsFileName: 'sokuyomi',
@@ -548,11 +548,11 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
 {
   key: 'yahoo',
   jsFileName: 'yahooEbook',
-  url: ['https://ebookjapan.yahoo.co.jp/viewer/*',"https://ebookjapan.yahoo.co.jp/bviewer?*","https://prod-contents-br-page.akamaized.net/*"],
+  url: ['https://ebookjapan.yahoo.co.jp/viewer/*', "https://ebookjapan.yahoo.co.jp/bviewer?*", "https://prod-contents-br-page.akamaized.net/*"],
   originUrl: 'ebookjapan.yahoo.co.jp',
   regex: [/^https:\/\/ebookjapan\.yahoo\.co\.jp\/viewer\.*/,],
   name: "yahoo",
-  supportMsg: ["该网站下载需要<b>手动翻页</b>",'请在阅读页选择高清浏览再进行下载','点击插件前最好刷新页面'],
+  supportMsg: ["该网站下载需要<b>手动翻页</b>", '请在阅读页选择高清浏览再进行下载', '点击插件前最好刷新页面'],
   loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
   downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
   loadStopMsg: "",
@@ -567,6 +567,17 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
   supportMsg: ["该网站下载需要<b>手动翻页</b>"],
   loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
   downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
+  loadStopMsg: "",
+}, {
+  key: 'animate',
+  jsFileName: 'animate',
+  url: ['https://www.animatebookstore.com/viewer/*', 'https://*.cloudfront.net/*'],
+  originUrl: 'animatebookstore.com',
+  regex: [/^https:\/\/www\.animatebookstore\.com\/viewer\/.*/, /^https:\/\/.*\.cloudfront\.net\/.*/],
+  name: "アニメイトブックストア",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
   loadStopMsg: "",
 },
 

@@ -73,6 +73,8 @@
 - √ [MAGCOMI](https://magcomi.com)
 - 待测试 [yahoo](https://ebookjapan.yahoo.co.jp)
 - 待测试 [comic-boost](https://comic-boost.com/)
+- 待测试 [アニメイトブックストア](https://animatebookstore.com)
+
 
 
 
@@ -83,7 +85,6 @@
 - https://comist.jp/
 - https://comiclife.jp/
 - http://sp.f-books.jp/
-- https://www.animatebookstore.com/
 - https://comic.iowl.jp/
 - https://www.sukima.me/
 - https://itsudoco.com/
@@ -97,8 +98,7 @@
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
 - takeshobo.co.jp
-- futabanet.jp
-- www.shonengahosha.co.jp
+- futabanet.jp 
 - tonarinoyj.jp
 - yanmaga.jp
 - sp.handycomic.jp

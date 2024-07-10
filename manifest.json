@@ -580,6 +580,18 @@
         "./main.js"
       ],
       "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.animatebookstore.com/viewer/*",
+        "https://*.cloudfront.net/*"
+      ],
+      "js": [
+        "./comicJs/tool.js",
+        "./comicJs/animate.js",
+        "./main.js"
+      ],
+      "all_frames": true
     }
   ]
 }

@@ -43,7 +43,6 @@ class BwComic {
         })
       })
     }, 1000);
-
   }
   getInfo() {
     if (document.getElementsByTagName("title")[0]) {
