@@ -74,13 +74,14 @@
 - 待测试 [yahoo](https://ebookjapan.yahoo.co.jp)
 - 待测试 [comic-boost](https://comic-boost.com/)
 - 待测试 [アニメイトブックストア](https://animatebookstore.com)
+- 待测试 [HAPPY!コミック](https://happycomic.jp)
+
 
 
 
 
 
 - https://book.hikaritv.net/
-- https://happycomic.jp/web/index.php
 - https://sp.dokopon.com/
 - https://comist.jp/
 - https://comiclife.jp/

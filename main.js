@@ -186,6 +186,10 @@ chrome.runtime.onMessage.addListener(
         case 'animate': {
           downloader = new AnimateComic(request.webObj);
           break;
+        }
+        case 'happycomic': {
+          downloader = new HappycomicComic(request.webObj);
+          break;
         }//++//
       }
     }

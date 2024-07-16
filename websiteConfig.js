@@ -579,6 +579,17 @@ var webList = [{
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
+}, {
+  key: 'happycomic',
+  jsFileName: 'happycomic',
+  url: 'https://bs.comicdc.jp/*',
+  originUrl: 'happycomic.jp',
+  regex: /^https:\/\/bs\.comicdc\.jp\/.*/,
+  name: "HAPPY!コミック",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
 },
 
 
