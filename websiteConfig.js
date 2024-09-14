@@ -192,15 +192,17 @@ var webList = [{
 {
   key: 'dmmFree',
   jsFileName: 'dmmBook',
-  url: 'https://book.dmm.com/free_streaming/*/*',
+  url: ['https://book.dmm.com/free_streaming/*/*', 'https://book.dmm.co.jp/streaming*'],
   originUrl: 'dmm.com',
-  regex: /^https:\/\/book\.dmm\.com\/free_streaming\.*/,
+  regex: [/^https:\/\/book\.dmm\.com\/free_streaming\.*/, /^https:\/\/book\.dmm\.co\.jp\/streaming\.*/],
   name: "DMMブックス",
   cookiesUrl: "dmm.com",
   supportMsg: [],
   loadingMsg: ["点击下载将会下载整本", "支持右键保存单张图片"],
   downloadMsg: ["支持右键保存单张图片"],
   loadStopMsg: "",
+  //是否支持内嵌iframe触发，默认true
+  "all_frames": false
 },
 {
   key: 'renta',

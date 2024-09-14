@@ -3,8 +3,6 @@ let url
 let param
 let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
-
-
 class HappycomicComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
@@ -174,7 +172,6 @@ class HappycomicComic {
 
   }
 }
-
 let drawImage4Other = function (g, e, c, h, j, i, f, d) {
   if ((c <= 0) || (h <= 0)) {
     return;

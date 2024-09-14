@@ -78,7 +78,6 @@ class DokushoComic {
       if (data_xhr.readyState === 4 && data_xhr.status === 200) {
         var response = data_xhr.responseText;
         let info = JSON.parse(response).result
-
         this.comicMsg["书名"] = info.bookData.title;
         this.comicMsg["作者"] = info.bookData.author;
         this.comicMsg["页数"] = info.keys.length
