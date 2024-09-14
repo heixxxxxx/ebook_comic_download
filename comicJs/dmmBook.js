@@ -32,7 +32,7 @@ class DmmFreeComic {
     });
 
     let query = window.location.href.split("?")[1]
-    fetch(`https://book.dmm.com/viewerapi/auth/?${query}&u1=${u1}&u2=${u2}`, {
+    fetch(`${window.location.origin}/viewerapi/auth/?${query}&u1=${u1}&u2=${u2}`, {
       "headers": {
         "accept": "*/*",
       },
@@ -58,13 +58,13 @@ class DmmFreeComic {
         this.imageData.data = data
         this.comicMsg["页数"] = this.imageData.configuration.contents.length
         this.sendMsg(1)
-
       })
     })
 
   }
   loadImage(i = 0) {
-    if(i==this.imageData.configuration.contents.length){
+  
+    if (i == this.imageData.configuration.contents.length) {
       this.sendMsg(4)
       return 0
     }

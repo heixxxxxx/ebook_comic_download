@@ -5,7 +5,7 @@ document.body.appendChild(a_dom);
 let p_dom = document.createElement("p")
 p_dom.style.display = "none"
 p_dom.id = "pageInfo"
-document.body.appendChild(a_dom);
+document.body.appendChild(p_dom);
 
 function Zqm(xqm, wqm) {
   var Pqm = Zqm;

@@ -50,6 +50,14 @@
     },
     {
       "matches": [
+        "https://ebookjapan.yahoo.co.jp/*"
+      ],
+      "resources": [
+        "/modules/yahoo.js"
+      ]
+    },
+    {
+      "matches": [
         "https://dre-viewer.papy.co.jp/*"
       ],
       "resources": [
@@ -62,6 +70,14 @@
       ],
       "resources": [
         "/modules/fuz.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://comic-boost.com/*"
+      ],
+      "resources": [
+        "/modules/cbInjectedScript.js"
       ]
     }
   ],
@@ -223,14 +239,15 @@
     },
     {
       "matches": [
-        "https://book.dmm.com/free_streaming/*/*"
+        "https://book.dmm.com/free_streaming/*/*",
+        "https://book.dmm.co.jp/streaming*"
       ],
       "js": [
         "./comicJs/tool.js",
         "./comicJs/dmmBook.js",
         "./main.js"
       ],
-      "all_frames": true
+      "all_frames": false
     },
     {
       "matches": [
@@ -537,6 +554,53 @@
       "js": [
         "./comicJs/tool.js",
         "./comicJs/magcomi.js",
+        "./main.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://ebookjapan.yahoo.co.jp/viewer/*",
+        "https://ebookjapan.yahoo.co.jp/bviewer?*",
+        "https://prod-contents-br-page.akamaized.net/*"
+      ],
+      "js": [
+        "./comicJs/tool.js",
+        "./comicJs/yahooEbook.js",
+        "./main.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://comic-boost.com/viewer/viewer.html?*"
+      ],
+      "js": [
+        "./comicJs/tool.js",
+        "./comicJs/comicboost.js",
+        "./main.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://www.animatebookstore.com/viewer/*",
+        "https://*.cloudfront.net/*"
+      ],
+      "js": [
+        "./comicJs/tool.js",
+        "./comicJs/animate.js",
+        "./main.js"
+      ],
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://bs.comicdc.jp/*"
+      ],
+      "js": [
+        "./comicJs/tool.js",
+        "./comicJs/happycomic.js",
         "./main.js"
       ],
       "all_frames": true

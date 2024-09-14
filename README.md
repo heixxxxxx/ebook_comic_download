@@ -71,6 +71,10 @@
 - √ [カドコミ(KADOKAWA無料)](https://comic-walker.com)
 - √ [Amebaマンガ](https://dokusho-ojikan.jp)
 - √ [MAGCOMI](https://magcomi.com)
+- 待测试 [yahoo](https://ebookjapan.yahoo.co.jp)
+- 待测试 [comic-boost](https://comic-boost.com/)
+- 待测试 [アニメイトブックストア](https://animatebookstore.com)
+- 待测试 [HAPPY!コミック](https://happycomic.jp)
 
 
 
@@ -79,16 +83,25 @@
 
 
 
-
-
+- https://book.hikaritv.net/
+- https://sp.dokopon.com/
+- https://comist.jp/
+- https://comiclife.jp/
+- http://sp.f-books.jp/
+- https://comic.iowl.jp/
+- https://www.sukima.me/
+- https://itsudoco.com/
+- https://manga.fod.fujitv.co.jp/books/
+- mangabox.m
+- https://video.unext.jp/
+- https://bookpass.auone.jp/
+- https://dbook.docomo.ne.jp/
+- https://kc.kodansha.co.jp/
 - https://sokuyomi.jp
 - magazine.jp.square-enix.com/mangaup 
 - global.manga-up.com （square-enix 的英文网站）
-- r.binb.jp
 - takeshobo.co.jp
-- futabanet.jp
-- www.shonengahosha.co.jp
-- r-cbs.mangafactory.jp
+- futabanet.jp 
 - tonarinoyj.jp
 - yanmaga.jp
 - sp.handycomic.jp
@@ -98,7 +111,6 @@
 - www.kinokuniya.co.jp[无web端]
 - mechacomi.jp
 - mechacomic.jp
-- ebookjapan.yahoo.co.jp
 - comic.k-manga.jp
 - ebookstore.sony.jp
 - dbook.docomo.ne.jp
@@ -110,3 +122,6 @@
 - bomtoon.tw
 - bomtoon.com
 - gammaplus.takeshobo.co.jp
+- comic-boost.com
+- https://www.mangazenkan.com/
+- https://s.mobi-book.com/

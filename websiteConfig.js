@@ -140,9 +140,9 @@ var webList = [{
 {
   key: 'bw',
   jsFileName: 'bwBook',
-  url: ['https://viewer.bookwalker.jp/*/*/viewer.html*','https://viewer-subscription.bookwalker.jp/*/*/viewer.html*'],
+  url: ['https://viewer.bookwalker.jp/*/*/viewer.html*', 'https://viewer-subscription.bookwalker.jp/*/*/viewer.html*'],
   originUrl: 'bookwalker.jp',
-regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.bookwalker\.jp\.*/],
+  regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/, /^https:\/\/viewer-subscription\.bookwalker\.jp\.*/],
   name: "BOOK WALKER",
 
   supportMsg: [],
@@ -192,15 +192,17 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
 {
   key: 'dmmFree',
   jsFileName: 'dmmBook',
-  url: 'https://book.dmm.com/free_streaming/*/*',
+  url: ['https://book.dmm.com/free_streaming/*/*', 'https://book.dmm.co.jp/streaming*'],
   originUrl: 'dmm.com',
-  regex: /^https:\/\/book\.dmm\.com\/free_streaming\.*/,
+  regex: [/^https:\/\/book\.dmm\.com\/free_streaming\.*/, /^https:\/\/book\.dmm\.co\.jp\/streaming\.*/],
   name: "DMMブックス",
   cookiesUrl: "dmm.com",
   supportMsg: [],
   loadingMsg: ["点击下载将会下载整本", "支持右键保存单张图片"],
   downloadMsg: ["支持右键保存单张图片"],
   loadStopMsg: "",
+  //是否支持内嵌iframe触发，默认true
+  "all_frames": false
 },
 {
   key: 'renta',
@@ -532,7 +534,7 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
-}, 
+},
 // {
 //   key: 'sokuyomi',
 //   jsFileName: 'sokuyomi',
@@ -545,6 +547,52 @@ regex: [/^https:\/\/viewer\.bookwalker\.jp\.*/,/^https:\/\/viewer-subscription\.
 //   downloadMsg: [],
 //   loadStopMsg: "",
 // },
+{
+  key: 'yahoo',
+  jsFileName: 'yahooEbook',
+  url: ['https://ebookjapan.yahoo.co.jp/viewer/*', "https://ebookjapan.yahoo.co.jp/bviewer?*", "https://prod-contents-br-page.akamaized.net/*"],
+  originUrl: 'ebookjapan.yahoo.co.jp',
+  regex: [/^https:\/\/ebookjapan\.yahoo\.co\.jp\/viewer\.*/,],
+  name: "yahoo",
+  supportMsg: ["该网站下载需要<b>手动翻页</b>", '请在阅读页选择高清浏览再进行下载', '点击插件前最好刷新页面'],
+  loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
+  downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载", "页码为<b>下载顺序</b>，并非实际页码"],
+  loadStopMsg: "",
+},
+{
+  key: 'comicboost',
+  jsFileName: 'comicboost',
+  url: 'https://comic-boost.com/viewer/viewer.html?*',
+  originUrl: 'comic-boost.com/',
+  regex: /^https:\/\/comic-boost\.com\/viewer\/viewer\.html\?.*/,
+  name: "comic-boost",
+  supportMsg: ["该网站下载需要<b>手动翻页</b>"],
+  loadingMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
+  downloadMsg: ["请<b>手动翻页</b>", "翻页会自动下载"],
+  loadStopMsg: "",
+}, {
+  key: 'animate',
+  jsFileName: 'animate',
+  url: ['https://www.animatebookstore.com/viewer/*', 'https://*.cloudfront.net/*'],
+  originUrl: 'animatebookstore.com',
+  regex: [/^https:\/\/www\.animatebookstore\.com\/viewer\/.*/, /^https:\/\/.*\.cloudfront\.net\/.*/],
+  name: "アニメイトブックストア",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+}, {
+  key: 'happycomic',
+  jsFileName: 'happycomic',
+  url: 'https://bs.comicdc.jp/*',
+  originUrl: 'happycomic.jp',
+  regex: /^https:\/\/bs\.comicdc\.jp\/.*/,
+  name: "HAPPY!コミック",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+},
 
 
 ]

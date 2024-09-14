@@ -174,14 +174,32 @@ chrome.runtime.onMessage.addListener(
         case 'magcomi': {
           downloader = new MagcomiComic(request.webObj);
           break;
+        }
+        case 'yahoo': {
+          downloader = new YahooComic(request.webObj);
+          break;
+        }
+        case 'comicboost': {
+          downloader = new ComicboostComic(request.webObj);
+          break;
+        }
+        case 'animate': {
+          downloader = new AnimateComic(request.webObj);
+          break;
+        }
+        case 'happycomic': {
+          downloader = new HappycomicComic(request.webObj);
+          break;
         }//++//
       }
     }
     //请求下载
     else if (request.id == 1) {
-      downloader.download()
+      if (downloader)
+        downloader.download()
     } else if (process == 2) {
-      downloader.sendMsg(2)
+      if (downloader)
+        downloader.sendMsg(2)
     }
 
   }
