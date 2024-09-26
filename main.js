@@ -190,6 +190,10 @@ chrome.runtime.onMessage.addListener(
         case 'happycomic': {
           downloader = new HappycomicComic(request.webObj);
           break;
+        }
+        case 'dongman': {
+          downloader = new DongmanComic(request.webObj);
+          break;
         }//++//
       }
     }

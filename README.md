@@ -71,14 +71,22 @@
 - √ [カドコミ(KADOKAWA無料)](https://comic-walker.com)
 - √ [Amebaマンガ](https://dokusho-ojikan.jp)
 - √ [MAGCOMI](https://magcomi.com)
-- 待测试 [yahoo](https://ebookjapan.yahoo.co.jp)
-- 待测试 [comic-boost](https://comic-boost.com/)
-- 待测试 [アニメイトブックストア](https://animatebookstore.com)
-- 待测试 [HAPPY!コミック](https://happycomic.jp)
+- √  [yahoo](https://ebookjapan.yahoo.co.jp)
+- √  [comic-boost](https://comic-boost.com/)
+- √  [アニメイトブックストア](https://animatebookstore.com)
+- √  [HAPPY!コミック](https://happycomic.jp)
+- √  [咚漫漫画](https://.dongmanmanhua.cn)
 
 
 
 
+
+
+- 
+- 
+- 以下网址暂未做
+- 
+- 
 
 
 
@@ -117,7 +125,6 @@
 - galapagosstore.com
 - bookpass.auone.jp
 - www.idmzj.com
-- www.dongmanmanhua.cn
 - rakuten.co.jp
 - bomtoon.tw
 - bomtoon.com

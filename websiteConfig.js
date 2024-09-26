@@ -592,7 +592,18 @@ var webList = [{
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
-},
+}, {
+  key: 'dongman',
+  jsFileName: 'dongmanManhua',
+  url: ['https://www.dongmanmanhua.cn/*/*/*/viewer?*','https://cdn.dongmanmanhua.cn/*'],
+  originUrl: '.dongmanmanhua.cn',
+  regex:[/^https:\/\/www\.dongmanmanhua\.cn\/.*\/.*\/.*\/viewer\?.*/, /^https:\/\/cdn\.dongmanmanhua\.cn\/.*/],
+  name: "咚漫漫画",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
+}
 
 
 ]
