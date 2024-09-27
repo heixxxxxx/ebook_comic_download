@@ -66,7 +66,7 @@ chrome.storage.local.get('hei_data', function (result) {
 
 function download(url) {
   if (page >= url.length) {
-    parent.postMessage({ page: page + '' }, '*');
+    window.close()
     return 0
   }
   let img = new Image()
