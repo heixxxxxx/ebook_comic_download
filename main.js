@@ -194,6 +194,10 @@ chrome.runtime.onMessage.addListener(
         case 'dongman': {
           downloader = new DongmanComic(request.webObj);
           break;
+        }
+        case 'shogakukan': {
+          downloader = new ShogakukanComic(request.webObj);
+          break;
         }//++//
       }
     }

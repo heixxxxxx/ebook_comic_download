@@ -39,7 +39,9 @@
 - √ [白泉社 e-net!](https://www.hakusensha-e.net)
 - √ [少年ジャンプ＋](https://shonenjumpplus.com)
 - √ [BOOK WALKER](https://bookwalker.jp)
+- 待测试 [BOOK WALKER (试阅)](https://bookwalker.jp)
 - √ [BOOK☆WALKER 台灣漫讀](https://bookwalker.com.tw)（
+- 待测试 [BOOK☆WALKER 台灣漫讀 (试阅)](https://bookwalker.com.tw)
 - √ [DMM ブックス](https://book.dmm.com)
 - √ [Renta!](https://papy.co.jp)
 - √ [COMIC FUZ(芳文社公式)](https://comic-fuz.com)
@@ -74,6 +76,11 @@
 - √  [アニメイトブックストア](https://animatebookstore.com)
 - √  [HAPPY!コミック](https://happycomic.jp)
 - √  [咚漫漫画](https://.dongmanmanhua.cn)
+- √  [ちゃおプラス](https://ciao.shogakukan.co.jp)
+
+
+
+
 
 
 

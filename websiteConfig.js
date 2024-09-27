@@ -6,6 +6,7 @@
 //originUrl:根路径，用来看这个网站是否被我们支持，但具体能下载还要去阅读页（记得去掉末尾的斜杠）
 //regex:匹配的正则（很重要，用这个来匹配地址栏的链接，要阅读页的正则表达式）
 //cookiesUrl:（非必填）如果网站需要获取cookie，在这里写一级域名
+//all_frames:是否跨iframe执行脚本，默认打开（一般地址匹配不上不会有影响，但是部分网址内嵌iframe网址也被匹配了，就容易报错）
 
 //以下字段用于ui展示的(修改这些不需要运行自动编码了，修改上面的内容，记得重新运行自动编码)
 
@@ -595,15 +596,24 @@ var webList = [{
 }, {
   key: 'dongman',
   jsFileName: 'dongmanManhua',
-  url: ['https://www.dongmanmanhua.cn/*/*/*/viewer?*','https://cdn.dongmanmanhua.cn/*'],
+  url: ['https://www.dongmanmanhua.cn/*/*/*/viewer?*', 'https://cdn.dongmanmanhua.cn/*'],
   originUrl: '.dongmanmanhua.cn',
-  regex:[/^https:\/\/www\.dongmanmanhua\.cn\/.*\/.*\/.*\/viewer\?.*/, /^https:\/\/cdn\.dongmanmanhua\.cn\/.*/],
+  regex: [/^https:\/\/www\.dongmanmanhua\.cn\/.*\/.*\/.*\/viewer\?.*/, /^https:\/\/cdn\.dongmanmanhua\.cn\/.*/],
   name: "咚漫漫画",
   supportMsg: [],
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
+}, {
+  key: 'shogakukan',
+  jsFileName: 'shogakukan',
+  url: ['https://ciao.shogakukan.co.jp/comics/title/*/episode/*', 'https://cdn.ciao.shogakukan.co.jp/static/web_titles/*/episodes/*/*'],
+  originUrl: 'ciao.shogakukan.co.jp',
+  regex: [/^https:\/\/ciao\.shogakukan\.co\.jp\/comics\/title\/.*\/episode\.*/, /^https:\/\/cdn\.ciao\.shogakukan\.co\.jp\/static\/web_titles\/.*\/episodes\/.*\/?.*/],
+  name: "ちゃおプラス",
+  supportMsg: [],
+  loadingMsg: ['由于图片链接的有效时间有限，请在页面加载完成后一分钟内点击下载', '页面打开过久再启动插件可能下载失败，可以刷新重试'],
+  downloadMsg: ['将会打开新页面开始下载。'],
+  loadStopMsg: "浏览器会打开新标签页自动下载",
 }
-
-
 ]
