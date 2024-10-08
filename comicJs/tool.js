@@ -1,7 +1,7 @@
 // 说明：如果图片的请求地址有跨域限制：仿照网站配置相关请求获取图片
-      //跨域基础上需要canvas解码：获取图片时添加跨域配置 
-      //可以加载image对象，但是无法导出下载canvas（跨域污染绘制）:1.使用请求图片blob，转换成大blob地址绘制 2.图片资源禁止任何请求，可以使用页面内嵌iframe，在图片地址内进行绘制canvas再导出
-
+//跨域基础上需要canvas解码：获取图片时添加跨域配置 
+//可以加载image对象，但是无法导出下载canvas（跨域污染绘制）:1.使用请求图片blob，转换成大blob地址绘制 2.图片资源禁止任何请求，可以使用页面内嵌iframe，在图片地址内进行绘制canvas再导出
+var zip = new JSZip();
 let a_dom = document.createElement("a")
 document.body.appendChild(a_dom);
 //解除网页右键禁止的 但是很受限制
@@ -12,32 +12,76 @@ document.addEventListener('contextmenu', function (e) {
 function downloadByUrl(url, page) {
   a_dom.href = url
   a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
+
   a_dom.click()
 }
 //链接列表下载(blob,base64链接列表)
 function downloadByUrlList(urlList, obj, page = 0) {
   urlList = [...urlList]
   if (urlList.length == 0) {
-    obj.sendMsg(4)
+    if (obj.zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = (obj.comicMsg['漫画名'] || obj.comicMsg['书名'] || '下载') + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          obj.sendMsg(4)
+        });
+    } else {
+      obj.sendMsg(4)
+    }
     return 0
   }
-  a_dom.href = urlList[0]
-  a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-  a_dom.click()
-  if (obj) obj.sendMsg(2, {
-    allPage: obj.imageList.length,
-    nowPage: page
-  })
-  setTimeout(() => {
-    urlList.splice(0, 1)
-    downloadByUrlList(urlList, obj, page + 1)
-  }, 200)
+
+  if (obj.zipFlag) {
+
+    fetch(urlList[0]).then(res => res.blob()).then(blob => {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+      if (obj) obj.sendMsg(2, {
+        allPage: obj.imageList.length,
+        nowPage: page
+      })
+      setTimeout(() => {
+        urlList.splice(0, 1)
+        downloadByUrlList(urlList, obj, page + 1)
+      }, 200)
+    })
+  } else {
+    a_dom.href = urlList[0]
+    a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
+    a_dom.click()
+    if (obj) obj.sendMsg(2, {
+      allPage: obj.imageList.length,
+      nowPage: page
+    })
+    setTimeout(() => {
+      urlList.splice(0, 1)
+      downloadByUrlList(urlList, obj, page + 1)
+    }, 200)
+  }
+
 }
 //请求下载(使用http请求下载)
 function downloadByFetch(urlList, obj, page = 0) {
   urlList = [...urlList]
   if (urlList.length == 0) {
-    obj.sendMsg(4)
+    if (obj.zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = (obj.comicMsg['漫画名'] || obj.comicMsg['书名'] || '下载') + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          obj.sendMsg(4)
+        });
+    } else {
+      obj.sendMsg(4)
+    }
     return 0
   }
   obj.sendMsg(2, {
@@ -47,19 +91,42 @@ function downloadByFetch(urlList, obj, page = 0) {
   fetch(urlList[0]).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
     a_dom.href = URL.createObjectURL(blob)
     a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-    a_dom.click()
+    if (obj.zipFlag) {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+    } else {
+      a_dom.click()
+    }
+
     urlList.splice(0, 1)
     setTimeout(() => {
       downloadByFetch(urlList, obj, page + 1)
     }, 200)
   })
-
+    .catch(
+      () => {
+        urlList.splice(0, 1)
+        downloadByFetch(urlList, obj, page + 1)
+      }
+    )
 }
 //转换的canvas下载（转换成canvas，文件大小会变大不少，更推荐http请求方式）
 function downloadByCanvas(urlList, obj, page = 0) {
   urlList = [...urlList]
   if (urlList.length == 0) {
-    obj.sendMsg(4)
+    if (obj.zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = (obj.comicMsg['漫画名'] || obj.comicMsg['书名'] || '下载') + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          obj.sendMsg(4)
+        });
+    } else {
+      obj.sendMsg(4)
+    }
     return 0
   }
   obj.sendMsg(2, {
@@ -77,8 +144,12 @@ function downloadByCanvas(urlList, obj, page = 0) {
     canvas.width = image.width
     canvas.height = image.height
     ctx.drawImage(image, 0, 0)
+    if (obj.zipFlag) {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+    } else {
+      downloadByUrl(canvas.toDataURL("image/png"), page)
+    }
 
-    downloadByUrl(canvas.toDataURL("image/png"), page)
     urlList.splice(0, 1)
     downloadByCanvas(urlList, obj, page + 1)
   }
@@ -87,57 +158,52 @@ function downloadByCanvas(urlList, obj, page = 0) {
 function downloadByBgJs(urlList, obj, page = 0) {
   urlList = [...urlList]
   if (urlList.length == 0) {
-    obj.sendMsg(4)
+    if (obj.zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = (obj.comicMsg['漫画名'] || obj.comicMsg['书名'] || '下载') + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          obj.sendMsg(4)
+        });
+    } else {
+      obj.sendMsg(4)
+    }
     return 0
   }
+  if (obj.zipFlag) {
 
-  chrome.runtime.sendMessage({
-    downloadUrl: urlList[0],
-    filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-  });
-  if (obj) obj.sendMsg(2, {
-    allPage: obj.imageList.length,
-    nowPage: page
-  })
-  setTimeout(() => {
-    urlList.splice(0, 1)
-    downloadByBgJs(urlList, obj, page + 1)
-  }, 200)
+    fetch(urlList[0]).then(res => res.blob()).then(blob => {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+      if (obj) obj.sendMsg(2, {
+        allPage: obj.imageList.length,
+        nowPage: page
+      })
+      setTimeout(() => {
+        urlList.splice(0, 1)
+        downloadByBgJs(urlList, obj, page + 1)
+      }, 200)
+    })
+  } else {
+    chrome.runtime.sendMessage({
+      downloadUrl: urlList[0],
+      filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+    });
+    if (obj) obj.sendMsg(2, {
+      allPage: obj.imageList.length,
+      nowPage: page
+    })
+    setTimeout(() => {
+      urlList.splice(0, 1)
+      downloadByBgJs(urlList, obj, page + 1)
+    }, 200)
+  }
+
 }
-//拼图3张 imageList 图 imgSize尺寸 position 位置。返回base64数据，用then接受
-function puzzleToCanvas(imageSrcList, imgSize, position) {
-  imageSrcList = [...imageSrcList]
-  return new Promise(
-    function (resolve, reject) {
-      let imageList = []
-      for (let i = 0; i < imageSrcList.length; i++) {
-        let image = new Image()
-        image.src = imageSrcList[i]
-        image.setAttribute("crossOrigin", "anonymous");
-        image.onload = () => {
-          imageList.push(image)
-          if (imageList.length == imageSrcList.length) {
-            let canvas = document.createElement("canvas")
-            let ctx = canvas.getContext('2d')
-            //绘制
-            canvas.width = imageList[0].naturalWidth
-            canvas.height = imageList[0].naturalWidth * imgSize[1] / imgSize[0]
-            let centerImgHeight = position[1] * canvas.height
 
-            //三张图绘制位置 上 正中 下 
-            ctx.drawImage(imageList[0], 0, 0)
-            ctx.drawImage(imageList[1], 0, centerImgHeight)
-            ctx.drawImage(imageList[2], 0, canvas.height - imageList[2].naturalHeight)
-            //导出 
-            resolve(canvas.toDataURL("image/png"));
-          }
-
-        }
-      }
-
-    }
-  );
-};
 //监听dom内容改变 （需要监听的元素，回调）
 function listenDomChange(dom, fn) {
   const config = {
@@ -167,7 +233,7 @@ function contextmenuOPen(dom = document) {
   }, true);
 }
 //动态注入脚本到页面环境 需要在清单中 web_accessible_resources配置对应网站和脚本路径
-function injectedScriptToPage(jsPath, ) {
+function injectedScriptToPage(jsPath,) {
   let injectedScript = document.createElement('script');
   injectedScript.src = chrome.runtime.getURL(jsPath);
   document.body.appendChild(injectedScript);

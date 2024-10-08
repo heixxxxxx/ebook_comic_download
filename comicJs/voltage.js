@@ -8,6 +8,7 @@ class VoltageComic {
     this.X
     this.cid
     this.T = 8
+    this.zipFlag = false
     this.getInfo()
   }
   //发送消息
@@ -17,6 +18,10 @@ class VoltageComic {
   }
 
   download() {
+    this.downLoadImg()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.downLoadImg()
   }
 
@@ -66,7 +71,20 @@ class VoltageComic {
   }
   downLoadImg(page = 0) {
     if (page == this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let image = new Image()
@@ -76,9 +94,14 @@ class VoltageComic {
       canvas.width = image.width
       canvas.height = image.height
       this.draw(canvas, image, this.imageList[page])
-      a_dom.href = canvas.toDataURL()
-      a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-      a_dom.click()
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
       this.sendMsg(2, {
         allPage: this.imageList.length,
         nowPage: page

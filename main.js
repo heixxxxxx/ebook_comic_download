@@ -205,6 +205,9 @@ chrome.runtime.onMessage.addListener(
     else if (request.id == 1) {
       if (downloader)
         downloader.download()
+    } else if (request.id == 5) {
+      if (downloader)
+        downloader.downloadZip()
     } else if (process == 2) {
       if (downloader)
         downloader.sendMsg(2)

@@ -4,6 +4,7 @@ class GanmaComic {
       "网站": webObj.name
     };
     this.pageMsg = {}
+    this.zipFlag = false
     this.imageList = []
     this.getComicInfo()
   }
@@ -22,6 +23,10 @@ class GanmaComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.makeUrls()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.makeUrls()
   }
   getComicInfo() {

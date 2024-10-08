@@ -8,6 +8,7 @@ class DmmFreeComic {
     //this.imageList 是图片列表
     this.imageList = []
     this.imageData = {}
+    this.zipFlag = false
     this.getComicInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -20,7 +21,10 @@ class DmmFreeComic {
   download() {
     this.loadImage()
   }
-  getComicInfo() {
+  downloadZip() {
+    this.zipFlag = true
+    this.loadImage()
+  } getComicInfo() {
     let u1 = ""
     let u2 = ""
     this.webObj.cookies.forEach(element => {
@@ -63,9 +67,22 @@ class DmmFreeComic {
 
   }
   loadImage(i = 0) {
-  
+
     if (i == this.imageData.configuration.contents.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let v = this.imageData.configuration.contents[i].file + "/0"
@@ -98,7 +115,15 @@ class DmmFreeComic {
           let o = n[p]
           ctx.drawImage(r, o.destX, o.destY, o.width, o.height, o.srcX, o.srcY, o.width, o.height);
         }
-        downloadByUrl(canvas.toDataURL(), i)
+        let page = i
+        if (this.zipFlag) {
+          zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+        } else {
+          chrome.runtime.sendMessage({
+            downloadUrl: canvas.toDataURL(),
+            filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+          });
+        }
         this.sendMsg(2, {
           allPage: this.imageData.configuration.contents.length,
           nowPage: i

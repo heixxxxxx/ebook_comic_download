@@ -5,6 +5,7 @@ class DongmanComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.urlList = []
     this.getInfo()
   }
@@ -54,12 +55,14 @@ class DongmanComic {
 }
 
 
-
+let zipFlag = false
 if (window.location.search) {
 
   let searchList = window.location.search.slice(1).split("&")
   searchList.forEach(item => {
-
+    if (item.split("=")[0] == 'zipFlag'){
+      zipFlag=true
+    }
     if (item.split("=")[0] == 'keys') {
       if (item.split("=")[1] == 'heixxx') {
         window.addEventListener('message', (event) => {
@@ -76,15 +79,44 @@ if (window.location.search) {
 
 function download(url, page = 0) {
   if (page >= url.length) {
+    if (zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = '下载' + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          parent.postMessage({ page: page + '' }, '*');
+        });
+    } else {
+      parent.postMessage({ page: page + '' }, '*');
+    }
     parent.postMessage({ page: page + '' }, '*');
     return 0
   }
-  a_dom.href = url[page]
+  if(zupFlag){
+    fetch(url[page]).then(res => res.blob()).then(blob => {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+      parent.postMessage({ page: page + '' }, '*');
+      setTimeout(() => {
+        download(url, page + 1)
+      }, 200)
+    })
+  }else{
+      a_dom.href = url[page]
   a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
   a_dom.click()
   parent.postMessage({ page: page + '' }, '*');
   setTimeout(() => {
     download(url, page + 1)
   }, 200)
+  }
+  
+
+
+
+
 
 }

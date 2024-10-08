@@ -8,6 +8,7 @@ class BorderComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getJson()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -20,6 +21,10 @@ class BorderComic {
   download() {
     this.drawImg()
 
+  }
+  downloadZip() {
+    this.zipFlag = true
+    this.drawImg()
   }
   getJson() {
     if (!document.getElementById("episode-json")) {
@@ -44,7 +49,20 @@ class BorderComic {
   }
   drawImg(page = 0) {
     if (page >= this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     fetch(this.imageList[page]).then((e => e.blob())).then(r => {
@@ -68,10 +86,15 @@ class BorderComic {
           , o = Math.floor(n / 4) * cell_height;
         ctx.drawImage(image, i, t, cell_width, cell_height, s, o, cell_width, cell_height)
       }
-      chrome.runtime.sendMessage({
-        downloadUrl: canvas.toDataURL(),
-        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-      });
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
+
 
       this.sendMsg(2, {
         allPage: this.imageList.length,

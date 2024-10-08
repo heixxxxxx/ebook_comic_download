@@ -3,6 +3,7 @@ class PixivComic {
     this.comicMsg = { "网站": webObj.name };
     this.imageList = [];
     this.getInfo()
+    this.zipFlag = false
   }
   //发送消息
   sendMsg(id, msg = {}) {
@@ -35,6 +36,10 @@ class PixivComic {
   }
   //下载
   download() {
+    downloadByUrlList([...this.imageList], this)
+  }
+  downloadZip() {
+    this.zipFlag = true
     downloadByUrlList([...this.imageList], this)
   }
 

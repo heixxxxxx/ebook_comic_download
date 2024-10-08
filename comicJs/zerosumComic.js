@@ -4,6 +4,7 @@ class ZerosumComic {
     this.imageList = [];
     this.id = ""
     this.getInfo()
+    this.zipFlag = false
     this.cleanCopyDom()
   }
   //发送消息
@@ -59,19 +60,40 @@ class ZerosumComic {
       })
       .then(blob => {
         this.imageList[page - 1] = window.URL.createObjectURL(blob);
-        a_dom.href = this.imageList[page - 1]
-        a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-        a_dom.click()
+        if (this.zipFlag) {
+          zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+        } else {
+          a_dom.href = this.imageList[page - 1]
+          a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
+          a_dom.click()
+        }
         this.comicMsg[`页数`] = this.imageList.length + "/?"
         this.sendMsg(2, { nowPage: page })
         this.getImageList(page + 1)
       }).catch(r => {
         this.comicMsg[`页数`] = this.imageList.length + "/" + this.imageList.length
-        this.sendMsg(4)
+        if (this.zipFlag) {
+          zip.generateAsync({ type: "blob" })
+            .then((content) => {
+              var a = document.createElement('a');
+              a.href = URL.createObjectURL(content);
+              a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              this.sendMsg(4)
+            });
+        } else {
+          this.sendMsg(4)
+        }
       })
   }
   //下载
   download() {
+    this.getImageList()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.getImageList()
   }
   cleanCopyDom() {

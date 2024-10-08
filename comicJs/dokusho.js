@@ -1,6 +1,7 @@
 let cid
 let keys
 var next
+let zipFlag = false
 let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
 //分析参数，同时兼容浏览页和浏览页内嵌的图片页iframe
@@ -10,6 +11,9 @@ if (window.location.search) {
     if (item.split("=")[0] == 'cid') {
       cid = item.split("=")[1]
       console.log(cid)
+    }
+    if (item.split("=")[0] == 'zipFlag') {
+      zipFlag = true
     }
     if (item.split("=")[0] == 'keys') {
       if (item.split("=")[1] == 'heixxx') {
@@ -68,16 +72,58 @@ class DokushoComic {
 
     });
   }
-  getInfo() {
+  downloadZip() {
+    let iframeDom = document.createElement(
+      "iframe"
+    )
+    iframeDom.style.display = "none"
+    let url = this.info.guardianServer + "/" + this.info.bookData.s3_key
+    let param = this.info.signedParams
+    keys = this.info.keys
+    iframeDom.src = url + '1.jpg?' + param + "&keys=heixxx&zipFlag=true"
+    document.body.appendChild(iframeDom)
+
+    window.addEventListener('message', (event) => {
+      if (event.data.page) {
+        let page = event.data.page * 1
+        if (page >= keys.length) {
+          this.sendMsg(4)
+        } else {
+          this.sendMsg(2, {
+            allPage: keys.length,
+            nowPage: page
+          })
+        }
+
+      } else if (event.data.keys == 'heixxx') {
+        iframeDom.contentWindow.postMessage({ keys: keys }, '*');
+      }
+
+    });
+  }
+  getInfo(retry) {
     var data_xhr = new XMLHttpRequest();
-    data_xhr.open("GET", `https://api.dokusho-ojikan.jp/dokusho-server/browser/bookinfo/v3?bookId=${cid}&put_log=true`, true);
+    if (retry) {
+      data_xhr.open("GET", `https://api.dokusho-ojikan.jp/dokusho-server/browser/custom_sample/v2/${cid}?put_log=true`, true);
+    } else {
+      data_xhr.open("GET", `https://api.dokusho-ojikan.jp/dokusho-server/browser/bookinfo/v3?bookId=${cid}&put_log=true`, true);
+    }
+
+
+
+
+
     //发送请求
     data_xhr.withCredentials = true;
     data_xhr.send();
     data_xhr.onreadystatechange = (e) => {
       if (data_xhr.readyState === 4 && data_xhr.status === 200) {
+
         var response = data_xhr.responseText;
         let info = JSON.parse(response).result
+        if (!info) {
+          return this.getInfo(true)
+        }
         this.comicMsg["书名"] = info.bookData.title;
         this.comicMsg["作者"] = info.bookData.author;
         this.comicMsg["页数"] = info.keys.length
@@ -89,8 +135,26 @@ class DokushoComic {
   }
 }
 function download(page = 0) {
+ 
   if (page >= keys.length) {
-    parent.postMessage({ page: page + '' }, '*');
+    if (zipFlag) {
+      console.log(zip);
+
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          console.log(content);
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = '下载' + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          parent.postMessage({ page: page + '' }, '*');
+        });
+    } else {
+      parent.postMessage({ page: page + '' }, '*');
+    }
+
     return 0
   }
   let url = window.location.href.slice(0, window.location.href.indexOf("&keys="))
@@ -99,10 +163,15 @@ function download(page = 0) {
   image.src = url[0] + (page + 1) + '.jpg?' + url[1]
   image.onload = (e) => {
     descramble(image, canvas, keys[page])
-    chrome.runtime.sendMessage({
-      downloadUrl: canvas.toDataURL(),
-      filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-    });
+    if (zipFlag) {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+    } else {
+      chrome.runtime.sendMessage({
+        downloadUrl: canvas.toDataURL(),
+        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+      });
+    }
+
     parent.postMessage({ page: page + '' }, '*');
     setTimeout(() => {
       download(page + 1)

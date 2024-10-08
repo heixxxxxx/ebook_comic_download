@@ -3,6 +3,7 @@ class BwTrialComic {
     this.comicMsg = {
       "网站": webObj.name
     };
+    this.zipFlag = false
     this.imageList = []
     this.getInfo()
   }
@@ -20,6 +21,11 @@ class BwTrialComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    downloadByFetch([...this.imageList], this)
+  }
+  downloadZip() {
+    this.zipFlag = true
+    console.log(this.imageList[0])
     downloadByFetch([...this.imageList], this)
   }
   getInfo() {
@@ -56,7 +62,10 @@ class BwTrialComic {
 
       }
       let url = r.url
-      fetch(url + "configuration_pack.json?" + data, {
+
+
+
+      fetch(url + "normal_default/configuration_pack.json?" + data, {
         "headers": {
           "accept": "*/*",
           "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
@@ -74,11 +83,38 @@ class BwTrialComic {
         "mode": "cors",
         "credentials": "include"
       }).then(r => r.json()).then(r => {
+
         r.configuration.contents.forEach(element => {
-          this.imageList.push(url + element.file + "/0." + element.type + "?" + data)
+          this.imageList.push(url + element.file.replace("../", '') + "/0." + element.type + "?" + data)
+          console.log(url + element.file.replace("../", '') + "/0." + element.type + "?" + data)
         });
         this.comicMsg['页数'] = this.imageList.length
         this.sendMsg(1)
+      }).catch(() => {
+        fetch(url + "configuration_pack.json?" + data, {
+          "headers": {
+            "accept": "*/*",
+            "accept-language": "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+            "sec-ch-ua": "\"Chromium\";v=\"122\", \"Not(A:Brand\";v=\"24\", \"Microsoft Edge\";v=\"122\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-site"
+          },
+
+          "referrerPolicy": "strict-origin-when-cross-origin",
+          "body": null,
+          "method": "GET",
+          "mode": "cors",
+          "credentials": "include"
+        }).then(r => r.json()).then(r => {
+          r.configuration.contents.forEach(element => {
+            this.imageList.push(url + element.file + "/0." + element.type + "?" + data)
+          });
+          this.comicMsg['页数'] = this.imageList.length
+          this.sendMsg(1)
+        })
       })
     });
 
