@@ -8,6 +8,7 @@ class PolarisComic {
     this.imageList = []
     this.baseUrl = ""
     this.getInfo()
+    this.zipFlag = false
   }
   //向pop页面发送消息，修改弹窗内容
   //id: 0:未开始 1:加载中 2:下载中 3.下载暂停中 4.下载完成
@@ -17,6 +18,10 @@ class PolarisComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.getJson()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.getJson()
   }
   //解码
@@ -65,7 +70,14 @@ class PolarisComic {
           this.draw(ctx, image, t.xsrc, t.ysrc, t.width, t.height, t.xdest, t.ydest, t.width, t.height)
         }
 
-        downloadByUrl(canvas.toDataURL(), page)
+        if (this.zipFlag) {
+          zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+        } else {
+          chrome.runtime.sendMessage({
+            downloadUrl: canvas.toDataURL(),
+            filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+          });
+        }
         this.sendMsg(2, {
           nowPage: page
         })
@@ -76,7 +88,20 @@ class PolarisComic {
       }
 
     }).catch(() => {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
     })
 
   }

@@ -10,6 +10,7 @@ class DaysComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -20,6 +21,10 @@ class DaysComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.makeImage()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.makeImage()
   }
   getInfo() {
@@ -34,20 +39,50 @@ class DaysComic {
   }
   makeImage(page = 0) {
     if (page >= this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
-    chrome.runtime.sendMessage({
-      downloadUrl: this.imageList[page],
-      filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-    });
-    this.sendMsg(2, {
-      allPage: this.imageList.length,
-      nowPage: page
-    })
-    setTimeout(() => {
-      this.makeImage(page + 1)
-    }, 200)
+    if (this.zipFlag) {
+      fetch(this.imageList[page]).then(res => res.blob()).then(blob => {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+
+        this.sendMsg(2, {
+          allPage: this.imageList.length,
+          nowPage: page
+        })
+        setTimeout(() => {
+          this.makeImage(page + 1)
+        }, 200)
+      })
+
+
+    } else {
+      chrome.runtime.sendMessage({
+        downloadUrl: this.imageList[page],
+        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+      });
+      this.sendMsg(2, {
+        allPage: this.imageList.length,
+        nowPage: page
+      })
+      setTimeout(() => {
+        this.makeImage(page + 1)
+      }, 200)
+    }
+
     // fetch(this.imageList[page]).then(res => res.blob()).then(blob => {
     //   let image = new Image()
     //   image.src = URL.createObjectURL(blob)

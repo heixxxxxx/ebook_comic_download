@@ -5,6 +5,7 @@ class PocketComic {
     };
     this.imageList = []
     this.getComicInfo()
+    this.zipFlag = false
     this.cleanCopyDom()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -22,6 +23,10 @@ class PocketComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.loadImage([...this.imageList])
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.loadImage([...this.imageList])
   }
   //获取网页上的漫画信息（从script的属性拿）
@@ -64,6 +69,23 @@ class PocketComic {
       l = !0)
   }
   loadImage(urlList, page = 0) {
+    if (page >= urlList.length) {
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
+      return 0
+    }
     let canvas = document.createElement("canvas")
     let puzzledImage = new Image()
     puzzledImage.src = urlList[0]
@@ -77,10 +99,14 @@ class PocketComic {
       cell_height = Math.floor(puzzledImage.height / (4 * 8)) * 8
       this.solve(puzzledImage, canvas, cell_width, cell_height, puzzledImage.width, puzzledImage.height)
 
-      chrome.runtime.sendMessage({
-        downloadUrl: canvas.toDataURL(),
-        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-      });
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
 
       urlList.splice(0, 1)
       this.sendMsg(2, {

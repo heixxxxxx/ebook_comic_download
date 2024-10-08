@@ -6,6 +6,8 @@ class HakusenshaComic {
     //this.imageList 是图片列表
     this.imageList = []
     //请求参数
+    this.zipFlag = false
+
     this.param = ""
     //图片解密参数
     this.scramble = {
@@ -25,7 +27,11 @@ class HakusenshaComic {
   download() {
     this.getPage()
   }
-  //获取图书信息
+
+  downloadZip() {
+    this.zipFlag = true
+    this.getPage()
+  }  //获取图书信息
   getBookInfo() {
     //设置param
     let metaList = document.getElementById('meta').children
@@ -137,9 +143,16 @@ class HakusenshaComic {
         canvas.height = image.height
         canvas.getContext("2d").drawImage(image, 0, 0);
         this.unscrambling(canvas, key)
-        a_dom.href = canvas.toDataURL()
-        a_dom.download = fileName + ".jpg";
-        a_dom.click()
+
+        if (this.zipFlag) {
+          zip.file(fileName + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+        } else {
+          chrome.runtime.sendMessage({
+            downloadUrl: canvas.toDataURL(),
+            filename: fileName + ".jpg"
+          });
+        }
+
         this.getPage(page + 1)
       }
     })

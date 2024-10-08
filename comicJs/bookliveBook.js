@@ -6,6 +6,7 @@ class BookliveComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -16,6 +17,10 @@ class BookliveComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.makeImg()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.makeImg()
   }
   getInfo() {
@@ -135,7 +140,20 @@ class BookliveComic {
   //下载
   makeImg(page = 0) {
     if (this.imageList.length <= page) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let t = this.imageList[page]
@@ -145,17 +163,18 @@ class BookliveComic {
       canvas.width = img.width
       canvas.height = img.height
       let coor = this.mt(t, img)
-      console.log(coor)
+        coor.forEach((t) => {
+          this.Qh(ctx, img, t.xsrc, t.ysrc, t.width, t.height, t.xdest, t.ydest, t.width, t.height)
+        })
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
 
-
-      coor.forEach((t) => {
-        this.Qh(ctx, img, t.xsrc, t.ysrc, t.width, t.height, t.xdest, t.ydest, t.width, t.height)
-      })
-
-      chrome.runtime.sendMessage({
-        downloadUrl: canvas.toDataURL(),
-        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-      });
       this.sendMsg(2, {
         allPage: this.imageList.length,
         nowPage: page

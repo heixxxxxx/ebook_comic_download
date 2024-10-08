@@ -6,6 +6,7 @@ class NicoComic {
     };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -22,6 +23,10 @@ class NicoComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.loadImage()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.loadImage()
   }
   getInfo() {
@@ -45,7 +50,20 @@ class NicoComic {
   }
   loadImage(page = 0) {
     if (page == this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     var n = new XMLHttpRequest
@@ -57,23 +75,29 @@ class NicoComic {
     e.open("GET", n, !0),
       e.responseType = "arraybuffer"
     e.onload = (r) => {
-        var t = new Uint8Array(e.response);
-        t = this.decrypt(t, i)
+      var t = new Uint8Array(e.response);
+      t = this.decrypt(t, i)
 
-        t = "data:image/" + this.getDataType(t) + ";base64," + this.toBase64String(t);
+      t = "data:image/" + this.getDataType(t) + ";base64," + this.toBase64String(t);
+
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", t.split(',')[1], { base64: true });
+      } else {
         chrome.runtime.sendMessage({
           downloadUrl: t,
           filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
         });
+      }
 
-        this.sendMsg(2, {
-          nowPage: page,
-          allPage: this.imageList.length
-        })
-        setTimeout(() => {
-          this.loadImage(page + 1)
-        }, 100)
-      },
+
+      this.sendMsg(2, {
+        nowPage: page,
+        allPage: this.imageList.length
+      })
+      setTimeout(() => {
+        this.loadImage(page + 1)
+      }, 100)
+    },
       e.send()
   }
   decrypt(e, t) {

@@ -6,6 +6,7 @@ class KuaikanComic {
     };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -22,6 +23,10 @@ class KuaikanComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    downloadByBgJs([...this.imageList], this)
+  }
+  downloadZip() {
+    this.zipFlag = true
     downloadByBgJs([...this.imageList], this)
   }
   getInfo() {

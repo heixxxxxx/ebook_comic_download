@@ -2,6 +2,9 @@
 //网站信息
 let webObj = {}
 let originObj = {}
+
+
+
 // 创建一个对象，封装全部的html修改方法进去
 class htmlObj {
   //不支持
@@ -45,6 +48,7 @@ class htmlObj {
     this.updatedComicMsg(msg.comicMsg)
     //下载按钮
     document.getElementById("downloadBtn").style.display = "inline-block"
+    document.getElementById("downloadZipBtn").style.display = "inline-block"
   }
   updatedComicMsg(msg = {}) {
     document.getElementById("msgBox").style.display = "none"
@@ -64,6 +68,7 @@ class htmlObj {
   downloading(msg = {}) {
     this.updatedComicMsg(msg.comicMsg)
     document.getElementById("downloadBtn").style.display = "none"
+    document.getElementById("downloadZipBtn").style.display = "none"
     document.getElementById("loadingNav").style.display = "flex"
     document.getElementById("downloading").className = "downloading downloading-ani"
     if (msg.allPage && msg.nowPage) {
@@ -101,6 +106,10 @@ function sendMessage(data) {
 // 点击下载按钮
 document.getElementById("downloadBtn").onclick = function () {
   sendMessage({ id: 1 })
+  htmlPage.downloading();
+}
+document.getElementById("downloadZipBtn").onclick = function () {
+  sendMessage({ id: 5 })
   htmlPage.downloading();
 }
 //反馈

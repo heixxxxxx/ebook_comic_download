@@ -1,4 +1,7 @@
+
+// 官网更新，待重做
 let jsText
+let zipFlag = false
 let jsDom = document.getElementsByTagName("script")
 for (let i = 0; i < jsDom.length; i++) {
   if (jsDom[i].innerText.indexOf("GUARDIAN_SERVER") != -1) {
@@ -21,6 +24,7 @@ if (!jsText) {
   window.addEventListener('message', (event) => {
 
     if (event.data.key == 'download') {
+      zipFlag = event.data.zipFlag
       //下载
       downloadImg()
     } else if (event.data.s3_key) {
@@ -29,14 +33,13 @@ if (!jsText) {
       page_salt = event.data.page_salt
       image_extension = event.data.image_extension
       page_data = event.data.page_data
+
     }
   });
 
   //发送准备接受数据
   parent.postMessage({ keys: 'heixxx' }, '*');
 }
-
-
 
 class AnimateComic {
   constructor(webObj) {
@@ -47,11 +50,14 @@ class AnimateComic {
     this.getInfo()
   }
   getInfo() {
+
+
     if (jsText) {
       let jsList = jsText.split(";")
       jsList.forEach(jsItem => {
         if (jsItem.indexOf("GUARDIAN_SERVER") != -1) {
           GUARDIAN_SERVER = jsItem.split("=")[1].replace(/"/g, "").replace(/;/g, "").replace(/'/g, "")
+       
         } else if (
           jsItem.indexOf("book_data") != -1
         ) {
@@ -66,16 +72,19 @@ class AnimateComic {
         ) {
           let text = jsItem.slice(jsItem.indexOf("keys") + 8,)
           page_data = text.slice(0, text.indexOf("]")).split(",")
-          page_data.forEach((item,i) => {
+          page_data.forEach((item, i) => {
             page_data[i] = item.replace(/"/g, "").replace(/'/g, "")
           })
-          
+
         }
 
       })
 
+
       //合成地址
       createImageFileName(page, page_salt, image_extension).then(r => {
+
+       
         let url = GUARDIAN_SERVER + "/" + s3_key.replace(/\//g, "") + r
         iframeDom = document.createElement(
           "iframe"
@@ -117,7 +126,11 @@ class AnimateComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    downloadImg()
     iframeDom.contentWindow.postMessage({ key: 'download' }, '*');
+  }
+  downloadZip() {
+    iframeDom.contentWindow.postMessage({ key: 'download', zipFlag: true }, '*');
   }
 }
 
@@ -192,9 +205,22 @@ let o = async (e, n) => {
 }
 
 function downloadImg() {
-
   if (!page_data[page]) {
-    parent.postMessage({ page: page + '' }, '*');
+    if (zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = '下载' + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          parent.postMessage({ page: page + '' }, '*');
+        });
+    } else {
+      parent.postMessage({ page: page + '' }, '*');
+    }
+
     return 0
   }
   createImageFileName(page, page_salt, image_extension).then(r => {
@@ -208,10 +234,15 @@ function downloadImg() {
       canvas.height = image.height
 
       draw(image, ctx)
-      chrome.runtime.sendMessage({
-        downloadUrl: canvas.toDataURL(),
-        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-      });
+      if (zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
+
       parent.postMessage({ page: page + '' }, '*');
       page++
       downloadImg()

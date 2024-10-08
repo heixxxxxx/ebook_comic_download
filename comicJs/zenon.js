@@ -10,6 +10,7 @@
       //this.imageList 是图片列表
       this.imageList = []
       this.getInfo()
+      this.zipFlag = false
     }
     //向pop页面发送消息，修改弹窗内容
     //id: 0:未开始 1:加载中 2:下载中 3.下载暂停中 4.下载完成
@@ -19,6 +20,10 @@
     }
     //下载 用户点击下载按钮时会触发的方法
     download() {
+      this.makeImage()
+    }
+    downloadZip() {
+      this.zipFlag = true
       this.makeImage()
     }
     getInfo() {
@@ -33,7 +38,20 @@
     }
     makeImage(page = 0) {
       if (page >= this.imageList.length) {
-        this.sendMsg(4)
+        if (this.zipFlag) {
+          zip.generateAsync({ type: "blob" })
+            .then((content) => {
+              var a = document.createElement('a');
+              a.href = URL.createObjectURL(content);
+              a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              this.sendMsg(4)
+            });
+        } else {
+          this.sendMsg(4)
+        }
         return 0
       }
       fetch(this.imageList[page]).then(res => res.blob()).then(blob => {
@@ -43,10 +61,14 @@
           canvas.width = image.width
           canvas.height = image.height
           this.solve(image)
-          chrome.runtime.sendMessage({
-            downloadUrl: canvas.toDataURL(),
-            filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-          });
+          if (this.zipFlag) {
+            zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+          } else {
+            chrome.runtime.sendMessage({
+              downloadUrl: canvas.toDataURL(),
+              filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+            });
+          }
           this.sendMsg(2, {
             allPage: this.imageList.length,
             nowPage: page

@@ -4,6 +4,8 @@ class CoronaComic {
       "网站": webObj.name
     };
     this.imageList = [];
+    this.zipFlag = false
+
     this.getInfo()
   }
   //发送消息
@@ -52,7 +54,20 @@ class CoronaComic {
   //还原图片
   drawImg(page = 0) {
     if (page == this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     const image = new Image();
@@ -83,7 +98,15 @@ class CoronaComic {
           d = Math.floor(n / r);
         ctx.drawImage(image, a * c, s * u, c, u, l * c, d * u, c, u)
       }
-      downloadByUrl(canvas.toDataURL("image/png"), page)
+
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
       this.sendMsg(2, {
         allPage: this.imageList.length,
         nowPage: page + 1
@@ -93,6 +116,10 @@ class CoronaComic {
   }
   //下载
   download() {
+    this.drawImg()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.drawImg()
   }
 

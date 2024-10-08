@@ -9,6 +9,7 @@ class ChampioncrossComic {
     //this.comicMsg 是从网站中拿到的具体内容
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
+    this.zipFlag = false
     this.imageList = []
     this.getInfo()
   }
@@ -20,6 +21,10 @@ class ChampioncrossComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.downloadImage(this.imageList)
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.downloadImage(this.imageList)
   }
   getInfo() {
@@ -55,7 +60,20 @@ class ChampioncrossComic {
   }
   downloadImage(list, page = 0) {
     if (list.length == page) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let data = list[page]
@@ -78,9 +96,14 @@ class ChampioncrossComic {
           ctx.drawImage(image, u * g, d * m, u, d, u * p, d * h, u, d),
             f++
         }
-      a_dom.href = canvas.toDataURL()
-      a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-      a_dom.click()
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: canvas.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
       this.sendMsg(2, {
         allPage: list.length,
         nowPage: page

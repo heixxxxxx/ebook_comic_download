@@ -8,6 +8,8 @@ class ShogakukanComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
+
     this.getInfo()
   }
 
@@ -20,6 +22,16 @@ class ShogakukanComic {
   //下载 用户点击下载按钮时会触发的方法
   download() {
     chrome.storage.local.set({ hei_data: { skey: this.skey, url: this.imageList } }, () => {
+      window.open(this.imageList[0])
+    });
+    this.sendMsg(2, {
+      allPage: this.imageList.length,
+
+    })
+  }
+  downloadZip() {
+    this.zipFlag = true
+    chrome.storage.local.set({ hei_data: { skey: this.skey, url: this.imageList, zip: true } }, () => {
       window.open(this.imageList[0])
     });
     this.sendMsg(2, {
@@ -42,10 +54,6 @@ class ShogakukanComic {
 }
 
 
-
-
-
-
 let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
 
@@ -56,9 +64,11 @@ let Es = 2 ** 32 - 1
   , ks = 8, t = 4, $s = 1;
 let page = 0
 
+let zipFlag = false
 chrome.storage.local.get('hei_data', function (result) {
   if (result.hei_data) {
     skey = result.hei_data.skey
+    zipFlag = result.hei_data.zip
     download(result.hei_data.url)
     chrome.storage.local.remove('hei_data')
   }
@@ -66,7 +76,21 @@ chrome.storage.local.get('hei_data', function (result) {
 
 function download(url) {
   if (page >= url.length) {
-    window.close()
+    if (zipFlag) {
+      zip.generateAsync({ type: "blob" })
+        .then((content) => {
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(content);
+          a.download = '下载' + ".zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.close()
+        });
+    } else {
+      window.close()
+    }
+
     return 0
   }
   let img = new Image()
@@ -89,10 +113,15 @@ let Ss = (e, i, t, s) => {
     e.clearRect(0, 0, o.width * t, o.height * t);
     for (const l of Is(t, s ?? 1))
       e.drawImage(i, l.source.x * o.width, l.source.y * o.height, o.width, o.height, l.dest.x * o.width, l.dest.y * o.height, o.width, o.height)
-    chrome.runtime.sendMessage({
-      downloadUrl: canvas.toDataURL(),
-      filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-    });
+
+    if (zipFlag) {
+      zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+    } else {
+      chrome.runtime.sendMessage({
+        downloadUrl: canvas.toDataURL(),
+        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+      });
+    }
   }
 }
 let Cs = (e, i, t) => {

@@ -10,7 +10,7 @@ class JumpComic {
     this.cell_height
     this.solvedImage
     this.puzzledImage
-
+    this.zipFlag = false
     this.imageList = []
     this.getInfo()
     this.cleanCopyDom()
@@ -31,7 +31,12 @@ class JumpComic {
   download() {
     this.loadimage()
   }
-  //获取漫画json数据
+
+
+  downloadZip() {
+    this.zipFlag = true
+    this.loadimage()
+  }  //获取漫画json数据
   getInfo() {
     let data = JSON.parse(document.getElementById("episode-json").getAttribute("data-value"))
 
@@ -48,6 +53,23 @@ class JumpComic {
     this.sendMsg(1)
   }
   loadimage(page = 0) {
+    if (page >= this.imageList.length) {
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
+      return 0
+    }
     let image = new Image()
     image.src = this.imageList[page]
     image.setAttribute("crossOrigin", "anonymous");
@@ -58,9 +80,14 @@ class JumpComic {
         allPage: this.imageList.length,
         nowPage: page
       })
-      a_dom.href = this.solvedImage.toDataURL()
-      a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-      a_dom.click()
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", this.solvedImage.toDataURL().split(',')[1], { base64: true });
+      } else {
+        chrome.runtime.sendMessage({
+          downloadUrl: this.solvedImage.toDataURL(),
+          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+        });
+      }
       setTimeout(() => {
         this.loadimage(page + 1)
       }, 200)
@@ -86,7 +113,7 @@ class JumpComic {
     a ? (a.imageSmoothingEnabled = !1,
       a.drawImage(this.puzzledImage, e, t, i, r, s, o, i, r)) : l || ((0,
         n.T)(new Error("Failed to getContext")),
-      l = !0)
+        l = !0)
   }
 
 

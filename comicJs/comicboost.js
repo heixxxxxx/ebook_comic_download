@@ -5,6 +5,7 @@ class ComicboostComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -17,7 +18,7 @@ class ComicboostComic {
   download() {
     //注入脚本
     injectedScriptToPage('/modules/cbInjectedScript.js')
-    console.log("注入")
+   
     this.sendMsg(2)
     //监听
     setTimeout(() => {

@@ -5,6 +5,7 @@ class HontoComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     //请求参数
     this.param = ""
     //图片解密参数
@@ -23,6 +24,10 @@ class HontoComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.getPage()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.getPage()
   }
   //获取图书信息
@@ -63,7 +68,7 @@ class HontoComic {
   }
   //页面信息，密钥
   getPage(page = 0) {
-    console.log(this.param)
+   
     let fileName = page + ""
     for (let i = (page + "").length; i < 4; i++) {
       fileName = "0" + fileName
@@ -96,7 +101,20 @@ class HontoComic {
         //获得密钥
         this.makeImg(page, fileName, Rxml.getElementsByTagName('Scramble')[0].innerHTML.split(","))
       } else {
-        this.sendMsg(4)
+        if (this.zipFlag) {
+          zip.generateAsync({ type: "blob" })
+            .then((content) => {
+              var a = document.createElement('a');
+              a.href = URL.createObjectURL(content);
+              a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              this.sendMsg(4)
+            });
+        } else {
+          this.sendMsg(4)
+        }
       }
 
     })
@@ -122,7 +140,20 @@ class HontoComic {
     }).then(response => response.blob()
     ).then(blob => { // 将链接地址字符内容转变成blob地址
       if (!blob) {
-        this.sendMsg(4)
+        if (this.zipFlag) {
+          zip.generateAsync({ type: "blob" })
+            .then((content) => {
+              var a = document.createElement('a');
+              a.href = URL.createObjectURL(content);
+              a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              this.sendMsg(4)
+            });
+        } else {
+          this.sendMsg(4)
+        }
         return 0
       }
       let image = new Image()
@@ -134,9 +165,17 @@ class HontoComic {
         canvas.height = image.height
         canvas.getContext("2d").drawImage(image, 0, 0);
         this.unscrambling(canvas.getContext("2d"), image, key)
-        a_dom.href = canvas.toDataURL()
-        a_dom.download = fileName + ".jpg";
-        a_dom.click()
+       
+        if (this.zipFlag) {
+          zip.file(fileName + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+        } else {
+          chrome.runtime.sendMessage({
+            downloadUrl: canvas.toDataURL(),
+            filename: fileName + ".jpg"
+          });
+        }
+       
+    
         this.getPage(page + 1)
       }
     })

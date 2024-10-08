@@ -5,6 +5,7 @@ class WalkerComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -15,6 +16,10 @@ class WalkerComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.toblob()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.toblob()
   }
   getInfo() {
@@ -46,7 +51,20 @@ class WalkerComic {
   }
   toblob(page = 0) {
     if (page >= this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let info = this.imageList[page]
@@ -58,17 +76,35 @@ class WalkerComic {
       then(this.xor(this.populateKey(info.drmHash))).
       then(e => {
         let blobUrl = URL.createObjectURL(new Blob([e]));
-        a_dom.href = blobUrl
-        a_dom.download = page < 10 ? '0' + page + ".png" : page + ".png";
-        a_dom.click()
-        this.sendMsg(2, {
-          allPage: this.imageList.length,
-          nowPage: page
-        })
-        setTimeout(() => {
-          URL.revokeObjectURL(blobUrl)
-          this.toblob(page + 1)
-        }, 100)
+
+        if (this.zipFlag) {
+          fetch(url[0]).then(res => res.blob()).then(blob => {
+            zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+            this.sendMsg(2, {
+              allPage: this.imageList.length,
+              nowPage: page
+            })
+            setTimeout(() => {
+              URL.revokeObjectURL(blobUrl)
+              this.toblob(page + 1)
+            }, 100)
+
+          })
+        } else {
+          a_dom.href = blobUrl
+          a_dom.download = page < 10 ? '0' + page + ".png" : page + ".png";
+          a_dom.click()
+          this.sendMsg(2, {
+            allPage: this.imageList.length,
+            nowPage: page
+          })
+          setTimeout(() => {
+            URL.revokeObjectURL(blobUrl)
+            this.toblob(page + 1)
+          }, 100)
+        }
+
+
 
 
       });

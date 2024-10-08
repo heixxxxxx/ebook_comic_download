@@ -6,14 +6,22 @@ class BiliComic {
     this.imageList = [];
     this.getEpId()
     this.cleanCopyDom()
+    this.zipFlag = false
   }
   //发送消息
   sendMsg(id, msg = {}) {
     process = id
     chrome.runtime.sendMessage({ id, data: { comicMsg: this.comicMsg, ...msg } });
+
+
   }
   //下载
   download() {
+    this.zipFlag = false
+    this.getImgToken()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.getImgToken()
   }
   // 通过地址栏的链接获取到这一话的id
@@ -87,19 +95,38 @@ class BiliComic {
           //下载 
           downloadUrlList.push(r.data[i].url + "?token=" + r.data[i].token)
         }
-        downloadByFetch(downloadUrlList,this)
+        // downloadByFetch(downloadUrlList, this)
+        this.downloadImg(downloadUrlList)
       })
   }
+ 
   downloadImg(url, page = 1) {
     if (url.length == 0) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = this.comicMsg['漫画名'] + "-" + this.comicMsg[`单集数`] + "-" + this.comicMsg[`标题`] + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     this.sendMsg(2, { allPage: this.imageList.length, nowPage: page })
     fetch(url[0]).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
       a_dom.href = URL.createObjectURL(blob)
       a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-      a_dom.click()
+      if (this.zipFlag) {
+        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+      } else {
+        a_dom.click()
+      }
       url.splice(0, 1)
       this.downloadImg(url, page + 1)
     })

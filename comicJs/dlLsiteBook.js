@@ -6,6 +6,8 @@ class DlLsiteComic {
     //this.imageList 是图片列表
     this.scramble = {}
     this.imageList = []
+    this.zipFlag = false
+
     this.transferCanvas = document.createElement("canvas")
     this.getBookInfo()
   }
@@ -17,6 +19,10 @@ class DlLsiteComic {
   }
   //下载 用户点击下载按钮时会触发的方法
   download() {
+    this.getPage()
+  }
+  downloadZip() {
+    this.zipFlag = true
     this.getPage()
   }
   getBookInfo() {
@@ -69,7 +75,20 @@ class DlLsiteComic {
   }
   getPage(page = 0) {
     if (page == this.comicMsg["总页数"]) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     let fileName = page + ""
@@ -90,7 +109,20 @@ class DlLsiteComic {
           //获得密钥
           this.makeImg(page, fileName, Rxml.getElementsByTagName('Scramble')[0].innerHTML.split(","))
         } else {
-          this.sendMsg(4)
+          if (this.zipFlag) {
+            zip.generateAsync({ type: "blob" })
+              .then((content) => {
+                var a = document.createElement('a');
+                a.href = URL.createObjectURL(content);
+                a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                this.sendMsg(4)
+              });
+          } else {
+            this.sendMsg(4)
+          }
         }
       }
     }
@@ -115,9 +147,15 @@ class DlLsiteComic {
           canvas.height = image.height
           canvas.getContext("2d").drawImage(image, 0, 0);
           this.unscrambling(canvas, key)
-          a_dom.href = canvas.toDataURL()
-          a_dom.download = fileName + ".jpg";
-          a_dom.click()
+
+          if (this.zipFlag) {
+            zip.file(fileName + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+          } else {
+            chrome.runtime.sendMessage({
+              downloadUrl: canvas.toDataURL(),
+              filename: fileName + ".jpg"
+            });
+          }
           setTimeout(() => {
             this.getPage(page + 1)
           }, 100)

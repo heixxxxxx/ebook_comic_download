@@ -12,10 +12,9 @@ class QqComic {
     this.comicMsg = { "网站": webObj.name };
     //解密后数据
     this.data = {}
+    this.zipFlag = false
     this.getDATA()
-
     this.cleanCopyDom()
-
   }
   //发送消息
   sendMsg(id, msg = {}) {
@@ -24,6 +23,10 @@ class QqComic {
   }
   //下载
   download() {
+    downloadByFetch([...this.imageList], this)
+  }
+  downloadZip() {
+    this.zipFlag = true
     downloadByFetch([...this.imageList], this)
   }
   //数据 密钥

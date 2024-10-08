@@ -6,6 +6,7 @@ class IchijinComic {
     this.comicMsg = { "网站": webObj.name };
     //this.imageList 是图片列表
     this.imageList = []
+    this.zipFlag = false
     this.getInfo()
   }
   //向pop页面发送消息，修改弹窗内容
@@ -18,6 +19,10 @@ class IchijinComic {
   download() {
     this.draw()
   }
+  downloadZip() {
+    this.zipFlag = true
+    this.draw()
+  }
   getInfo() {
     let info = JSON.parse(document.getElementById("__NEXT_DATA__").textContent).props.pageProps.fallbackData
     this.comicMsg["漫画名"] = info.comic_title
@@ -28,7 +33,20 @@ class IchijinComic {
   }
   draw(page = 0) {
     if (page >= this.imageList.length) {
-      this.sendMsg(4)
+      if (this.zipFlag) {
+        zip.generateAsync({ type: "blob" })
+          .then((content) => {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = (this.comicMsg['漫画名'] || this.comicMsg['书名'] || '下载') + ".zip";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            this.sendMsg(4)
+          });
+      } else {
+        this.sendMsg(4)
+      }
       return 0
     }
     fetch(this.imageList[page].page_image_url).then(res => res.blob()).then(blob => { // 将链接地址字符内容转变成blob地址
@@ -57,10 +75,14 @@ class IchijinComic {
             , d = Math.floor(n / i);
           t.drawImage(e, a * u, s * c, u, c, l * u, d * c, u, c)
         }
-        chrome.runtime.sendMessage({
-          downloadUrl: canvas.toDataURL(),
-          filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-        });
+        if (this.zipFlag) {
+          zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
+        } else {
+          chrome.runtime.sendMessage({
+            downloadUrl: canvas.toDataURL(),
+            filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+          });
+        }
         this.sendMsg(2, {
           allPage: this.imageList.length,
           nowPage: page
