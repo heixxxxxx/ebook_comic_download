@@ -193,9 +193,9 @@ var webList = [{
 {
   key: 'dmmFree',
   jsFileName: 'dmmBook',
-  url: ['https://book.dmm.com/free_streaming/*/*', 'https://book.dmm.co.jp/streaming*'],
+  url: ['https://book.dmm.com/free_streaming/*/*', 'https://book.dmm.com/streaming/*/*', 'https://book.dmm.co.jp/streaming*', 'https://book.dmm.com/tachiyomi*'],
   originUrl: 'dmm.com',
-  regex: [/^https:\/\/book\.dmm\.com\/free_streaming\.*/, /^https:\/\/book\.dmm\.co\.jp\/streaming\.*/],
+  regex: [/^https:\/\/book\.dmm\.com\/free_streaming\.*/, /^https:\/\/book\.dmm\.com\/streaming\.*/, /^https:\/\/book\.dmm\.co\.jp\/streaming\.*/, /^https:\/\/book\.dmm\.com\/tachiyomi\.*/],
   name: "DMMブックス",
   cookiesUrl: "dmm.com",
   supportMsg: [],
