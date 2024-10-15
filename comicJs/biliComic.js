@@ -12,8 +12,6 @@ class BiliComic {
   sendMsg(id, msg = {}) {
     process = id
     chrome.runtime.sendMessage({ id, data: { comicMsg: this.comicMsg, ...msg } });
-
-
   }
   //下载
   download() {
