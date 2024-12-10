@@ -282,9 +282,9 @@ var webList = [{
 {
   key: 'dlLsite',
   jsFileName: 'dlLsiteBook',
-  url: 'https://play.dlsite.com/csr/viewer/*',
+  url: 'https://play.dlsite.com/#/*',
   originUrl: 'dlsite.com',
-  regex: /^https:\/\/play\.dlsite\.com\/csr\/viewer\/.*/,
+  regex: /^https:\/\/play\.dlsite\.com\/#\/.*/,
   name: "DLsite コミック",
   supportMsg: [],
   loadingMsg: [],

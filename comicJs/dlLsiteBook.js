@@ -7,7 +7,6 @@ class DlLsiteComic {
     this.scramble = {}
     this.imageList = []
     this.zipFlag = false
-
     this.transferCanvas = document.createElement("canvas")
     this.getBookInfo()
   }

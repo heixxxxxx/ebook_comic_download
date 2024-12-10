@@ -56,57 +56,59 @@ class DaysComic {
       return 0
     }
     if (this.zipFlag) {
-      fetch(this.imageList[page]).then(res => res.blob()).then(blob => {
-        zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
+      fetch(this.imageList[page])
+        .then(res => res.blob()).then(r => {
+          let img = new Image()
+          img.src = URL.createObjectURL(r)
+          img.onload = () => {
+            this.solve(img)
+            fetch(canvas.toDataURL()).then(res => res.blob()).then(blob => {
+              zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
 
-        this.sendMsg(2, {
-          allPage: this.imageList.length,
-          nowPage: page
+              this.sendMsg(2, {
+                allPage: this.imageList.length,
+                nowPage: page
+              })
+              setTimeout(() => {
+                this.makeImage(page + 1)
+              }, 200)
+            })
+          }
         })
-        setTimeout(() => {
-          this.makeImage(page + 1)
-        }, 200)
-      })
-
 
     } else {
-      chrome.runtime.sendMessage({
-        downloadUrl: this.imageList[page],
-        filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-      });
-      this.sendMsg(2, {
-        allPage: this.imageList.length,
-        nowPage: page
-      })
-      setTimeout(() => {
-        this.makeImage(page + 1)
-      }, 200)
+      fetch(this.imageList[page])
+        .then(res => res.blob()).then(r => {
+
+          let img = new Image()
+          img.src = URL.createObjectURL(r)
+          console.log(img.src)
+          img.onload = () => {
+            this.solve(img)
+            chrome.runtime.sendMessage({
+              downloadUrl: canvas.toDataURL(),
+              filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
+            });
+            this.sendMsg(2, {
+              allPage: this.imageList.length,
+              nowPage: page
+            })
+            setTimeout(() => {
+              this.makeImage(page + 1)
+            }, 200)
+          }
+        })
+
+
     }
 
-    // fetch(this.imageList[page]).then(res => res.blob()).then(blob => {
-    //   let image = new Image()
-    //   image.src = URL.createObjectURL(blob)
-    //   image.onload = (e) => {
-    //     canvas.width = image.width
-    //     canvas.height = image.height
-    //     this.solve(image)
-    //     chrome.runtime.sendMessage({
-    //       downloadUrl: canvas.toDataURL(),
-    //       filename: page < 10 ? '0' + page + ".jpg" : page + ".jpg"
-    //     });
-    //     this.sendMsg(2, {
-    //       allPage: this.imageList.length,
-    //       nowPage: page
-    //     })
-    //     setTimeout(() => {
-    //       this.makeImage(page + 1)
-    //     }, 200)
-    //   }
-    // })
   }
   solve(image) {
+
     let width = image.width
     let height = image.height
+    canvas.width = width
+    canvas.height = height
     let cell_width = Math.floor(width / (4 * 8)) * 8
     let cell_height = Math.floor(height / (4 * 8)) * 8
     this.drawImagef(image, 0, 0, width, height, 0, 0);
