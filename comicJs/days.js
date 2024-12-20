@@ -1,9 +1,6 @@
 
-
-
 let canvas = document.createElement("canvas")
 let ctx = canvas.getContext('2d')
-
 class DaysComic {
   constructor(webObj) {
     //this.comicMsg 是从网站中拿到的具体内容
@@ -64,7 +61,6 @@ class DaysComic {
             this.solve(img)
             fetch(canvas.toDataURL()).then(res => res.blob()).then(blob => {
               zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
-
               this.sendMsg(2, {
                 allPage: this.imageList.length,
                 nowPage: page
@@ -79,7 +75,6 @@ class DaysComic {
     } else {
       fetch(this.imageList[page])
         .then(res => res.blob()).then(r => {
-
           let img = new Image()
           img.src = URL.createObjectURL(r)
           console.log(img.src)
