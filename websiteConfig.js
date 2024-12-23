@@ -626,5 +626,16 @@ var webList = [{
   loadingMsg: [],
   downloadMsg: [],
   loadStopMsg: "",
+}, {
+  key: 'cycomi',
+  jsFileName: 'cycomi',
+  url: 'https://cycomi.com/viewer/chapter/*',
+  originUrl: 'cycomi.com',
+  regex: /^https:\/\/cycomi\.com\/viewer\/chapter\/.*/,
+  name: "サイコミ",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
 }
 ]

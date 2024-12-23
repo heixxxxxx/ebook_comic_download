@@ -202,6 +202,10 @@ chrome.runtime.onMessage.addListener(
         case 'mangaone': {
           downloader = new MangaoneComic(request.webObj);
           break;
+        }
+        case 'cycomi': {
+          downloader = new CycomiComic(request.webObj);
+          break;
         }//++//
       }
     }
