@@ -198,6 +198,10 @@ chrome.runtime.onMessage.addListener(
         case 'shogakukan': {
           downloader = new ShogakukanComic(request.webObj);
           break;
+        }
+        case 'mangaone': {
+          downloader = new MangaoneComic(request.webObj);
+          break;
         }//++//
       }
     }
