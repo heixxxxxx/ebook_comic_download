@@ -615,5 +615,16 @@ var webList = [{
   loadingMsg: ['由于图片链接的有效时间有限，请在页面加载完成后一分钟内点击下载', '页面打开过久再启动插件可能下载失败，可以刷新重试'],
   downloadMsg: ['将会打开新页面开始下载。'],
   loadStopMsg: "浏览器会打开新标签页自动下载",
+}, {
+  key: 'mangaone',
+  jsFileName: 'mangaone',
+  url: 'https://manga-one.com/viewer/*',
+  originUrl: 'manga-one.com',
+  regex: /^https:\/\/manga-one\.com\/viewer\/.*/,
+  name: "マンガワン",
+  supportMsg: [],
+  loadingMsg: [],
+  downloadMsg: [],
+  loadStopMsg: "",
 }
 ]

@@ -74,6 +74,8 @@
 - √  [HAPPY!コミック](https://happycomic.jp)
 - √  [咚漫漫画](https://.dongmanmanhua.cn)
 - √  [ちゃおプラス](https://ciao.shogakukan.co.jp)
+- 待测试 [マンガワン](https://manga-one.com)
+
 
 
 
