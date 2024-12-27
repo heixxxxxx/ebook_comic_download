@@ -63,7 +63,7 @@ class CycomiComic {
     })
   }
   downLoadImg(page = 1) {
-    if (page == this.imageList.length) {
+    if (page >= this.imageList.length + 1) {
       if (this.zipFlag) {
         zip.generateAsync({ type: "blob" })
           .then((content) => {
@@ -134,7 +134,6 @@ class CycomiComic {
 
   }
 }
-
 let n = (e, t) => {
   let r = (e => {
     let t = new Uint8Array(256);

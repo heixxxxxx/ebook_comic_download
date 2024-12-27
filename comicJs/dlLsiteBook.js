@@ -49,9 +49,7 @@ class DlLsiteComic {
         data_xhr.onreadystatechange = (e) => {
           var response = data_xhr.responseText;
           let Rxml = (new window.DOMParser()).parseFromString(response, "text/xml")
-
           if (Rxml.getElementsByTagName('TocItem')[0]) {
-
             let topItem = Rxml.getElementsByTagName('TocItem')
             this.comicMsg["总页数"] = Rxml.getElementsByTagName('TotalPage')[0].innerHTML
             this.comicMsg["图片尺寸约"] = Rxml.getElementsByTagName('ContentFrame')[0].children[0].innerHTML + " * " + Rxml.getElementsByTagName('ContentFrame')[0].children[1].innerHTML
@@ -125,8 +123,6 @@ class DlLsiteComic {
         }
       }
     }
-
-
   }
   makeImg(page, fileName, key) {
     var data_xhr = new XMLHttpRequest();

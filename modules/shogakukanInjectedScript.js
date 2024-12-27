@@ -5,12 +5,10 @@ let p_dom = document.createElement("p")
 p_dom.style.display = "none"
 p_dom.id = "pageInfo_hei"
 document.body.appendChild(p_dom);
-
 XMLHttpRequest = function () {
   let myxml = new _XMLHttpRequest
   myxml._open = myxml.open
   myxml.open = function (m, src, a) {
-
     if (src.indexOf('/episode/viewer') != -1) {
       targetXml = myxml
       getMsg()
@@ -26,5 +24,3 @@ function getMsg() {
     setTimeout(getMsg, 1000)
   }
 }
-
-

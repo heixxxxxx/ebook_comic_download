@@ -1,5 +1,3 @@
-
-
 class QqComic {
   constructor(webObj) {
     //动态注入解码数据
@@ -57,10 +55,6 @@ class QqComic {
         this.getDATA(n + 1)
       }, 200)
     }
-
-
-
-
   }
   decodeSecretKey(text) {
     let textList = text.slice(0, -1).replace(/" \+ \(/g, "$").replace(/\) \+ "/g, "$").replace(/\) \+ \(/g, "$").split("$")
