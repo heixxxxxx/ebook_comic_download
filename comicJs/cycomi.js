@@ -29,7 +29,6 @@ class CycomiComic {
     let data = document.getElementById("__NEXT_DATA__").innerText
     let titleId = data.slice(data.indexOf('"titleId":')).split(",")[0]
     titleId = titleId.slice(10)
-
     fetch("https://web.cycomi.com/api/chapter/page/list", {
       "headers": {
         "accept": "application/json",
@@ -54,9 +53,7 @@ class CycomiComic {
     }).then(r => r.json()).then(r => {
       r.data.pages.forEach(element => {
         this.imageList.push(element.image)
-
       });
-
       this.comicMsg['漫画名'] = document.getElementsByTagName("title")[0].innerHTML
       this.comicMsg[`页数`] = this.imageList.length
       this.sendMsg(1)

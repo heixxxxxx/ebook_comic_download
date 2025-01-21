@@ -23,7 +23,6 @@ class DongmanComic {
     iframeDom.style.display = "none"
     iframeDom.src = this.urlList[0] + "&keys=heixxx"
     document.body.appendChild(iframeDom)
-
     window.addEventListener('message', (event) => {
       if (event.data.page) {
         let page = event.data.page * 1
@@ -35,11 +34,9 @@ class DongmanComic {
             nowPage: page
           })
         }
-
       } else if (event.data.keys == 'heixxx') {
         iframeDom.contentWindow.postMessage({ urls: this.urlList }, '*');
       }
-
     });
   }
   getInfo() {
