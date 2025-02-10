@@ -66,11 +66,13 @@ class NicoComic {
       }
       return 0
     }
-    var n = new XMLHttpRequest
-    this.getFromCORSRequest(n, this.imageList[page], page)
+    // var n = new XMLHttpRequest
+    // this.getFromCORSRequest(n, this.imageList[page], page)
+    downloadByBgJs(this.imageList, this)
   }
 
   getFromCORSRequest(e, n, page) {
+
     var i = this.getKeyFromUrl(n);
     e.open("GET", n, !0),
       e.responseType = "arraybuffer"

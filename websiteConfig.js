@@ -246,9 +246,9 @@ var webList = [{
 {
   key: 'nico',
   jsFileName: 'nicoComic',
-  url: 'https://seiga.nicovideo.jp/watch/*',
+  url: 'https://manga.nicovideo.jp/watch/*',
   originUrl: 'nicovideo.jp',
-  regex: /^https:\/\/seiga\.nicovideo\.jp\/watch\/.*/,
+  regex: /^https:\/\/manga\.nicovideo\.jp\/watch\/.*/,
   name: "ニコニコ漫画 ",
   supportMsg: [],
   loadingMsg: [],

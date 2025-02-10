@@ -12,7 +12,6 @@ document.addEventListener('contextmenu', function (e) {
 function downloadByUrl(url, page) {
   a_dom.href = url
   a_dom.download = page < 10 ? '0' + page + ".jpg" : page + ".jpg";
-
   a_dom.click()
 }
 //链接列表下载(blob,base64链接列表)
@@ -37,7 +36,6 @@ function downloadByUrlList(urlList, obj, page = 0) {
   }
 
   if (obj.zipFlag) {
-
     fetch(urlList[0]).then(res => res.blob()).then(blob => {
       zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", blob);
       if (obj) obj.sendMsg(2, {
@@ -62,7 +60,6 @@ function downloadByUrlList(urlList, obj, page = 0) {
       downloadByUrlList(urlList, obj, page + 1)
     }, 200)
   }
-
 }
 //请求下载(使用http请求下载)
 function downloadByFetch(urlList, obj, page = 0) {
@@ -96,13 +93,11 @@ function downloadByFetch(urlList, obj, page = 0) {
     } else {
       a_dom.click()
     }
-
     urlList.splice(0, 1)
     setTimeout(() => {
       downloadByFetch(urlList, obj, page + 1)
     }, 200)
-  })
-    .catch(
+  }).catch(
       () => {
         urlList.splice(0, 1)
         downloadByFetch(urlList, obj, page + 1)
@@ -136,7 +131,6 @@ function downloadByCanvas(urlList, obj, page = 0) {
   let image = new Image()
   image.src = urlList[0]
   image.setAttribute("crossOrigin", "use-credentials");
-
   image.onload = (e) => {
     let canvas = document.createElement("canvas")
     let ctx = canvas.getContext('2d')
@@ -201,7 +195,6 @@ function downloadByBgJs(urlList, obj, page = 0) {
       downloadByBgJs(urlList, obj, page + 1)
     }, 200)
   }
-
 }
 
 //监听dom内容改变 （需要监听的元素，回调）

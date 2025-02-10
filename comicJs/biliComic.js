@@ -47,7 +47,6 @@ class BiliComic {
   }
   downloadZip() {
     this.zipFlag = true
-
     let imgList = []
     for (let i = 0; i < this.imageList.length; i++) {
       imgList.push(this.imageList[i].path)
@@ -97,8 +96,6 @@ class BiliComic {
     )
   }
   getComicInfo() {
-
-
     fetch("https://manga.bilibili.com/twirp/comic.v1.Comic/GetEpisode?device=pc&platform=web&nov=25&ultra_sign=" + this.sign, {
       "headers": {
         "content-type": "application/json;charset=UTF-8",
