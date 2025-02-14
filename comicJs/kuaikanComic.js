@@ -27,6 +27,7 @@ class KuaikanComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     downloadByBgJs([...this.imageList], this)
   }
   getInfo() {

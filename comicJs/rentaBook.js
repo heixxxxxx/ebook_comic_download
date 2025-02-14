@@ -26,6 +26,7 @@ class RentaComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.downloadImg()
   }
   getInfo() {

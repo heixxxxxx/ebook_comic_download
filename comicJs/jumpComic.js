@@ -35,6 +35,7 @@ class JumpComic {
 
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.loadimage()
   }  //获取漫画json数据
   getInfo() {

@@ -20,6 +20,7 @@ class WalkerComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.toblob()
   }
   getInfo() {

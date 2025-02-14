@@ -94,6 +94,7 @@ class ZerosumComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.getImageList()
   }
   cleanCopyDom() {

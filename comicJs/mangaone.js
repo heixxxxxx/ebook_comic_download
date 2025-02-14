@@ -23,6 +23,7 @@ class MangaoneComic {
   //打包下载 
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     downloadByBgJs(this.imageList, this)
   }
   getInfo() {

@@ -25,6 +25,7 @@ class ChampioncrossComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.downloadImage(this.imageList)
   }
   getInfo() {

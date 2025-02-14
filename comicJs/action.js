@@ -23,6 +23,7 @@ class ActionComic {
   }
   downloadZip() {
     this.zipFlag = true
+    zip = new JSZip();
     this.makeImage()
   }
   getInfo() {
@@ -61,7 +62,7 @@ class ActionComic {
         canvas.height = image.height
         this.solve(image)
 
-        
+
         if (this.zipFlag) {
           zip.file(page < 10 ? '0' + page + ".jpg" : page + ".jpg", canvas.toDataURL("image/png").split(',')[1], { base64: true });
         } else {

@@ -22,6 +22,7 @@ class MagcomiComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.makeImage()
   }
   getInfo() {

@@ -21,6 +21,7 @@ class CycomiComic {
   //打包下载 
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.downLoadImg()
   }
   getInfo() {

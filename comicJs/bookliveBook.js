@@ -21,6 +21,7 @@ class BookliveComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.makeImg()
   }
   getInfo() {

@@ -40,6 +40,7 @@ class PixivComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     downloadByUrlList([...this.imageList], this)
   }
 

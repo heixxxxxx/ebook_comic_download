@@ -23,6 +23,7 @@ class DmmFreeComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.loadImage()
   } getComicInfo() {
     let u1 = ""

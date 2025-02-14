@@ -25,6 +25,7 @@ class BwTrialComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     console.log(this.imageList[0])
     downloadByFetch([...this.imageList], this)
   }

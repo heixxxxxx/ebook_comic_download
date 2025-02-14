@@ -25,6 +25,7 @@ class QqComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     downloadByFetch([...this.imageList], this)
   }
   //数据 密钥

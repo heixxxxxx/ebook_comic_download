@@ -47,6 +47,7 @@ class BiliComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     let imgList = []
     for (let i = 0; i < this.imageList.length; i++) {
       imgList.push(this.imageList[i].path)

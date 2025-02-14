@@ -23,6 +23,7 @@
     }
     downloadZip() {
       this.zipFlag = true
+zip = new JSZip();
       this.getJson()
     }
     //解码

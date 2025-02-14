@@ -27,6 +27,7 @@ class PocketComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.loadImage([...this.imageList])
   }
   //获取网页上的漫画信息（从script的属性拿）

@@ -94,6 +94,7 @@ class HappycomicComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.downloadImage()
   }
   downloadImage(page = 0) {

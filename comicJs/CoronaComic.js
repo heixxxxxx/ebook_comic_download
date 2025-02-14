@@ -120,6 +120,7 @@ class CoronaComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.drawImg()
   }
 

@@ -25,6 +25,7 @@ class GrowlComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.makeImage()
   }
   getInfo() {

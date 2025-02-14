@@ -27,6 +27,7 @@ class NicoComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.loadImage()
   }
   getInfo() {

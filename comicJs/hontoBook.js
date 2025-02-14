@@ -28,6 +28,7 @@ class HontoComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.getPage()
   }
   //获取图书信息

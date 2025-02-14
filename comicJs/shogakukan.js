@@ -31,6 +31,7 @@ class ShogakukanComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     chrome.storage.local.set({ hei_data: { skey: this.skey, url: this.imageList, zip: true } }, () => {
       window.open(this.imageList[0])
     });

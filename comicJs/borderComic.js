@@ -24,6 +24,7 @@ class BorderComic {
   }
   downloadZip() {
     this.zipFlag = true
+zip = new JSZip();
     this.drawImg()
   }
   getJson() {
